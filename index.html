@@ -3,24 +3,40 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Mabrig Research Online</title>
+<title>Mabrig Research Institute (MRI) | Academic Publishing for African Scholars</title>
+<meta name="description" content="Mabrig Research Institute (MRI) — Africa's academic publishing ecosystem. Publish research, access the Mabrig Journal of Interdisciplinary Research (MJIR), and find grants via AfriGrantPipeline." />
+<meta name="keywords" content="Mabrig Research Institute, MRI, MJIR, African research, academic publishing, Nigerian journals, research grants, DOI, AfriGrantPipeline" />
+<meta name="author" content="Mabrig Research Institute" />
+<link rel="canonical" href="https://mabrigresearch.online/" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Mabrig Research Institute (MRI)" />
+<meta property="og:description" content="Publish research, get cited, and build academic authority with Africa's premier research publishing ecosystem." />
+<meta property="og:url" content="https://mabrigresearch.online/" />
+<meta property="og:type" content="website" />
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-* {
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
 }
 
-body {
-    background: #f8fafc;
-    color: #0f172a;
+:root {
+    --blue:   #1e3a8a;
+    --blue2:  #2563eb;
+    --gold:   #f5b301;
+    --dark:   #0f172a;
+    --slate:  #334155;
+    --light:  #f8fafc;
 }
 
-/* NAVBAR */
+body { background: var(--light); color: var(--dark); }
+
+/* ── NAVBAR ── */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -29,296 +45,573 @@ body {
     background: white;
     position: sticky;
     top: 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
     z-index: 1000;
 }
 
-.logo {
-    font-size: 20px;
-    font-weight: 700;
-    color: #1e3a8a;
-}
+.logo { font-size: 20px; font-weight: 700; color: var(--blue); line-height: 1.2; }
+.logo span { display: block; font-size: 11px; font-weight: 400; color: var(--slate); letter-spacing: 0.05em; }
 
-.nav-links {
-    display: flex;
-    gap: 20px;
-}
+.nav-links { display: flex; gap: 20px; }
+.nav-links a { text-decoration: none; color: var(--slate); font-weight: 500; font-size: 14px; }
+.nav-links a:hover { color: var(--blue); }
 
-.nav-links a {
-    text-decoration: none;
-    color: #334155;
-    font-weight: 500;
-}
+.nav-actions { display: flex; gap: 8px; }
 
 .btn {
-    padding: 10px 15px;
+    padding: 9px 16px;
     border-radius: 8px;
     font-weight: 600;
+    font-size: 14px;
     cursor: pointer;
     border: none;
+    transition: opacity 0.2s;
 }
+.btn:hover { opacity: 0.88; }
+.btn-primary  { background: var(--blue); color: white; }
+.btn-secondary { background: var(--gold); color: black; }
+.btn-outline { background: transparent; border: 2px solid white; color: white; }
 
-.btn-primary {
-    background: #1e3a8a;
-    color: white;
+/* Hamburger */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 2px; transition: 0.3s; }
+
+/* Mobile nav overlay */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: white;
+    z-index: 999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
 }
+.mobile-nav.open { display: flex; }
+.mobile-nav a { font-size: 22px; font-weight: 600; color: var(--dark); text-decoration: none; }
+.mobile-nav .close-btn { position: absolute; top: 20px; right: 24px; font-size: 28px; cursor: pointer; background: none; border: none; color: var(--dark); }
 
-.btn-secondary {
-    background: #f5b301;
-    color: black;
-}
-
-/* HERO */
+/* ── HERO ── */
 .hero {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 70px 40px;
-    background: linear-gradient(120deg, #1e3a8a, #2563eb);
+    background: linear-gradient(120deg, var(--blue), var(--blue2));
     color: white;
+    gap: 30px;
 }
 
-.hero-text {
-    max-width: 50%;
-}
+.hero-text { max-width: 55%; }
+.hero-text h1 { font-size: 40px; line-height: 1.2; margin-bottom: 16px; }
+.hero-text p  { font-size: 17px; margin-bottom: 28px; opacity: 0.9; line-height: 1.6; }
 
-.hero-text h1 {
-    font-size: 42px;
-    margin-bottom: 15px;
-}
-
-.hero-text p {
-    font-size: 18px;
-    margin-bottom: 25px;
-    opacity: 0.9;
-}
-
-.hero-buttons button {
-    margin-right: 10px;
-}
+.hero-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
 
 .hero-box {
-    width: 40%;
-    background: rgba(255,255,255,0.1);
-    border-radius: 15px;
-    padding: 20px;
+    flex-shrink: 0;
+    width: 36%;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 16px;
+    padding: 28px;
+    backdrop-filter: blur(4px);
 }
+.hero-box h3 { margin-bottom: 16px; font-size: 16px; opacity: 0.85; letter-spacing: 0.04em; text-transform: uppercase; }
+.hero-box p  { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.15); font-size: 15px; }
+.hero-box p:last-child { border-bottom: none; }
 
-/* CARDS */
-.section {
-    padding: 60px 40px;
+/* ── TRUST BAR ── */
+.trust-bar {
+    background: white;
+    padding: 18px 40px;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #e2e8f0;
 }
+.trust-item { font-size: 13px; color: var(--slate); display: flex; align-items: center; gap: 6px; }
+.trust-item strong { color: var(--blue); }
 
-.section h2 {
-    margin-bottom: 25px;
-    font-size: 28px;
-}
+/* ── SECTIONS ── */
+.section { padding: 60px 40px; }
+.section-alt { background: white; }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
+.section-header { margin-bottom: 30px; }
+.section-header h2 { font-size: 28px; color: var(--dark); }
+.section-header p  { margin-top: 8px; color: var(--slate); font-size: 15px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
 
 .card {
     background: white;
-    padding: 20px;
+    padding: 24px;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    transition: 0.3s;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
+    border-left: 4px solid transparent;
 }
+.card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.10); border-left-color: var(--blue); }
+.card h3 { font-size: 16px; margin-bottom: 8px; color: var(--blue); }
+.card p  { font-size: 14px; color: var(--slate); line-height: 1.6; }
+.card .card-icon { font-size: 26px; margin-bottom: 12px; }
 
-.card:hover {
-    transform: translateY(-5px);
-}
-
-/* GRANT BANNER */
-.banner {
-    background: linear-gradient(120deg, #1e3a8a, #f5b301);
+/* ── MJIR SECTION ── */
+.mjir-section {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
     color: white;
-    padding: 50px 40px;
+    padding: 60px 40px;
+}
+.mjir-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.mjir-text { flex: 1; min-width: 260px; }
+.mjir-text h2 { font-size: 26px; margin-bottom: 6px; }
+.mjir-text .mjir-subtitle { font-size: 14px; opacity: 0.75; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+.mjir-text p { font-size: 15px; line-height: 1.7; opacity: 0.9; margin-bottom: 20px; }
+.mjir-stats { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; }
+.mjir-stat strong { display: block; font-size: 22px; color: var(--gold); }
+.mjir-stat span   { font-size: 12px; opacity: 0.75; }
+.mjir-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin: 4px 4px 4px 0;
+}
+
+/* ── PRICING ── */
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+.pricing-card {
+    background: white;
+    padding: 28px 22px;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     text-align: center;
-    border-radius: 12px;
+    transition: transform 0.25s;
+    position: relative;
+    overflow: hidden;
 }
+.pricing-card:hover { transform: translateY(-4px); }
+.pricing-card.featured { border: 2px solid var(--blue); }
+.pricing-card .badge {
+    position: absolute; top: 0; right: 0;
+    background: var(--blue); color: white;
+    font-size: 11px; font-weight: 700;
+    padding: 4px 12px;
+    border-bottom-left-radius: 10px;
+}
+.pricing-card h3 { font-size: 16px; color: var(--blue); margin-bottom: 10px; }
+.pricing-card .price { font-size: 22px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+.pricing-card p { font-size: 13px; color: var(--slate); line-height: 1.5; }
 
-/* FOOTER */
-.footer {
-    background: #0f172a;
+/* ── ABOUT ── */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.about-text h2 { font-size: 28px; margin-bottom: 16px; }
+.about-text p  { font-size: 15px; color: var(--slate); line-height: 1.8; margin-bottom: 14px; }
+.about-text a  { color: var(--blue); font-weight: 600; text-decoration: none; }
+.about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.highlight-item { background: var(--light); padding: 16px; border-radius: 10px; border-left: 3px solid var(--gold); }
+.highlight-item strong { display: block; font-size: 13px; color: var(--blue); margin-bottom: 4px; }
+.highlight-item span  { font-size: 13px; color: var(--slate); }
+
+/* ── GRANTS BANNER ── */
+.banner {
+    background: linear-gradient(120deg, var(--dark) 0%, #1e3a8a 60%, var(--gold) 150%);
     color: white;
-    padding: 40px;
-    margin-top: 50px;
+    padding: 56px 40px;
+    text-align: center;
+    border-radius: 16px;
 }
+.banner h2 { font-size: 30px; margin-bottom: 10px; }
+.banner p  { font-size: 16px; opacity: 0.88; margin-bottom: 24px; }
 
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-}
+/* ── FOOTER ── */
+.footer { background: var(--dark); color: white; padding: 50px 40px 30px; }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; margin-bottom: 30px; }
+.footer h3 { font-size: 16px; margin-bottom: 12px; }
+.footer h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 12px; }
+.footer a  { color: #cbd5e1; text-decoration: none; display: block; margin-top: 8px; font-size: 14px; transition: color 0.2s; }
+.footer a:hover { color: var(--gold); }
+.footer p  { font-size: 14px; color: #94a3b8; line-height: 1.6; }
+.footer-bottom { border-top: 1px solid #1e293b; padding-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.footer-bottom p { font-size: 13px; color: #64748b; }
 
-.footer a {
-    color: #cbd5e1;
-    text-decoration: none;
-    display: block;
-    margin-top: 8px;
-}
-
-/* FLOAT BUTTON */
+/* ── FLOAT BUTTON ── */
 .float-btn {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #1e3a8a;
+    bottom: 24px;
+    right: 24px;
+    background: var(--blue);
     color: white;
-    padding: 15px;
+    padding: 14px 20px;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 20px rgba(30,58,138,0.4);
+    font-size: 14px;
+    font-weight: 600;
+    transition: transform 0.2s;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.float-btn:hover { transform: translateY(-2px); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .navbar { padding: 14px 20px; }
+    .nav-links, .nav-actions { display: none; }
+    .hamburger { display: flex; }
+
+    .hero { flex-direction: column; padding: 50px 20px; }
+    .hero-text { max-width: 100%; }
+    .hero-text h1 { font-size: 28px; }
+    .hero-box { width: 100%; }
+
+    .section { padding: 44px 20px; }
+    .mjir-section { padding: 44px 20px; }
+
+    .trust-bar { padding: 14px 20px; gap: 16px; justify-content: flex-start; }
+
+    .footer { padding: 40px 20px 24px; }
+    .footer-bottom { flex-direction: column; }
+
+    .banner { padding: 40px 20px; }
+    .banner h2 { font-size: 22px; }
+
+    .float-btn { bottom: 16px; right: 16px; padding: 12px 16px; font-size: 13px; }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 { font-size: 24px; }
+    .about-highlights { grid-template-columns: 1fr; }
+    .mjir-stats { gap: 16px; }
 }
 </style>
 </head>
 
 <body>
 
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobileNav">
+    <button class="close-btn" onclick="toggleMenu()">&#x2715;</button>
+    <a href="#about" onclick="toggleMenu()">About MRI</a>
+    <a href="#journal" onclick="toggleMenu()">MJIR Journal</a>
+    <a href="#services" onclick="toggleMenu()">Services</a>
+    <a href="#pricing" onclick="toggleMenu()">Pricing</a>
+    <a href="https://www.afrigrantpipeline.com/" target="_blank" onclick="toggleMenu()">Grants</a>
+    <button class="btn btn-primary" style="width:200px;">Login</button>
+    <button class="btn btn-secondary" style="width:200px;">Publish Now</button>
+</div>
+
 <!-- NAVBAR -->
-<div class="navbar">
-    <div class="logo">Mabrig Research</div>
+<nav class="navbar">
+    <div class="logo">
+        Mabrig Research Institute
+        <span>MRI — mabrigresearch.online</span>
+    </div>
 
     <div class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Publish</a>
-        <a href="#">Journals</a>
-        <a href="#">Services</a>
-        <a href="#">Pricing</a>
+        <a href="#about">About MRI</a>
+        <a href="#journal">MJIR</a>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
         <a href="https://www.afrigrantpipeline.com/" target="_blank">Grants</a>
     </div>
 
-    <div>
+    <div class="nav-actions">
         <button class="btn btn-primary">Login</button>
         <button class="btn btn-secondary">Publish</button>
     </div>
-</div>
+
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
 
 <!-- HERO -->
-<div class="hero">
+<section class="hero">
     <div class="hero-text">
         <h1>Publish Your Research. Get Cited. Build Academic Authority.</h1>
-        <p>A modern research publishing ecosystem for African scholars, students, and institutions.</p>
+        <p>Mabrig Research Institute (MRI) is Africa's academic publishing ecosystem — connecting scholars, institutions, and funding opportunities across the continent.</p>
 
         <div class="hero-buttons">
-            <button class="btn btn-primary">Publish Paper</button>
-            <button class="btn btn-secondary" onclick="window.open('https://www.afrigrantpipeline.com/')">
+            <button class="btn btn-secondary">Publish a Paper</button>
+            <button class="btn btn-outline" onclick="window.open('https://www.afrigrantpipeline.com/')">
                 Find Funding
             </button>
         </div>
     </div>
 
     <div class="hero-box">
-        <h3>Research Dashboard Preview</h3>
-        <p>📄 Published Papers</p>
-        <p>📊 Citation Tracking</p>
-        <p>👤 Author Profiles</p>
-        <p>🔖 DOI Management</p>
+        <h3>Research Dashboard</h3>
+        <p>&#128196; Published Papers & DOI Assignment</p>
+        <p>&#128202; Citation & Impact Tracking</p>
+        <p>&#128100; Author Profiles & ORCID</p>
+        <p>&#128279; MJIR Journal Submissions</p>
+        <p>&#128176; Paystack Payment Integration</p>
     </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+    <div class="trust-item">&#9989; <span>DOI-Assigned Publications</span></div>
+    <div class="trust-item">&#9989; <span>Peer-Reviewed Journal — <strong>MJIR</strong></span></div>
+    <div class="trust-item">&#9989; <span>African Scholars & Institutions</span></div>
+    <div class="trust-item">&#9989; <span>Integrated Grant Funding via <strong>AfriGrantPipeline</strong></span></div>
+    <div class="trust-item">&#9989; <span>Secure Paystack Payments</span></div>
 </div>
+
+<!-- ABOUT MRI -->
+<section class="section section-alt" id="about">
+    <div class="about-grid">
+        <div class="about-text">
+            <h2>About Mabrig Research Institute</h2>
+            <p>
+                Mabrig Research Institute (MRI) is a Nigeria-based academic publishing organisation dedicated to advancing research output from African scholars, postgraduate students, and institutions.
+            </p>
+            <p>
+                We provide a full-stack publishing ecosystem — from manuscript submission and peer review to DOI assignment, citation tracking, and grant access through our partner platform <a href="https://www.afrigrantpipeline.com/" target="_blank">AfriGrantPipeline</a>.
+            </p>
+            <p>
+                Our flagship outlet, the <strong>Mabrig Journal of Interdisciplinary Research (MJIR)</strong>, publishes original research across disciplines including public health, education, agriculture, social sciences, and technology.
+            </p>
+        </div>
+        <div class="about-highlights">
+            <div class="highlight-item">
+                <strong>DOI Assignment</strong>
+                <span>Every published paper receives a permanent, citable DOI</span>
+            </div>
+            <div class="highlight-item">
+                <strong>MJIR Journal</strong>
+                <span>Flagship interdisciplinary peer-reviewed journal</span>
+            </div>
+            <div class="highlight-item">
+                <strong>AfriGrantPipeline</strong>
+                <span>Direct access to grants and funding opportunities</span>
+            </div>
+            <div class="highlight-item">
+                <strong>Nigerian Focus</strong>
+                <span>Naira-based pricing accessible to local researchers</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MJIR JOURNAL -->
+<section class="mjir-section" id="journal">
+    <div class="mjir-inner">
+        <div class="mjir-text">
+            <div class="mjir-subtitle">Flagship Publication</div>
+            <h2>Mabrig Journal of Interdisciplinary Research</h2>
+            <p>
+                MJIR is MRI's peer-reviewed open-access journal, publishing original research that bridges disciplines and addresses real-world challenges facing Africa and the Global South.
+            </p>
+            <div class="mjir-stats">
+                <div class="mjir-stat"><strong>Open</strong><span>Access</span></div>
+                <div class="mjir-stat"><strong>DOI</strong><span>Per Article</span></div>
+                <div class="mjir-stat"><strong>Multi</strong><span>Disciplinary</span></div>
+            </div>
+            <div>
+                <span class="mjir-badge">Public Health</span>
+                <span class="mjir-badge">Education</span>
+                <span class="mjir-badge">Agriculture</span>
+                <span class="mjir-badge">Social Sciences</span>
+                <span class="mjir-badge">Technology & AI</span>
+                <span class="mjir-badge">Economics</span>
+                <span class="mjir-badge">Environment</span>
+            </div>
+            <br><br>
+            <button class="btn btn-secondary">Submit to MJIR</button>
+        </div>
+    </div>
+</section>
 
 <!-- QUICK ACTIONS -->
-<div class="section">
-    <h2>Quick Actions</h2>
+<section class="section" id="services">
+    <div class="section-header">
+        <h2>Publishing Services</h2>
+        <p>Everything you need to publish, get cited, and grow your academic profile.</p>
+    </div>
 
     <div class="grid">
         <div class="card">
+            <div class="card-icon">&#128196;</div>
             <h3>Publish Research</h3>
-            <p>Upload and publish your academic paper instantly.</p>
+            <p>Upload and publish your academic paper with DOI assignment and citation tracking.</p>
         </div>
-
         <div class="card">
+            <div class="card-icon">&#128214;</div>
+            <h3>MJIR Submission</h3>
+            <p>Submit your manuscript for peer review in the Mabrig Journal of Interdisciplinary Research.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">&#128203;</div>
             <h3>Thesis Conversion</h3>
-            <p>Convert thesis into journal-ready articles.</p>
+            <p>Convert your thesis or dissertation into a journal-ready article with professional formatting.</p>
         </div>
-
         <div class="card">
-            <h3>Editing Services</h3>
-            <p>Professional academic proofreading & formatting.</p>
+            <div class="card-icon">&#9997;&#65039;</div>
+            <h3>Editing & Proofreading</h3>
+            <p>Professional academic language editing, proofreading, and manuscript formatting.</p>
         </div>
-
         <div class="card">
+            <div class="card-icon">&#128178;</div>
             <h3>Find Grants</h3>
-            <p>Explore funding opportunities.</p>
+            <p>Explore scholarships and research funding via <a href="https://www.afrigrantpipeline.com/" target="_blank" style="color:var(--blue);">AfriGrantPipeline</a>.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">&#128279;</div>
+            <h3>DOI Management</h3>
+            <p>Every published paper receives a permanent DOI for international discoverability and citation.</p>
         </div>
     </div>
-</div>
+</section>
 
-<!-- PUBLICATIONS -->
-<div class="section">
-    <h2>Recently Published Research</h2>
+<!-- RECENTLY PUBLISHED -->
+<section class="section section-alt">
+    <div class="section-header">
+        <h2>Recently Published Research</h2>
+        <p>A selection of papers published through MRI and MJIR.</p>
+    </div>
 
     <div class="grid">
-        <div class="card">Impact of Youth Migration in Nigeria</div>
-        <div class="card">Public Health Systems in West Africa</div>
-        <div class="card">AI in African Education Systems</div>
-        <div class="card">Climate Change & Agriculture</div>
+        <div class="card">
+            <h3>Impact of Youth Migration in Nigeria</h3>
+            <p>Social Sciences &bull; MJIR Vol. 1</p>
+        </div>
+        <div class="card">
+            <h3>Public Health Systems in West Africa</h3>
+            <p>Public Health &bull; MJIR Vol. 1</p>
+        </div>
+        <div class="card">
+            <h3>AI in African Education Systems</h3>
+            <p>Technology &bull; MJIR Vol. 1</p>
+        </div>
+        <div class="card">
+            <h3>Climate Change & Agriculture</h3>
+            <p>Environmental Science &bull; MJIR Vol. 1</p>
+        </div>
     </div>
-</div>
+</section>
 
-<!-- SERVICES -->
-<div class="section">
-    <h2>Publishing Services</h2>
-
-    <div class="grid">
-        <div class="card">Basic Publishing (₦5,000 – ₦20,000)</div>
-        <div class="card">Standard Publishing (₦20,000 – ₦50,000)</div>
-        <div class="card">Premium Publishing (₦50,000 – ₦120,000)</div>
-        <div class="card">Journal Submission (₦150,000+)</div>
+<!-- PRICING -->
+<section class="section" id="pricing">
+    <div class="section-header">
+        <h2>Publishing Fees</h2>
+        <p>Transparent, Naira-based pricing designed for African researchers.</p>
     </div>
-</div>
+
+    <div class="pricing-grid">
+        <div class="pricing-card">
+            <h3>Basic</h3>
+            <div class="price">₦5,000 – ₦20,000</div>
+            <p>Standard upload, DOI assignment, and listing on the MRI platform.</p>
+        </div>
+        <div class="pricing-card featured">
+            <div class="badge">Popular</div>
+            <h3>Standard</h3>
+            <div class="price">₦20,000 – ₦50,000</div>
+            <p>Includes editing review, faster processing, and citation tracking.</p>
+        </div>
+        <div class="pricing-card">
+            <h3>Premium</h3>
+            <div class="price">₦50,000 – ₦120,000</div>
+            <p>Full editorial support, formatting, DOI, and promotional listing.</p>
+        </div>
+        <div class="pricing-card">
+            <h3>MJIR Submission</h3>
+            <div class="price">₦150,000+</div>
+            <p>Peer-reviewed publication in the Mabrig Journal of Interdisciplinary Research.</p>
+        </div>
+    </div>
+</section>
 
 <!-- GRANTS BANNER -->
-<div class="section">
+<section class="section">
     <div class="banner">
         <h2>Need Research Funding?</h2>
-        <p>Explore grants, scholarships, and funding opportunities for your research.</p>
-        <br>
+        <p>Explore grants, scholarships, fellowships, and funding opportunities curated for African researchers on AfriGrantPipeline.</p>
         <button class="btn btn-secondary" onclick="window.open('https://www.afrigrantpipeline.com/')">
-            Visit AfriGrantPipeline
+            Visit AfriGrantPipeline &#8599;
         </button>
     </div>
-</div>
+</section>
 
 <!-- FOOTER -->
-<div class="footer">
+<footer class="footer">
     <div class="footer-grid">
         <div>
-            <h3>Mabrig Research</h3>
-            <p>Academic publishing ecosystem for African researchers.</p>
+            <h3>Mabrig Research Institute</h3>
+            <p>Africa's academic publishing ecosystem. Empowering scholars, institutions, and researchers across the continent.</p>
+            <p style="margin-top:12px; font-size:13px;">&#127963; Nigeria</p>
+            <p style="font-size:13px;">&#127760; <a href="https://mabrigresearch.online">mabrigresearch.online</a></p>
         </div>
 
         <div>
             <h4>Services</h4>
-            <a href="#">Publishing</a>
-            <a href="#">Editing</a>
-            <a href="#">Thesis Conversion</a>
+            <a href="#services">Publishing</a>
+            <a href="#services">Editing & Proofreading</a>
+            <a href="#services">Thesis Conversion</a>
+            <a href="#services">DOI Assignment</a>
+        </div>
+
+        <div>
+            <h4>Journal</h4>
+            <a href="#journal">MJIR Overview</a>
+            <a href="#journal">Submit a Paper</a>
+            <a href="#journal">Editorial Board</a>
+            <a href="#journal">Author Guidelines</a>
         </div>
 
         <div>
             <h4>Explore</h4>
-            <a href="#">Publications</a>
-            <a href="#">Authors</a>
-            <a href="https://www.afrigrantpipeline.com/">Grants</a>
+            <a href="#about">About MRI</a>
+            <a href="#pricing">Pricing</a>
+            <a href="https://www.afrigrantpipeline.com/" target="_blank">AfriGrantPipeline</a>
         </div>
 
         <div>
             <h4>Contact</h4>
             <a href="#">WhatsApp Support</a>
-            <a href="#">Email</a>
+            <a href="#">Email MRI</a>
+            <a href="#">Submit an Inquiry</a>
         </div>
     </div>
 
-    <p style="margin-top:20px; color:#94a3b8;">© 2026 Mabrig Research Online. All rights reserved.</p>
-</div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Mabrig Research Institute (MRI). All rights reserved.</p>
+        <p>
+            <a href="#" style="color:#64748b; font-size:13px;">Privacy Policy</a> &nbsp;|&nbsp;
+            <a href="#" style="color:#64748b; font-size:13px;">Terms of Use</a>
+        </p>
+    </div>
+</footer>
 
-<!-- FLOAT BUTTON -->
-<div class="float-btn" onclick="window.location.href='#'">
-    📚 Publish
-</div>
+<!-- FLOAT PUBLISH BUTTON -->
+<a class="float-btn" href="#">
+    &#128218; Publish Now
+</a>
+
+<script>
+function toggleMenu() {
+    document.getElementById('mobileNav').classList.toggle('open');
+}
+</script>
 
 </body>
 </html>
