@@ -1,35 +1,31 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const connectDB = require('./config/db');
+require("dotenv").config();
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+
+const authRoutes = require("./routes/authRoutes");
+const paperRoutes = require("./routes/paperRoutes");
+const paymentRoutes = require("./routes/paymentRoutes");
 
 const app = express();
 
-connectDB();
+// Raw body must be parsed before express.json() for Paystack webhook HMAC verification
+app.use("/api/payments/webhook", express.raw({ type: "application/json" }));
 
-// Paystack webhook needs raw body — mount before json middleware
-const paymentRoutes = require('./routes/paymentRoutes');
-app.use('/api/payments/webhook', express.raw({ type: 'application/json' }));
-
-app.use(cors({ origin: process.env.CLIENT_URL || '*' }));
+app.use(cors());
 app.use(express.json());
+app.use("/uploads", express.static("uploads"));
 
-// Static file serving for uploaded papers
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.log(err));
 
-// Routes
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/papers', require('./routes/paperRoutes'));
-app.use('/api/payments', paymentRoutes);
-
-app.get('/', (req, res) => res.json({ message: 'Mabrig Research API is running' }));
-
-// Global error handler
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(err.status || 500).json({ message: err.message || 'Internal server error' });
-});
+app.use("/api/auth", authRoutes);
+app.use("/api/papers", paperRoutes);
+app.use("/api/payments", paymentRoutes);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
