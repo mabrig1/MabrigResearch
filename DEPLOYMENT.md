@@ -1,223 +1,184 @@
 # Mabrig Research Institute — Deployment Guide
 
-## Architecture Overview
+## Stack
 
-```
-mabrigresearch.online          (Frontend — static HTML)
-api.mabrigresearch.online      (Backend — Node.js API)
-MongoDB Atlas                  (Database — cloud)
-Paystack                       (Payments)
-AfriGrantPipeline              (External grants partner)
-```
+| Layer    | Service           | Cost    |
+|----------|-------------------|---------|
+| Frontend | Vercel            | Free    |
+| Backend  | Railway           | Free ($5 credit/mo) |
+| Database | MongoDB Atlas     | Free M0 |
+| DNS/CDN  | Cloudflare        | Free    |
+| Payments | Paystack          | Free (transaction fee only) |
 
 ---
 
-## Option A: Render.com (Recommended — Free Tier Available)
+## Step 1 — MongoDB Atlas (Database)
 
-Render hosts both the static frontend and the Node.js backend under one account.
-
-### Step 1 — MongoDB Atlas (Database)
-
-1. Go to [https://cloud.mongodb.com](https://cloud.mongodb.com) and create a free account
-2. Create a new project → **New Cluster** → choose **M0 Free Tier** → region: `AWS / eu-west-1` (Ireland) or nearest
-3. Under **Database Access** → Add a user:
+1. Go to [https://cloud.mongodb.com](https://cloud.mongodb.com) → create account
+2. **New Project** → **Create Cluster** → choose **M0 Free Tier** → region closest to Nigeria (e.g. `AWS / eu-west-1`)
+3. **Database Access** → Add Database User:
    - Username: `mabrigadmin`
-   - Password: generate a strong password, save it
+   - Password: click **Autogenerate** — save it securely
    - Role: `Atlas Admin`
-4. Under **Network Access** → Add IP Address → **Allow Access from Anywhere** (`0.0.0.0/0`)
-5. Under **Clusters** → Connect → **Connect your application** → copy the connection string:
+4. **Network Access** → Add IP Address → **Allow Access from Anywhere** `0.0.0.0/0`
+5. **Clusters** → **Connect** → **Connect your application** → copy the URI:
    ```
    mongodb+srv://mabrigadmin:<password>@cluster0.xxxxx.mongodb.net/mabrig_research
    ```
-   Replace `<password>` with your actual password. Save this as `MONGO_URI`.
+   Replace `<password>` with your actual password. This is your `MONGO_URI`.
 
 ---
 
-### Step 2 — Deploy Backend on Render
+## Step 2 — Deploy Backend on Railway
 
-1. Push this repo to GitHub (github.com)
-2. Go to [https://render.com](https://render.com) → **New** → **Web Service**
-3. Connect your GitHub repo
-4. Fill in:
-   | Field | Value |
-   |-------|-------|
-   | Name | `mabrig-backend` |
-   | Root Directory | `mabrig-backend` |
-   | Runtime | `Node` |
-   | Build Command | `npm install` |
-   | Start Command | `node server.js` |
-   | Plan | Free (or Starter for always-on) |
+1. Go to [https://railway.app](https://railway.app) → **Login with GitHub**
+2. **New Project** → **Deploy from GitHub repo** → select `mabrig1/MabrigResearch`
+3. Railway detects Node.js automatically. Set the **Root Directory** to `mabrig-backend`
+4. Go to your service → **Variables** tab → add all of these:
 
-5. Under **Environment Variables**, add:
+   | Variable         | Value                                        |
+   |------------------|----------------------------------------------|
+   | `NODE_ENV`       | `production`                                 |
+   | `MONGO_URI`      | your Atlas connection string                 |
+   | `JWT_SECRET`     | run: `node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"` |
+   | `JWT_EXPIRES_IN` | `7d`                                         |
+   | `PAYSTACK_SECRET`| `sk_live_xxxxx` from Paystack dashboard      |
+   | `CLIENT_URL`     | `https://mabrigresearch.online`              |
 
-   | Key | Value |
-   |-----|-------|
-   | `NODE_ENV` | `production` |
-   | `MONGO_URI` | your Atlas connection string |
-   | `JWT_SECRET` | a long random string (32+ chars) |
-   | `JWT_EXPIRES_IN` | `7d` |
-   | `PAYSTACK_SECRET` | `sk_live_xxxxx` from Paystack dashboard |
-   | `CLIENT_URL` | `https://mabrigresearch.online` |
-
-6. Click **Create Web Service** — Render will build and deploy
-7. Your API will be live at: `https://mabrig-backend.onrender.com`
+5. **Settings** → **Networking** → **Generate Domain** (you get a free `xxx.up.railway.app` URL)
+6. Test your API:
+   ```
+   GET https://xxx.up.railway.app/health
+   → { "status": "ok" }
+   ```
+7. Later, add your custom domain `api.mabrigresearch.online` here (after Cloudflare is set up)
 
 ---
 
-### Step 3 — Deploy Frontend on Render (Static Site)
+## Step 3 — Deploy Frontend on Vercel
 
-1. On Render → **New** → **Static Site**
-2. Connect the same GitHub repo
-3. Fill in:
+1. Go to [https://vercel.com](https://vercel.com) → **Login with GitHub**
+2. **Add New** → **Project** → import `mabrig1/MabrigResearch`
+3. Configuration:
    | Field | Value |
    |-------|-------|
-   | Name | `mabrig-frontend` |
+   | Framework Preset | `Other` |
    | Root Directory | `/` (repo root) |
    | Build Command | *(leave blank)* |
-   | Publish Directory | `.` |
-
-4. Click **Create Static Site**
-5. Your site will be live at: `https://mabrig-frontend.onrender.com`
-
----
-
-### Step 4 — Connect Custom Domain (mabrigresearch.online)
-
-**Frontend (Render Static Site):**
-1. In Render → your static site → **Custom Domains** → Add `mabrigresearch.online` and `www.mabrigresearch.online`
-2. Log in to your domain registrar (Namecheap, GoDaddy, etc.)
-3. Add DNS records:
-   ```
-   Type    Host    Value
-   CNAME   www     mabrig-frontend.onrender.com
-   ALIAS   @       mabrig-frontend.onrender.com
-   ```
-4. Render automatically provisions an SSL certificate (Let's Encrypt)
-
-**Backend (Render Web Service):**
-1. In Render → backend service → **Custom Domains** → Add `api.mabrigresearch.online`
-2. At your registrar, add:
-   ```
-   Type    Host    Value
-   CNAME   api     mabrig-backend.onrender.com
-   ```
-3. Update `CLIENT_URL` env var on Render to `https://mabrigresearch.online`
+   | Output Directory | `.` |
+4. Click **Deploy** — Vercel auto-picks up `vercel.json`
+5. Your site is live at `https://mabrig-frontend.vercel.app`
+6. Later, add custom domain `mabrigresearch.online` under **Settings** → **Domains**
 
 ---
 
-## Option B: Netlify (Frontend) + Railway (Backend)
+## Step 4 — Cloudflare (DNS + CDN + SSL)
 
-### Frontend on Netlify
+Cloudflare manages your domain DNS and adds a free CDN layer in front of both Vercel and Railway.
 
-1. Go to [https://netlify.com](https://netlify.com) → **Add new site** → **Import from Git**
-2. Connect GitHub repo
-3. Build settings:
-   - Base directory: *(leave blank)*
-   - Build command: *(leave blank)*
-   - Publish directory: `.`
-4. Deploy → your site is live at `https://yoursite.netlify.app`
-5. **Custom domain**: Site settings → Domain management → Add `mabrigresearch.online`
-6. Update your registrar DNS:
+### 4a — Add your domain to Cloudflare
+
+1. Go to [https://dash.cloudflare.com](https://dash.cloudflare.com) → **Add a Site** → enter `mabrigresearch.online`
+2. Choose the **Free** plan
+3. Cloudflare will scan your existing DNS records
+4. Log in to your domain registrar (Namecheap / GoDaddy / etc.) → change nameservers to the two Cloudflare provides:
    ```
-   Type     Host    Value
-   CNAME    www     yoursite.netlify.app
-   A        @       75.2.60.5
+   ns1.cloudflare.com
+   ns2.cloudflare.com
    ```
+5. Wait for propagation (5–30 minutes)
 
-### Backend on Railway
+### 4b — DNS Records
 
-1. Go to [https://railway.app](https://railway.app) → **New Project** → **Deploy from GitHub repo**
-2. Select your repo → set **Root Directory** to `mabrig-backend`
-3. Railway auto-detects Node.js
-4. Under **Variables**, add same env vars as the Render list above
-5. Under **Settings** → **Domains** → Generate domain or add custom `api.mabrigresearch.online`
+In Cloudflare DNS dashboard, add these records:
 
----
-
-## Option C: VPS (DigitalOcean / AWS EC2)
-
-Use this for full control. Requires a server (min $6/mo DigitalOcean Droplet).
-
-### Server Setup
-
-```bash
-# SSH into your server
-ssh root@your-server-ip
-
-# Install Node.js 20
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-sudo apt-get install -y nodejs
-
-# Install PM2 (process manager)
-npm install -g pm2
-
-# Install Nginx
-sudo apt-get install -y nginx
-
-# Clone the repo
-git clone https://github.com/mabrig1/MabrigResearch.git /var/www/mabrig
-cd /var/www/mabrig/mabrig-backend
-
-# Install dependencies
-npm install --production
-
-# Create .env file
-cp .env.example .env
-nano .env   # fill in all values
-
-# Start with PM2
-pm2 start ecosystem.config.js
-pm2 startup    # auto-start on reboot
-pm2 save
+**Frontend (Vercel):**
+```
+Type    Name    Content                         Proxy
+CNAME   @       cname.vercel-dns.com            ON (orange cloud)
+CNAME   www     cname.vercel-dns.com            ON (orange cloud)
 ```
 
-### Nginx Configuration
-
-```bash
-sudo nano /etc/nginx/sites-available/mabrig
+**Backend (Railway):**
 ```
-
-Paste the Nginx config (see `nginx.conf` in this repo), then:
-
-```bash
-sudo ln -s /etc/nginx/sites-available/mabrig /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl reload nginx
-
-# SSL with Let's Encrypt
-sudo apt install certbot python3-certbot-nginx
-sudo certbot --nginx -d mabrigresearch.online -d www.mabrigresearch.online -d api.mabrigresearch.online
+Type    Name    Content                         Proxy
+CNAME   api     xxx.up.railway.app              ON (orange cloud)
 ```
+Replace `xxx.up.railway.app` with your actual Railway domain.
+
+### 4c — Vercel — connect the domain
+
+1. Vercel → your project → **Settings** → **Domains**
+2. Add `mabrigresearch.online` and `www.mabrigresearch.online`
+3. Vercel verifies via Cloudflare DNS — SSL is automatic
+
+### 4d — Railway — connect the API subdomain
+
+1. Railway → your service → **Settings** → **Networking** → **Custom Domain**
+2. Add `api.mabrigresearch.online`
+3. Railway gives you a verification TXT record — add it in Cloudflare DNS
+
+### 4e — Cloudflare SSL Settings
+
+1. Cloudflare → your domain → **SSL/TLS** → set mode to **Full (strict)**
+2. **Edge Certificates** → turn on **Always Use HTTPS**
+3. **Speed** → **Optimization** → turn on **Auto Minify** (CSS, JS, HTML)
 
 ---
 
-## Paystack Setup
+## Step 5 — Paystack Webhook
 
-1. Create account at [https://dashboard.paystack.com](https://dashboard.paystack.com)
-2. Complete business verification (required for live keys)
-3. Go to **Settings** → **API Keys & Webhooks**
-4. Copy **Secret Key** (`sk_live_xxxxx`) → set as `PAYSTACK_SECRET` in your env
-5. Under **Webhooks**, add:
+1. Go to [https://dashboard.paystack.com](https://dashboard.paystack.com) → **Settings** → **API Keys & Webhooks**
+2. Under **Webhooks**, add:
    ```
    https://api.mabrigresearch.online/api/payments/webhook
    ```
-6. For testing, use `sk_test_xxxxx` with test cards:
-   - Card: `4084 0840 8408 4081`  |  Expiry: any future date  |  CVV: `408`
-   - PIN: `0000`  |  OTP: `123456`
+3. Copy your **Secret Key** (`sk_live_xxxxx`) → set it as `PAYSTACK_SECRET` in Railway
+
+**Test cards (development only):**
+| Field | Value |
+|-------|-------|
+| Card | `4084 0840 8408 4081` |
+| Expiry | Any future date |
+| CVV | `408` |
+| PIN | `0000` |
+| OTP | `123456` |
+
+---
+
+## Step 6 — CI/CD (Auto-deploy on git push)
+
+Every push to `main` automatically deploys both frontend and backend.
+
+### Add secrets to GitHub
+
+Go to your repo → **Settings** → **Secrets and variables** → **Actions** → add:
+
+| Secret | Where to get it |
+|--------|----------------|
+| `VERCEL_TOKEN` | vercel.com → Account Settings → Tokens → Create |
+| `VERCEL_ORG_ID` | vercel.com → Settings → General → copy Team ID |
+| `VERCEL_PROJECT_ID` | vercel.com → Project → Settings → General → copy Project ID |
+| `RAILWAY_TOKEN` | railway.app → Account Settings → Tokens → New Token |
+
+Once added, every `git push origin main` triggers `.github/workflows/deploy.yml` which:
+1. Validates backend syntax
+2. Deploys frontend to Vercel
+3. Deploys backend to Railway
 
 ---
 
 ## Post-Deployment Checklist
 
-- [ ] `GET https://api.mabrigresearch.online/health` returns `{ status: "ok" }`
+- [ ] `GET https://api.mabrigresearch.online/health` → `{ "status": "ok" }`
+- [ ] `https://mabrigresearch.online` loads with SSL padlock
+- [ ] MongoDB Atlas → Clusters → shows active connections
 - [ ] `POST /api/auth/register` creates a user
-- [ ] `POST /api/papers/upload` accepts a file
+- [ ] `POST /api/papers/upload` accepts a PDF
 - [ ] `PUT /api/papers/approve/:id` assigns a DOI
-- [ ] `POST /api/payments/initialize` returns a Paystack URL
-- [ ] Frontend loads at `https://mabrigresearch.online`
-- [ ] SSL certificate is active (padlock in browser)
-- [ ] MongoDB Atlas shows connections from your server IP
-- [ ] Paystack webhook URL is set in dashboard
+- [ ] `POST /api/payments/initialize` returns a Paystack checkout URL
+- [ ] Paystack webhook URL is saved in Paystack dashboard
+- [ ] Cloudflare → SSL → shows "Active Certificate"
 
 ---
 
@@ -226,14 +187,14 @@ sudo certbot --nginx -d mabrigresearch.online -d www.mabrigresearch.online -d ap
 | Variable | Example | Required |
 |----------|---------|----------|
 | `NODE_ENV` | `production` | Yes |
-| `PORT` | `5000` | No (default 5000) |
+| `PORT` | `5000` | No (Railway sets this) |
 | `MONGO_URI` | `mongodb+srv://...` | Yes |
-| `JWT_SECRET` | `your_64_char_random_string` | Yes |
-| `JWT_EXPIRES_IN` | `7d` | No (default 7d) |
+| `JWT_SECRET` | 64-char hex string | Yes |
+| `JWT_EXPIRES_IN` | `7d` | No |
 | `PAYSTACK_SECRET` | `sk_live_xxxxx` | Yes |
 | `CLIENT_URL` | `https://mabrigresearch.online` | Yes |
 
-Generate a strong JWT secret:
+Generate JWT secret:
 ```bash
 node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
 ```

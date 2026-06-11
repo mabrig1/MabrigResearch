@@ -5,13 +5,13 @@ on:
     branches: [main]
 
 jobs:
-  # ── Lint & basic checks ────────────────────────────────────────
+  # ── Validate backend ───────────────────────────────────────────
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Set up Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: "20"
@@ -26,30 +26,40 @@ jobs:
         run: node --check server.js
         working-directory: mabrig-backend
 
-  # ── Deploy backend to Render ───────────────────────────────────
-  deploy-backend:
-    needs: validate
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger Render deploy
-        run: |
-          curl -s -X POST "${{ secrets.RENDER_BACKEND_DEPLOY_HOOK }}"
-        # Set RENDER_BACKEND_DEPLOY_HOOK in GitHub repo secrets
-        # Get it from: Render dashboard → service → Settings → Deploy Hook
-
-  # ── Deploy frontend to Netlify ─────────────────────────────────
+  # ── Deploy frontend to Vercel ──────────────────────────────────
   deploy-frontend:
     needs: validate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy to Netlify
-        uses: netlify/actions/cli@master
-        with:
-          args: deploy --dir=. --prod
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Deploy to Vercel (production)
+        run: vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID:    ${{ secrets.NETLIFY_SITE_ID }}
-        # Set NETLIFY_AUTH_TOKEN and NETLIFY_SITE_ID in GitHub repo secrets
-        # Get them from: Netlify dashboard → User settings → Personal access tokens
+          VERCEL_ORG_ID:     ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        # GitHub Secrets needed:
+        #   VERCEL_TOKEN      → vercel.com → Account Settings → Tokens
+        #   VERCEL_ORG_ID     → vercel.com → Settings → General → Team ID
+        #   VERCEL_PROJECT_ID → vercel.com → Project → Settings → General
+
+  # ── Deploy backend to Railway ──────────────────────────────────
+  deploy-backend:
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy to Railway
+        run: railway up --service mabrig-backend --detach
+        working-directory: mabrig-backend
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        # GitHub Secrets needed:
+        #   RAILWAY_TOKEN → railway.app → Account Settings → Tokens → New Token
