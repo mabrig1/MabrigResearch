@@ -5,6 +5,7 @@ const paperSchema = new mongoose.Schema({
     author: String,
     email: String,
     fileUrl: String,
+    fileName: String,
     status: {
         type: String,
         default: "pending"

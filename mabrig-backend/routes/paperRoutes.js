@@ -15,7 +15,8 @@ router.post("/upload", upload.single("file"), async (req, res) => {
             title,
             author,
             email,
-            fileUrl: req.file.path
+            fileUrl: req.file.path,       // Cloudinary secure URL
+            fileName: req.file.originalname,
         });
 
         await newPaper.save();
