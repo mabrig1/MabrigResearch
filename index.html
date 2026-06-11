@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mabrig Research Online</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: white;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e3a8a;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #334155;
+    font-weight: 500;
+}
+
+.btn {
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: #1e3a8a;
+    color: white;
+}
+
+.btn-secondary {
+    background: #f5b301;
+    color: black;
+}
+
+/* HERO */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    padding: 70px 40px;
+    background: linear-gradient(120deg, #1e3a8a, #2563eb);
+    color: white;
+}
+
+.hero-text {
+    max-width: 50%;
+}
+
+.hero-text h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.hero-text p {
+    font-size: 18px;
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.hero-buttons button {
+    margin-right: 10px;
+}
+
+.hero-box {
+    width: 40%;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+/* CARDS */
+.section {
+    padding: 60px 40px;
+}
+
+.section h2 {
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* GRANT BANNER */
+.banner {
+    background: linear-gradient(120deg, #1e3a8a, #f5b301);
+    color: white;
+    padding: 50px 40px;
+    text-align: center;
+    border-radius: 12px;
+}
+
+/* FOOTER */
+.footer {
+    background: #0f172a;
+    color: white;
+    padding: 40px;
+    margin-top: 50px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.footer a {
+    color: #cbd5e1;
+    text-decoration: none;
+    display: block;
+    margin-top: 8px;
+}
+
+/* FLOAT BUTTON */
+.float-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #1e3a8a;
+    color: white;
+    padding: 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Mabrig Research</div>
+
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Publish</a>
+        <a href="#">Journals</a>
+        <a href="#">Services</a>
+        <a href="#">Pricing</a>
+        <a href="https://www.afrigrantpipeline.com/" target="_blank">Grants</a>
+    </div>
+
+    <div>
+        <button class="btn btn-primary">Login</button>
+        <button class="btn btn-secondary">Publish</button>
+    </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-text">
+        <h1>Publish Your Research. Get Cited. Build Academic Authority.</h1>
+        <p>A modern research publishing ecosystem for African scholars, students, and institutions.</p>
+
+        <div class="hero-buttons">
+            <button class="btn btn-primary">Publish Paper</button>
+            <button class="btn btn-secondary" onclick="window.open('https://www.afrigrantpipeline.com/')">
+                Find Funding
+            </button>
+        </div>
+    </div>
+
+    <div class="hero-box">
+        <h3>Research Dashboard Preview</h3>
+        <p>📄 Published Papers</p>
+        <p>📊 Citation Tracking</p>
+        <p>👤 Author Profiles</p>
+        <p>🔖 DOI Management</p>
+    </div>
+</div>
+
+<!-- QUICK ACTIONS -->
+<div class="section">
+    <h2>Quick Actions</h2>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Publish Research</h3>
+            <p>Upload and publish your academic paper instantly.</p>
+        </div>
+
+        <div class="card">
+            <h3>Thesis Conversion</h3>
+            <p>Convert thesis into journal-ready articles.</p>
+        </div>
+
+        <div class="card">
+            <h3>Editing Services</h3>
+            <p>Professional academic proofreading & formatting.</p>
+        </div>
+
+        <div class="card">
+            <h3>Find Grants</h3>
+            <p>Explore funding opportunities.</p>
+        </div>
+    </div>
+</div>
+
+<!-- PUBLICATIONS -->
+<div class="section">
+    <h2>Recently Published Research</h2>
+
+    <div class="grid">
+        <div class="card">Impact of Youth Migration in Nigeria</div>
+        <div class="card">Public Health Systems in West Africa</div>
+        <div class="card">AI in African Education Systems</div>
+        <div class="card">Climate Change & Agriculture</div>
+    </div>
+</div>
+
+<!-- SERVICES -->
+<div class="section">
+    <h2>Publishing Services</h2>
+
+    <div class="grid">
+        <div class="card">Basic Publishing (₦5,000 – ₦20,000)</div>
+        <div class="card">Standard Publishing (₦20,000 – ₦50,000)</div>
+        <div class="card">Premium Publishing (₦50,000 – ₦120,000)</div>
+        <div class="card">Journal Submission (₦150,000+)</div>
+    </div>
+</div>
+
+<!-- GRANTS BANNER -->
+<div class="section">
+    <div class="banner">
+        <h2>Need Research Funding?</h2>
+        <p>Explore grants, scholarships, and funding opportunities for your research.</p>
+        <br>
+        <button class="btn btn-secondary" onclick="window.open('https://www.afrigrantpipeline.com/')">
+            Visit AfriGrantPipeline
+        </button>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <div class="footer-grid">
+        <div>
+            <h3>Mabrig Research</h3>
+            <p>Academic publishing ecosystem for African researchers.</p>
+        </div>
+
+        <div>
+            <h4>Services</h4>
+            <a href="#">Publishing</a>
+            <a href="#">Editing</a>
+            <a href="#">Thesis Conversion</a>
+        </div>
+
+        <div>
+            <h4>Explore</h4>
+            <a href="#">Publications</a>
+            <a href="#">Authors</a>
+            <a href="https://www.afrigrantpipeline.com/">Grants</a>
+        </div>
+
+        <div>
+            <h4>Contact</h4>
+            <a href="#">WhatsApp Support</a>
+            <a href="#">Email</a>
+        </div>
+    </div>
+
+    <p style="margin-top:20px; color:#94a3b8;">© 2026 Mabrig Research Online. All rights reserved.</p>
+</div>
+
+<!-- FLOAT BUTTON -->
+<div class="float-btn" onclick="window.location.href='#'">
+    📚 Publish
+</div>
+
+</body>
+</html>
