@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- SEO -->
+<title>Inflation, Food Insecurity, and Household Resilience: An Empirical Analysis of the Cost-of-Living Crisis in Nigeria | MJIR Vol.1</title>
+<meta name="description" content="Korie (2026) traces Nigeria's 2023 subsidy-removal shock through to household dietary collapse, mapping regional vulnerability and policy gaps. MJIR, Vol. 1, Issue 1, pp. 1–20."/>
+<meta name="keywords" content="inflation Nigeria, food insecurity, household resilience, cost-of-living crisis, social protection, subsidy reform, Mabrig Korie, MJIR, Mabrig Research Institute"/>
+<meta name="author" content="Mabrig Korie"/>
+<link rel="canonical" href="https://mabrigresearch.online/journal/inflation-food-insecurity-household-resilience-mabrig-korie-2026/"/>
+
+<!-- Open Graph -->
+<meta property="og:type"        content="article"/>
+<meta property="og:title"       content="Inflation, Food Insecurity, and Household Resilience — Mabrig Korie (2026)"/>
+<meta property="og:description" content="Empirical analysis of Nigeria's cost-of-living crisis: subsidy shock, dietary collapse, and household coping strategies. MJIR Vol. 1, Issue 1."/>
+<meta property="og:url"         content="https://mabrigresearch.online/journal/inflation-food-insecurity-household-resilience-mabrig-korie-2026/"/>
+<meta property="og:site_name"   content="Mabrig Research Institute"/>
+<meta property="article:published_time" content="2026-01-01"/>
+<meta property="article:author"         content="Mabrig Korie"/>
+<meta property="article:section"        content="Development Economics"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card"        content="summary_large_image"/>
+<meta name="twitter:title"       content="Inflation, Food Insecurity & Household Resilience — MJIR 2026"/>
+<meta name="twitter:description" content="Nigeria's 2023 subsidy shock traced to household level: dietary collapse, asset depletion, and coping gaps. New paper in MJIR Vol. 1."/>
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "Inflation, Food Insecurity, and Household Resilience: An Empirical Analysis of the Cost-of-Living Crisis in Nigeria",
+  "name": "Inflation, Food Insecurity, and Household Resilience: An Empirical Analysis of the Cost-of-Living Crisis in Nigeria",
+  "author": {
+    "@type": "Person",
+    "name": "Mabrig Korie",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Mabrig Research Institute (MRI)",
+      "url": "https://mabrigresearch.online"
+    },
+    "email": "contact@mabrigkorie.org"
+  },
+  "datePublished": "2026",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Mabrig Research Institute",
+    "url": "https://mabrigresearch.online"
+  },
+  "isPartOf": {
+    "@type": "PublicationVolume",
+    "name": "Mabrig Journal of Interdisciplinary Research",
+    "volumeNumber": "1",
+    "issueNumber": "1"
+  },
+  "pageStart": "1",
+  "pageEnd": "20",
+  "keywords": "inflation, food insecurity, household resilience, cost-of-living crisis, social protection, Nigeria, subsidy reform",
+  "description": "Nigeria has endured one of the most punishing cost-of-living crises in its recent history. This paper traces the 2023 subsidy-removal shock to household level, documenting dietary collapse, asset depletion, and structural gaps in social protection.",
+  "url": "https://mabrigresearch.online/journal/inflation-food-insecurity-household-resilience-mabrig-korie-2026/",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "DOI",
+    "value": "10.2026/MABRIG/MR2026001"
+  },
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "inLanguage": "en"
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+
+<style>
+:root {
+  --blue:#1e3a8a; --blue2:#2563eb; --gold:#f5b301;
+  --dark:#0f172a; --slate:#334155; --muted:#64748b;
+  --light:#f8fafc; --white:#ffffff; --border:#e2e8f0;
+  --green:#16a34a; --radius:10px;
+}
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; background:var(--light); color:var(--dark); line-height:1.6; }
+a { color:var(--blue2); text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+/* ── NAVBAR ── */
+.navbar {
+  background:var(--white); border-bottom:1px solid var(--border);
+  padding:14px 40px; display:flex; justify-content:space-between;
+  align-items:center; position:sticky; top:0; z-index:100;
+  box-shadow:0 1px 8px rgba(0,0,0,0.06);
+}
+.nav-logo { font-size:18px; font-weight:700; color:var(--blue); text-decoration:none; }
+.nav-logo span { font-size:11px; font-weight:400; color:var(--muted); display:block; }
+.nav-links { display:flex; gap:24px; align-items:center; }
+.nav-links a { font-size:14px; font-weight:500; color:var(--slate); }
+.nav-links a:hover { color:var(--blue); text-decoration:none; }
+.btn { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; border:none; transition:0.2s; white-space:nowrap; }
+.btn-primary   { background:var(--blue);  color:#fff; }
+.btn-secondary { background:var(--gold);  color:#000; }
+.btn-outline   { background:transparent; border:1.5px solid var(--border); color:var(--slate); }
+.btn-outline:hover { border-color:var(--blue); color:var(--blue); text-decoration:none; }
+.btn:hover { opacity:0.88; text-decoration:none; }
+
+/* ── BREADCRUMB ── */
+.breadcrumb { padding:12px 40px; font-size:13px; color:var(--muted); background:var(--white); border-bottom:1px solid var(--border); }
+.breadcrumb a { color:var(--muted); }
+.breadcrumb a:hover { color:var(--blue); }
+.breadcrumb span { margin:0 6px; }
+
+/* ── ARTICLE HEADER ── */
+.article-header {
+  background:linear-gradient(135deg, var(--blue) 0%, #1e40af 100%);
+  color:#fff; padding:56px 40px 48px;
+}
+.article-header-inner { max-width:860px; margin:0 auto; }
+.article-meta-top { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+.meta-tag {
+  background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.25);
+  padding:4px 12px; border-radius:20px; font-size:12px; font-weight:500;
+}
+.meta-tag.gold { background:var(--gold); color:#000; border-color:var(--gold); }
+.article-title {
+  font-family:'Merriweather',serif; font-size:28px; line-height:1.4;
+  margin-bottom:20px; font-weight:700;
+}
+.article-authors { margin-bottom:16px; }
+.author-name { font-size:16px; font-weight:600; margin-bottom:4px; }
+.author-affil { font-size:14px; opacity:0.8; }
+.author-email { font-size:13px; opacity:0.7; margin-top:2px; }
+.article-pub-info { display:flex; flex-wrap:wrap; gap:16px; margin-top:20px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.2); }
+.pub-info-item { font-size:13px; opacity:0.85; }
+.pub-info-item strong { opacity:1; display:block; font-size:12px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:2px; }
+.doi-badge {
+  display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.3); padding:6px 14px; border-radius:6px;
+  font-size:13px; font-family:monospace; color:#fff; margin-top:16px;
+}
+.doi-badge:hover { background:rgba(255,255,255,0.25); text-decoration:none; }
+
+/* ── ACTION BAR ── */
+.action-bar {
+  background:var(--white); border-bottom:1px solid var(--border);
+  padding:14px 40px; display:flex; gap:10px; flex-wrap:wrap;
+  align-items:center; position:sticky; top:57px; z-index:99;
+}
+
+/* ── MAIN LAYOUT ── */
+.article-body { max-width:1100px; margin:0 auto; padding:40px; display:grid; grid-template-columns:1fr 300px; gap:40px; }
+
+/* ── ABSTRACT ── */
+.section { margin-bottom:36px; }
+.section-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.section-label::after { content:''; flex:1; height:1px; background:var(--border); }
+.abstract-text { font-family:'Merriweather',serif; font-size:15px; line-height:1.9; color:var(--slate); }
+
+/* Keywords */
+.keywords { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.kw-tag { background:#eff6ff; color:var(--blue); padding:5px 12px; border-radius:20px; font-size:13px; font-weight:500; border:1px solid #bfdbfe; cursor:default; }
+
+/* Citation box */
+.cite-box {
+  background:var(--light); border:1px solid var(--border); border-radius:var(--radius);
+  padding:20px; margin-bottom:16px;
+}
+.cite-box-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.cite-box-header h4 { font-size:13px; font-weight:700; color:var(--dark); }
+.cite-text { font-size:13px; color:var(--slate); line-height:1.7; font-family:'Merriweather',serif; }
+.cite-text em { font-style:italic; }
+
+/* Code / export blocks */
+.code-block {
+  background:#0f172a; color:#e2e8f0; padding:18px; border-radius:var(--radius);
+  font-family:'Courier New',monospace; font-size:12px; line-height:1.7;
+  overflow-x:auto; margin-bottom:16px; position:relative;
+}
+.copy-btn {
+  position:absolute; top:10px; right:10px; background:rgba(255,255,255,0.1);
+  color:#cbd5e1; border:1px solid rgba(255,255,255,0.2); padding:4px 10px;
+  border-radius:5px; font-size:11px; cursor:pointer; transition:0.2s;
+}
+.copy-btn:hover { background:rgba(255,255,255,0.2); }
+.copy-btn.copied { background:#16a34a; color:#fff; border-color:#16a34a; }
+
+/* ── SIDEBAR ── */
+.sidebar { }
+.sidebar-box {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+  padding:20px; margin-bottom:20px;
+}
+.sidebar-box h4 { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin-bottom:14px; }
+.sidebar-row { display:flex; justify-content:space-between; align-items:flex-start; padding:8px 0; border-bottom:1px solid var(--border); font-size:13px; gap:10px; }
+.sidebar-row:last-child { border-bottom:none; }
+.sidebar-row .label { color:var(--muted); flex-shrink:0; }
+.sidebar-row .value { color:var(--dark); font-weight:500; text-align:right; }
+.open-access-badge {
+  display:flex; align-items:center; gap:8px; padding:10px 14px;
+  background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px;
+  font-size:13px; color:var(--green); font-weight:600; margin-bottom:14px;
+}
+.metrics-row { text-align:center; }
+.metric-num { font-size:26px; font-weight:700; color:var(--blue); display:block; }
+.metric-label { font-size:11px; color:var(--muted); }
+.metrics-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+
+/* ── AUTHOR BIO ── */
+.author-card {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+  padding:28px; display:flex; gap:20px; align-items:flex-start; margin-bottom:36px;
+}
+.author-avatar {
+  width:64px; height:64px; border-radius:50%; background:linear-gradient(135deg,var(--blue),var(--blue2));
+  display:flex; align-items:center; justify-content:center; color:#fff;
+  font-size:22px; font-weight:700; flex-shrink:0;
+}
+.author-info h3 { font-size:16px; font-weight:700; margin-bottom:4px; }
+.author-info .affil { font-size:13px; color:var(--muted); margin-bottom:8px; }
+.author-info p { font-size:14px; color:var(--slate); line-height:1.6; }
+
+/* ── RELATED ── */
+.related-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+.related-card {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+  padding:18px; transition:0.2s;
+}
+.related-card:hover { border-color:var(--blue); transform:translateY(-2px); box-shadow:0 4px 16px rgba(0,0,0,0.08); }
+.related-card .tag { font-size:11px; font-weight:600; color:var(--blue); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:8px; }
+.related-card h4 { font-size:14px; font-weight:600; line-height:1.4; margin-bottom:8px; color:var(--dark); }
+.related-card .meta { font-size:12px; color:var(--muted); }
+
+/* ── FOOTER ── */
+.footer { background:var(--dark); color:#cbd5e1; padding:40px; margin-top:60px; }
+.footer-inner { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px; }
+.footer a { color:#94a3b8; font-size:13px; }
+.footer a:hover { color:var(--gold); text-decoration:none; }
+.footer-copy { font-size:13px; color:#475569; margin-top:20px; text-align:center; max-width:1100px; margin:20px auto 0; border-top:1px solid #1e293b; padding-top:20px; }
+
+/* Toast */
+.toast {
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px);
+  background:var(--dark); color:#fff; padding:12px 24px; border-radius:8px;
+  font-size:14px; font-weight:500; z-index:9999; transition:transform 0.3s ease;
+  box-shadow:0 8px 24px rgba(0,0,0,0.3);
+}
+.toast.show { transform:translateX(-50%) translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width:900px) {
+  .article-body { grid-template-columns:1fr; padding:24px 20px; }
+  .sidebar { order:-1; }
+  .metrics-grid { grid-template-columns:repeat(4,1fr); }
+}
+@media (max-width:768px) {
+  .navbar { padding:12px 20px; }
+  .nav-links { display:none; }
+  .breadcrumb { padding:10px 20px; }
+  .article-header { padding:36px 20px 32px; }
+  .article-title { font-size:22px; }
+  .action-bar { padding:12px 20px; top:53px; }
+  .article-pub-info { gap:12px; }
+}
+@media (max-width:480px) {
+  .article-title { font-size:19px; }
+  .action-bar .btn span { display:none; }
+  .metrics-grid { grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast">Copied to clipboard!</div>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<nav class="navbar">
+  <a href="/" class="nav-logo">
+    Mabrig Research Institute
+    <span>mabrigresearch.online</span>
+  </a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/journal/">MJIR Journal</a>
+    <a href="/#services">Services</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="https://www.afrigrantpipeline.com/" target="_blank">Grants ↗</a>
+  </div>
+</nav>
+
+<!-- ═══════════ BREADCRUMB ═══════════ -->
+<div class="breadcrumb">
+  <a href="/">Home</a><span>›</span>
+  <a href="/journal/">MJIR Journal</a><span>›</span>
+  <a href="/journal/#vol1">Volume 1, Issue 1</a><span>›</span>
+  Article 001
+</div>
+
+<!-- ═══════════ ARTICLE HEADER ═══════════ -->
+<header class="article-header">
+  <div class="article-header-inner">
+    <div class="article-meta-top">
+      <span class="meta-tag gold">Open Access</span>
+      <span class="meta-tag">MJIR Vol. 1, Issue 1</span>
+      <span class="meta-tag">Article 001</span>
+      <span class="meta-tag">2026</span>
+      <span class="meta-tag">Development Economics</span>
+      <span class="meta-tag">Food Security</span>
+    </div>
+
+    <h1 class="article-title">
+      Inflation, Food Insecurity, and Household Resilience: An Empirical Analysis of the Cost-of-Living Crisis in Nigeria
+    </h1>
+
+    <div class="article-authors">
+      <div class="author-name">Mabrig Korie</div>
+      <div class="author-affil">Mabrig Research Institute (MRI), Lagos, Nigeria</div>
+      <div class="author-email">contact@mabrigkorie.org</div>
+    </div>
+
+    <div class="article-pub-info">
+      <div class="pub-info-item"><strong>Journal</strong>Mabrig Journal of Interdisciplinary Research</div>
+      <div class="pub-info-item"><strong>Volume / Issue</strong>Vol. 1, Issue 1</div>
+      <div class="pub-info-item"><strong>Year</strong>2026</div>
+      <div class="pub-info-item"><strong>Pages</strong>1 – 20</div>
+      <div class="pub-info-item"><strong>Article</strong>001</div>
+    </div>
+
+    <a class="doi-badge" href="https://doi.org/10.2026/MABRIG/MR2026001" target="_blank">
+      🔗 DOI: 10.2026/MABRIG/MR2026001
+    </a>
+  </div>
+</header>
+
+<!-- ═══════════ ACTION BAR ═══════════ -->
+<div class="action-bar">
+  <a class="btn btn-primary" href="/pdfs/korie-2026-inflation-food-insecurity-nigeria.pdf" download>
+    📥 <span>Download PDF</span>
+  </a>
+  <button class="btn btn-outline" onclick="copyCitation('apa')">
+    📋 <span>Cite This Paper</span>
+  </button>
+  <button class="btn btn-outline" onclick="copyBibtex()">
+    📄 <span>BibTeX</span>
+  </button>
+  <button class="btn btn-outline" onclick="shareArticle()">
+    ↗ <span>Share</span>
+  </button>
+  <a class="btn btn-secondary" href="/#publish" style="margin-left:auto;">
+    Publish with MRI →
+  </a>
+</div>
+
+<!-- ═══════════ BODY ═══════════ -->
+<div class="article-body">
+
+  <!-- ══ MAIN COLUMN ══ -->
+  <main>
+
+    <!-- Abstract -->
+    <div class="section">
+      <div class="section-label">Abstract</div>
+      <p class="abstract-text">
+        Nigeria has endured one of the most punishing cost-of-living crises in its recent history. The abrupt removal of the Premium Motor Spirit subsidy in May 2023, followed by the unification and float of the exchange rate, triggered immediate and compounding shocks that ripped through domestic markets. Food prices climbed faster than wages or informal earnings could adjust, pushing millions of households into acute food insecurity. This paper follows those macroeconomic decisions all the way down to the household level—documenting reduced dietary diversity, the steady depletion of assets, and the turn toward increasingly destructive coping strategies. Drawing on Amartya Sen's entitlement theory and the sustainable livelihoods framework, the analysis explains why physical food availability has not translated into real access for large sections of the population. Using the latest data from the National Bureau of Statistics, FEWS NET, IPC analyses, IFPRI reports, and recent micro-level surveys, the paper maps the scale of dietary degradation, stark regional variations in vulnerability, and the sequence of household responses. It highlights persistent weaknesses in Nigeria's social protection architecture, especially around targeting accuracy, coverage gaps, and the yawning distance between temporary palliatives and structural solutions. The paper closes with a focused set of short-term and medium-term policy recommendations aimed at lowering transport pass-through costs, strengthening the Social Register with better verification, and investing in the rural infrastructure and smallholder productivity that ultimately determine whether food remains affordable. Nigeria's experience carries clear lessons for other countries attempting subsidy reform under conditions of high inflation and fragile institutions.
+      </p>
+    </div>
+
+    <!-- Keywords -->
+    <div class="section">
+      <div class="section-label">Keywords</div>
+      <div class="keywords">
+        <span class="kw-tag">Inflation</span>
+        <span class="kw-tag">Food Insecurity</span>
+        <span class="kw-tag">Household Resilience</span>
+        <span class="kw-tag">Cost-of-Living Crisis</span>
+        <span class="kw-tag">Social Protection</span>
+        <span class="kw-tag">Nigeria</span>
+        <span class="kw-tag">Economic Policy</span>
+        <span class="kw-tag">Poverty Reduction</span>
+        <span class="kw-tag">Sustainable Livelihoods</span>
+        <span class="kw-tag">Entitlement Theory</span>
+        <span class="kw-tag">Subsidy Reform</span>
+      </div>
+    </div>
+
+    <!-- How to Cite -->
+    <div class="section">
+      <div class="section-label">How to Cite</div>
+
+      <div class="cite-box">
+        <div class="cite-box-header">
+          <h4>APA 7th Edition</h4>
+          <button class="btn btn-outline" style="font-size:12px;padding:5px 10px;" onclick="copyCitation('apa')">Copy</button>
+        </div>
+        <p class="cite-text" id="cite-apa">
+          Korie, M. (2026). Inflation, food insecurity, and household resilience: An empirical analysis of the cost-of-living crisis in Nigeria. <em>Mabrig Journal of Interdisciplinary Research, 1</em>(1), Article 001, 1–20. https://doi.org/10.2026/MABRIG/MR2026001
+        </p>
+      </div>
+
+      <div class="cite-box">
+        <div class="cite-box-header">
+          <h4>Chicago 17th Edition</h4>
+          <button class="btn btn-outline" style="font-size:12px;padding:5px 10px;" onclick="copyCitation('chicago')">Copy</button>
+        </div>
+        <p class="cite-text" id="cite-chicago">
+          Korie, Mabrig. "Inflation, Food Insecurity, and Household Resilience: An Empirical Analysis of the Cost-of-Living Crisis in Nigeria." <em>Mabrig Journal of Interdisciplinary Research</em> 1, no. 1 (2026): 1–20. https://doi.org/10.2026/MABRIG/MR2026001.
+        </p>
+      </div>
+
+      <div class="cite-box">
+        <div class="cite-box-header">
+          <h4>Harvard</h4>
+          <button class="btn btn-outline" style="font-size:12px;padding:5px 10px;" onclick="copyCitation('harvard')">Copy</button>
+        </div>
+        <p class="cite-text" id="cite-harvard">
+          Korie, M. 2026. 'Inflation, food insecurity, and household resilience: An empirical analysis of the cost-of-living crisis in Nigeria', <em>Mabrig Journal of Interdisciplinary Research</em>, vol. 1, no. 1, pp. 1–20.
+        </p>
+      </div>
+    </div>
+
+    <!-- BibTeX -->
+    <div class="section">
+      <div class="section-label">BibTeX Export</div>
+      <div class="code-block" style="position:relative;">
+        <button class="copy-btn" id="bibtex-btn" onclick="copyBibtex()">Copy</button>
+        <pre id="bibtex-text">@article{korie2026inflation,
+  title     = {Inflation, Food Insecurity, and Household Resilience:
+               An Empirical Analysis of the Cost-of-Living Crisis in Nigeria},
+  author    = {Korie, Mabrig},
+  journal   = {Mabrig Journal of Interdisciplinary Research},
+  volume    = {1},
+  number    = {1},
+  pages     = {1--20},
+  year      = {2026},
+  publisher = {Mabrig Research Institute},
+  address   = {Lagos, Nigeria},
+  doi       = {10.2026/MABRIG/MR2026001},
+  url       = {https://mabrigresearch.online/journal/inflation-food-insecurity-household-resilience-mabrig-korie-2026/},
+  note      = {Article 001},
+  keywords  = {inflation, food insecurity, household resilience,
+               cost-of-living crisis, Nigeria, social protection, subsidy reform}
+}</pre>
+      </div>
+    </div>
+
+    <!-- RIS -->
+    <div class="section">
+      <div class="section-label">RIS Export (EndNote / Mendeley / Zotero)</div>
+      <div class="code-block" style="position:relative;">
+        <button class="copy-btn" id="ris-btn" onclick="copyRIS()">Copy</button>
+        <pre id="ris-text">TY  - JOUR
+TI  - Inflation, Food Insecurity, and Household Resilience: An Empirical Analysis of the Cost-of-Living Crisis in Nigeria
+AU  - Korie, Mabrig
+JO  - Mabrig Journal of Interdisciplinary Research
+VL  - 1
+IS  - 1
+SP  - 1
+EP  - 20
+PY  - 2026
+PB  - Mabrig Research Institute
+CY  - Lagos, Nigeria
+DO  - 10.2026/MABRIG/MR2026001
+UR  - https://mabrigresearch.online/journal/inflation-food-insecurity-household-resilience-mabrig-korie-2026/
+KW  - inflation
+KW  - food insecurity
+KW  - household resilience
+KW  - cost-of-living crisis
+KW  - social protection
+KW  - Nigeria
+KW  - economic policy
+KW  - poverty reduction
+KW  - sustainable livelihoods
+KW  - entitlement theory
+KW  - subsidy reform
+AB  - Nigeria has endured one of the most punishing cost-of-living crises in its recent history. The abrupt removal of the Premium Motor Spirit subsidy in May 2023 triggered immediate and compounding shocks. This paper traces those macroeconomic decisions to the household level, documenting reduced dietary diversity, asset depletion, and the policy gaps in Nigeria's social protection architecture.
+ER  -</pre>
+      </div>
+    </div>
+
+    <!-- Author Bio -->
+    <div class="section">
+      <div class="section-label">About the Author</div>
+      <div class="author-card">
+        <div class="author-avatar">MK</div>
+        <div class="author-info">
+          <h3>Mabrig Korie</h3>
+          <div class="affil">Mabrig Research Institute (MRI) · Lagos, Nigeria</div>
+          <p>
+            Mabrig Korie is a researcher at the Mabrig Research Institute (MRI) with a focus on development economics, food systems, and social policy in sub-Saharan Africa. Their work examines the intersection of macroeconomic shocks and household vulnerability, with particular attention to Nigeria's evolving social protection landscape.
+          </p>
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a href="mailto:contact@mabrigkorie.org" class="btn btn-outline" style="font-size:12px; padding:5px 12px;">✉ contact@mabrigkorie.org</a>
+            <a href="https://mabrigresearch.online" class="btn btn-outline" style="font-size:12px; padding:5px 12px;">🌐 MRI Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Articles -->
+    <div class="section">
+      <div class="section-label">More from MJIR Volume 1, Issue 1</div>
+      <div class="related-grid">
+        <div class="related-card">
+          <div class="tag">Social Sciences · MJIR Vol. 1</div>
+          <h4>Impact of Youth Migration in Nigeria</h4>
+          <div class="meta">MJIR Vol. 1, Issue 1 · 2026</div>
+        </div>
+        <div class="related-card">
+          <div class="tag">Public Health · MJIR Vol. 1</div>
+          <h4>Public Health Systems in West Africa</h4>
+          <div class="meta">MJIR Vol. 1, Issue 1 · 2026</div>
+        </div>
+        <div class="related-card">
+          <div class="tag">Technology · MJIR Vol. 1</div>
+          <h4>AI in African Education Systems</h4>
+          <div class="meta">MJIR Vol. 1, Issue 1 · 2026</div>
+        </div>
+        <div class="related-card">
+          <div class="tag">Environment · MJIR Vol. 1</div>
+          <h4>Climate Change &amp; Agriculture</h4>
+          <div class="meta">MJIR Vol. 1, Issue 1 · 2026</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar">
+
+    <div class="sidebar-box">
+      <div class="open-access-badge">🔓 Open Access Article</div>
+      <div class="sidebar-row">
+        <span class="label">License</span>
+        <span class="value"><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></span>
+      </div>
+      <div class="sidebar-row">
+        <span class="label">Published</span>
+        <span class="value">2026</span>
+      </div>
+      <div class="sidebar-row">
+        <span class="label">Volume</span>
+        <span class="value">Vol. 1, Issue 1</span>
+      </div>
+      <div class="sidebar-row">
+        <span class="label">Article</span>
+        <span class="value">001</span>
+      </div>
+      <div class="sidebar-row">
+        <span class="label">Pages</span>
+        <span class="value">1 – 20</span>
+      </div>
+      <div class="sidebar-row">
+        <span class="label">Language</span>
+        <span class="value">English</span>
+      </div>
+      <div class="sidebar-row">
+        <span class="label">DOI</span>
+        <span class="value" style="font-family:monospace; font-size:11px;">10.2026/MABRIG/MR2026001</span>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <h4>Article Metrics</h4>
+      <div class="metrics-grid">
+        <div class="metrics-row"><span class="metric-num" id="views">—</span><span class="metric-label">Views</span></div>
+        <div class="metrics-row"><span class="metric-num" id="downloads">—</span><span class="metric-label">Downloads</span></div>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <h4>Subject Areas</h4>
+      <div class="keywords" style="margin-top:0;">
+        <span class="kw-tag">Development Economics</span>
+        <span class="kw-tag">Food Security</span>
+        <span class="kw-tag">Public Policy</span>
+        <span class="kw-tag">African Studies</span>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <h4>Share This Article</h4>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <a class="btn btn-outline" href="https://twitter.com/intent/tweet?text=Inflation%2C+Food+Insecurity+%26+Household+Resilience+in+Nigeria+-+New+paper+in+MJIR+by+Mabrig+Korie+%40MabrigResearch&url=https%3A%2F%2Fmabrigresearch.online%2Fjournal%2Finflation-food-insecurity-household-resilience-mabrig-korie-2026%2F" target="_blank" style="justify-content:center;">
+          𝕏 Share on X (Twitter)
+        </a>
+        <a class="btn btn-outline" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmabrigresearch.online%2Fjournal%2Finflation-food-insecurity-household-resilience-mabrig-korie-2026%2F" target="_blank" style="justify-content:center;">
+          in Share on LinkedIn
+        </a>
+        <button class="btn btn-outline" onclick="copyURL()" style="justify-content:center;">
+          🔗 Copy Article URL
+        </button>
+      </div>
+    </div>
+
+    <div class="sidebar-box">
+      <h4>Quick Download</h4>
+      <a class="btn btn-primary" href="/pdfs/korie-2026-inflation-food-insecurity-nigeria.pdf" download style="width:100%; justify-content:center; margin-bottom:8px;">
+        📥 Download PDF
+      </a>
+      <button class="btn btn-outline" onclick="copyRIS()" style="width:100%; justify-content:center;">
+        📑 Export RIS
+      </button>
+    </div>
+
+  </aside>
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div style="font-size:16px; font-weight:700; color:#fff; margin-bottom:8px;">Mabrig Research Institute</div>
+      <div style="font-size:13px; color:#94a3b8; line-height:1.7;">
+        Africa's academic publishing ecosystem.<br>
+        Lagos, Nigeria · <a href="https://mabrigresearch.online">mabrigresearch.online</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#64748b; margin-bottom:10px;">Journal</div>
+      <a href="/journal/">MJIR Overview</a><br>
+      <a href="/journal/#vol1" style="margin-top:6px; display:block;">Volume 1 (2026)</a><br>
+      <a href="/#services" style="margin-top:6px; display:block;">Submit a Paper</a>
+    </div>
+    <div>
+      <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#64748b; margin-bottom:10px;">MRI</div>
+      <a href="/#about">About MRI</a><br>
+      <a href="/#pricing" style="margin-top:6px; display:block;">Publishing Fees</a><br>
+      <a href="https://www.afrigrantpipeline.com/" target="_blank" style="margin-top:6px; display:block;">AfriGrantPipeline ↗</a>
+    </div>
+    <div>
+      <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#64748b; margin-bottom:10px;">Contact</div>
+      <a href="mailto:info@mabrigresearch.online">info@mabrigresearch.online</a><br>
+      <a href="https://wa.me/2349000000000" target="_blank" style="margin-top:6px; display:block;">WhatsApp</a>
+    </div>
+  </div>
+  <div class="footer-copy">
+    © 2026 Mabrig Research Institute (MRI). Content published under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a> unless otherwise stated.
+  </div>
+</footer>
+
+<script>
+/* ── Toast ── */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* ── Copy helpers ── */
+function copyToClipboard(text, btnId) {
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('Copied to clipboard!');
+    if (btnId) {
+      const btn = document.getElementById(btnId);
+      if (btn) { btn.textContent = '✓ Copied'; btn.classList.add('copied'); setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000); }
+    }
+  });
+}
+
+function copyCitation(style) {
+  const texts = {
+    apa:     document.getElementById('cite-apa').innerText,
+    chicago: document.getElementById('cite-chicago').innerText,
+    harvard: document.getElementById('cite-harvard').innerText,
+  };
+  copyToClipboard(texts[style] || texts.apa);
+}
+
+function copyBibtex() { copyToClipboard(document.getElementById('bibtex-text').innerText, 'bibtex-btn'); }
+function copyRIS()    { copyToClipboard(document.getElementById('ris-text').innerText,    'ris-btn'); }
+function copyURL()    { copyToClipboard(window.location.href); }
+
+function shareArticle() {
+  if (navigator.share) {
+    navigator.share({
+      title: 'Inflation, Food Insecurity & Household Resilience — MJIR 2026',
+      text:  'New paper by Mabrig Korie on Nigeria\'s cost-of-living crisis in MJIR Vol. 1.',
+      url:   window.location.href
+    });
+  } else { copyURL(); }
+}
+
+/* ── Analytics placeholder ── */
+document.querySelector('a[download]')?.addEventListener('click', () => {
+  if (typeof gtag !== 'undefined') gtag('event', 'pdf_download', { paper: 'korie2026inflation' });
+  const el = document.getElementById('downloads');
+  if (el && el.textContent === '—') el.textContent = '1';
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('views').textContent = '—';
+  document.getElementById('downloads').textContent = '—';
+});
+</script>
+</body>
+</html>
