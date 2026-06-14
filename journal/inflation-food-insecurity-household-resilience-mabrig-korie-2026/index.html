@@ -149,11 +149,59 @@ a:hover { text-decoration:underline; }
 /* ── MAIN LAYOUT ── */
 .article-body { max-width:1100px; margin:0 auto; padding:40px; display:grid; grid-template-columns:1fr 300px; gap:40px; }
 
-/* ── ABSTRACT ── */
+/* ── SECTION ── */
 .section { margin-bottom:36px; }
 .section-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
 .section-label::after { content:''; flex:1; height:1px; background:var(--border); }
 .abstract-text { font-family:'Merriweather',serif; font-size:15px; line-height:1.9; color:var(--slate); }
+
+/* ── FULL PAPER BODY ── */
+.paper-section { margin-bottom:40px; }
+.paper-section h2 {
+  font-family:'Merriweather',serif; font-size:18px; font-weight:700;
+  color:var(--dark); margin-bottom:16px; padding-bottom:10px;
+  border-bottom:2px solid var(--border); line-height:1.4;
+}
+.paper-section h3 {
+  font-family:'Merriweather',serif; font-size:15px; font-weight:700;
+  color:var(--slate); margin:20px 0 10px;
+}
+.paper-section p {
+  font-family:'Merriweather',serif; font-size:15px; line-height:1.9;
+  color:var(--slate); margin-bottom:16px; text-align:justify;
+}
+.paper-section p:last-child { margin-bottom:0; }
+
+/* ── ACADEMIC TABLES ── */
+.table-wrapper { overflow-x:auto; margin:24px 0; }
+.table-caption {
+  font-family:'Inter',sans-serif; font-size:13px; font-weight:600;
+  color:var(--dark); margin-bottom:8px; text-align:center;
+}
+.academic-table {
+  width:100%; border-collapse:collapse; font-size:13px;
+  font-family:'Inter',sans-serif; background:var(--white);
+  border:1px solid var(--border);
+}
+.academic-table thead tr { background:var(--blue); color:#fff; }
+.academic-table thead th { padding:10px 14px; text-align:left; font-weight:600; font-size:12px; }
+.academic-table tbody tr:nth-child(even) { background:#f8fafc; }
+.academic-table tbody tr:hover { background:#eff6ff; }
+.academic-table td { padding:10px 14px; border-bottom:1px solid var(--border); vertical-align:top; line-height:1.5; }
+.table-note { font-size:12px; color:var(--muted); margin-top:6px; font-style:italic; font-family:'Inter',sans-serif; }
+
+/* ── REFERENCES ── */
+.references-list { list-style:none; counter-reset:ref-counter; }
+.references-list li {
+  counter-increment:ref-counter; font-family:'Merriweather',serif;
+  font-size:14px; line-height:1.8; color:var(--slate); margin-bottom:14px;
+  padding-left:36px; position:relative;
+}
+.references-list li::before {
+  content:counter(ref-counter) ".";
+  position:absolute; left:0; color:var(--muted); font-size:13px; font-weight:600;
+  font-family:'Inter',sans-serif;
+}
 
 /* Keywords */
 .keywords { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
@@ -183,6 +231,15 @@ a:hover { text-decoration:underline; }
 .copy-btn:hover { background:rgba(255,255,255,0.2); }
 .copy-btn.copied { background:#16a34a; color:#fff; border-color:#16a34a; }
 
+/* ── PDF DOWNLOAD BANNER ── */
+.pdf-banner {
+  background:linear-gradient(135deg,#eff6ff,#dbeafe); border:1.5px solid #bfdbfe;
+  border-radius:var(--radius); padding:20px 24px; margin:32px 0;
+  display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
+}
+.pdf-banner-text strong { display:block; font-size:15px; color:var(--dark); margin-bottom:4px; }
+.pdf-banner-text span { font-size:13px; color:var(--muted); }
+
 /* ── SIDEBAR ── */
 .sidebar { }
 .sidebar-box {
@@ -203,6 +260,16 @@ a:hover { text-decoration:underline; }
 .metric-num { font-size:26px; font-weight:700; color:var(--blue); display:block; }
 .metric-label { font-size:11px; color:var(--muted); }
 .metrics-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+
+/* ── TOC ── */
+.toc { background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:20px; margin-bottom:20px; }
+.toc h4 { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin-bottom:12px; }
+.toc ol { list-style:none; counter-reset:toc-counter; padding:0; }
+.toc li { counter-increment:toc-counter; font-size:12px; color:var(--slate); padding:5px 0; border-bottom:1px solid var(--border); }
+.toc li:last-child { border-bottom:none; }
+.toc li a { color:var(--slate); display:flex; gap:8px; align-items:flex-start; }
+.toc li a:hover { color:var(--blue); text-decoration:none; }
+.toc li a::before { content:counter(toc-counter)"."; flex-shrink:0; color:var(--muted); min-width:16px; }
 
 /* ── AUTHOR BIO ── */
 .author-card {
@@ -259,6 +326,7 @@ a:hover { text-decoration:underline; }
   .article-title { font-size:22px; }
   .action-bar { padding:12px 20px; top:53px; }
   .article-pub-info { gap:12px; }
+  .pdf-banner { flex-direction:column; }
 }
 @media (max-width:480px) {
   .article-title { font-size:19px; }
@@ -379,6 +447,348 @@ a:hover { text-decoration:underline; }
         <span class="kw-tag">Entitlement Theory</span>
         <span class="kw-tag">Subsidy Reform</span>
       </div>
+    </div>
+
+    <!-- ═══ FULL PAPER BODY ═══ -->
+
+    <!-- SECTION 1 -->
+    <div class="paper-section" id="sec1">
+      <h2>1. Introduction</h2>
+      <p>
+        Nigeria entered 2023 already carrying the weight of persistent macroeconomic fragility—elevated consumer price inflation, a fragmented foreign exchange market operating at multiple rates, and a fiscal position severely strained by an expanding petrol subsidy bill that consumed a disproportionate share of federally collected revenues. When the new administration of President Bola Ahmed Tinubu announced the immediate removal of the Premium Motor Spirit (PMS) subsidy at his inauguration in May 2023, the decision was widely anticipated by economists and multilateral creditors alike. What followed, however, moved faster and cut deeper than most pre-reform projections had foreseen. The domestic pump price of petrol more than doubled within days, and transport costs—a key input in every link of the food supply chain from farm to table—surged correspondingly. Within weeks, the Central Bank of Nigeria also unified its official and parallel exchange rates and allowed the naira to float, delivering a second simultaneous price shock that amplified the first.
+      </p>
+      <p>
+        The effects cascaded rapidly through the real economy. Food inflation, which had already been elevated for over a year, accelerated sharply. The National Bureau of Statistics (NBS) recorded a food Consumer Price Index (CPI) that breached the 35% year-on-year mark by late 2023 and continued climbing into 2024, reaching levels not seen since the structural adjustment era of the late 1980s. For a country where the majority of households spend between 50% and 70% of their income on food—and where the poorest quintile may spend more than 80%—such price movements do not merely tighten budgets; they force dietary collapse.
+      </p>
+      <p>
+        This paper is motivated by a straightforward but underexamined question: what actually happened to Nigerian households as these macroeconomic shocks worked their way through the system? The existing literature has documented the aggregate price trajectory in considerable detail, and there is growing commentary on the government's social protection response. But the household-level transmission—the specific sequence by which price shocks become dietary deficits and eventually become irreversible livelihood losses—has received comparatively less systematic treatment. This paper attempts to fill that gap by tracing the causal chain from policy to plate, drawing on multiple data sources and theoretical frameworks to provide a grounded account of how households experienced the crisis and how their responses evolved over time.
+      </p>
+      <p>
+        The contribution of this paper is threefold. First, it applies Sen's entitlement theory alongside the sustainable livelihoods framework to explain why physical availability of food in markets does not guarantee access for households with eroding real incomes. Second, it uses the most recent IPC, FEWS NET, and NBS data to quantify dietary degradation and map regional heterogeneity in vulnerability. Third, it provides a critical assessment of Nigeria's social protection architecture and identifies specific structural reforms that would transform the current system from a crisis management mechanism into a genuine poverty reduction instrument.
+      </p>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="paper-section" id="sec2">
+      <h2>2. Macroeconomic Shocks and Their Transmission to Food Markets</h2>
+      <p>
+        The dual shock of May 2023—subsidy removal and exchange rate unification—operated through several distinct but interacting channels. The most immediate was the transport cost channel. Nigeria's food distribution system is almost entirely road-based, with logistics dominated by heavy trucks and smaller commercial vehicles that run exclusively on petrol and diesel. When PMS prices rose from approximately ₦189 per litre to over ₦480 per litre within the space of a week, haulage operators passed these costs directly to traders and market vendors. The NBS logistics cost index, which had already risen by approximately 40% in the twelve months prior to May 2023, spiked by a further 60–80% over the following two quarters.
+      </p>
+      <p>
+        The import cost channel operated in parallel. Nigeria imports significant volumes of wheat, rice, cooking oil, and processed foods. These commodities are invoiced in foreign currencies—primarily US dollars—and their naira-equivalent prices rose in direct proportion to the depreciation of the exchange rate. The naira, which had traded at around ₦461 per dollar at the official window in early May 2023, had depreciated to approximately ₦1,500 per dollar by December 2023 and continued sliding through 2024. For import-dependent commodity segments, the effective naira price tripled or quadrupled over less than twelve months.
+      </p>
+      <p>
+        The energy cost channel added a third layer. Petrol is used not only for transport but for the small generators—popularly known as "I pass my neighbour" generators—that power cold chains, small-scale food processing, and retail commerce across Nigeria. Grid electricity availability, already unreliable, did not improve in the post-reform period; if anything, the fuel cost of running backup generation made cold chain maintenance uneconomical for many small retailers and market women. This accelerated perishable food losses and reduced the effective food supply available to consumers even before prices were considered.
+      </p>
+      <p>
+        The aggregate result was a food CPI that peaked at 40.2% year-on-year in February 2024 before the base-period effect began to moderate the headline rate. Cereals, roots, and tubers—the caloric staples of most Nigerian households—recorded price increases between 80% and 120% over the 2023–2024 period. Protein sources, particularly eggs, fish, and dried beans, recorded similar or larger increases. The price of a 50kg bag of rice, widely used as a benchmark food commodity, rose from approximately ₦32,000 in January 2023 to over ₦80,000 by mid-2024.
+      </p>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="paper-section" id="sec3">
+      <h2>3. Literature Review</h2>
+      <p>
+        The relationship between macroeconomic instability and household food insecurity has been extensively studied across sub-Saharan Africa, though the Nigerian context has its own specificities that distinguish it from other reform episodes. The foundational contribution of Timmer, Falcon and Pearson (1983) established the principle that food security is ultimately a problem of income, not supply: when food is in markets but households cannot afford it, the intervention point must be the household's real purchasing power rather than aggregate food production. This insight anticipated the dominant contemporary consensus that food insecurity in middle-income developing countries is primarily a market-access problem rather than an availability problem.
+      </p>
+      <p>
+        Deaton and Subramanian (1996) and later Attanasio and Lechene (2002) demonstrated that food expenditure patterns are highly responsive to price shocks, with poorer households showing larger budget share adjustments than wealthier ones. This non-linearity in price responses is particularly relevant to the Nigerian context, where income distribution is highly skewed and urban informal workers—who lack both the food self-sufficiency of rural smallholders and the wage indexation of formal sector employees—represent a particularly exposed demographic group.
+      </p>
+      <p>
+        Within the Nigerian-specific literature, Ojo and Akanji (2023) documented the pre-reform vulnerability of urban households in Lagos and Abuja, showing that food insecurity rates had already been elevated by successive exchange rate pressures and COVID-19 disruptions before the 2023 reforms. Oyekale (2022) analysed the spatial dimensions of food insecurity using the Nigerian Living Standards Survey, finding that food poverty incidence in the North-West and North-East geopolitical zones substantially exceeded the national average, reflecting both climate-related agricultural stress and conflict-induced market disruptions. These findings are directly relevant to the regional heterogeneity analysis conducted in Section 6 of this paper.
+      </p>
+      <p>
+        The literature on social protection and food insecurity in Nigeria has grown substantially since the establishment of the National Social Investment Programme (NSIP) in 2016. Investigations by World Bank (2022) and Yusuf et al. (2023) documented significant implementation gaps in the Conditional Cash Transfer (CCT) component, identifying political interference in beneficiary selection, leakage in payment processing, and the failure to update the Social Register with an adequate frequency to capture newly impoverished households. These findings provide essential context for the assessment of social protection gaps conducted in Section 8.
+      </p>
+    </div>
+
+    <!-- SECTION 4 -->
+    <div class="paper-section" id="sec4">
+      <h2>4. Theoretical Framework</h2>
+      <p>
+        This paper is grounded in two complementary theoretical traditions: Amartya Sen's entitlement theory and the Department for International Development (DFID) sustainable livelihoods framework. These frameworks are not merely rhetorical scaffolding; they direct attention to different and necessary dimensions of household food insecurity that purely price-based or supply-based analyses would miss.
+      </p>
+      <p>
+        Sen's (1981) entitlement theory, developed in the aftermath of the 1943 Bengal famine, established the crucial insight that famine and food insecurity can occur in the absence of supply shortfalls when households' command over food—their entitlement bundle—collapses faster than food prices rise. Entitlements are established through production, trade, own-labour, and inheritance/transfer. In the Nigerian context, the 2023 shocks eroded entitlements primarily through two pathways: the trade-based entitlement of urban wage workers and informal sector operators, whose real purchasing power fell sharply as nominal food prices outpaced nominal income growth; and the transfer-based entitlement of social protection recipients, whose cash transfer values were not indexed to inflation and thus lost real value continuously.
+      </p>
+      <p>
+        The sustainable livelihoods framework (SLF) introduced by Chambers and Conway (1992) and operationalised by DFID adds a dynamic, asset-based dimension to the analysis. The SLF conceptualises household resilience in terms of five capital assets: human capital (health, education, skills), social capital (networks, trust, reciprocity), natural capital (land, water, ecological resources), physical capital (tools, infrastructure, productive equipment), and financial capital (savings, credit, transfers). A household's ability to maintain food security under shock depends critically on the depth and breadth of its asset portfolio and on the institutional context—policies, structures, processes—that determines whether assets can be converted into food access when needed.
+      </p>
+      <p>
+        The SLF is particularly useful for analysing the sequencing of household coping responses, which typically follows a predictable pattern: first drawing down on social capital (borrowing from networks, requesting gifts), then depleting financial assets (drawing down savings, selling livestock), then eroding human capital (reducing children's health and education expenditure), and ultimately engaging in crisis strategies that permanently compromise future livelihood capacity. Section 7 maps Nigerian household responses onto this framework using available survey evidence.
+      </p>
+    </div>
+
+    <!-- SECTION 5 -->
+    <div class="paper-section" id="sec5">
+      <h2>5. Methodology</h2>
+      <p>
+        This paper uses a mixed-methods analytical approach, combining secondary analysis of quantitative datasets with qualitative synthesis of case study evidence and fieldwork observations drawn from published NGO and government reports. The primary quantitative data sources are: the National Bureau of Statistics Consumer Price Index microdata and headline publications (January 2022 – June 2025); the Integrated Phase Classification (IPC) Acute Food Insecurity Analysis for Nigeria, covering the 2023 and 2024 assessment cycles; FEWS NET market price monitoring bulletins for Lagos, Kano, Port Harcourt, and Maiduguri; the World Bank Nigeria High-Frequency Phone Survey waves administered in Q3 2023 and Q1 2024; and IFPRI's Nigeria Policy Note series on the reform transition.
+      </p>
+      <p>
+        Household-level analysis is based primarily on the two most recent waves of the Nigeria Living Standards Survey (NLSS) and the NBS/UNICEF Multiple Indicator Cluster Survey (MICS). These provide baseline data on dietary diversity, food consumption scores, and asset holdings against which post-reform changes can be assessed. Where direct post-reform panel data are unavailable, counterfactual trajectories are estimated using pre-reform trend lines and peer-country comparisons from similarly-structured subsidy reform episodes in Ghana (2013) and Ethiopia (2019).
+      </p>
+      <p>
+        The spatial analysis uses state-level data aggregated into the six geopolitical zones to preserve analytical parsimony while retaining enough geographic resolution to capture the known north-south and urban-rural divides in food insecurity prevalence. Conflict-affected states in the North-East (Borno, Yobe, Adamawa) are treated as a separate sub-category given that conflict, rather than price shocks per se, is the dominant driver of food insecurity in those areas.
+      </p>
+      <p>
+        The primary limitation of this analysis is the lag between economic events and household survey data availability. The most recent published NLSS wave predates the 2023 reform package, requiring the use of high-frequency phone survey data and rapid assessment evidence to fill the gap. Phone survey panels over-represent urban, literate, and phone-owning households and are known to undercount the rural poor. This limitation is acknowledged throughout the analysis, and conclusions regarding rural food insecurity are conservatively stated where the evidence base is thin.
+      </p>
+    </div>
+
+    <!-- SECTION 6 -->
+    <div class="paper-section" id="sec6">
+      <h2>6. Empirical Realities: Scale and Distribution of Food Insecurity</h2>
+      <p>
+        The IPC analysis for Nigeria released in March 2024 estimated that approximately 31.4 million Nigerians were in IPC Phase 3 (Crisis) or above during the assessment period, representing a significant increase from the 25.3 million recorded in the comparable 2022 analysis. Of these, approximately 4.4 million were classified in IPC Phase 4 (Emergency), concentrated predominantly in the North-East conflict-affected states and in peri-urban zones of Lagos and Kano. FEWS NET's market monitoring for the same period corroborated these headline figures, documenting that market food prices in most monitored markets were 60–90% above their five-year seasonal averages.
+      </p>
+      <p>
+        Regional heterogeneity in food insecurity is pronounced and reflects structural inequalities that pre-date the 2023 reforms. The North-West geopolitical zone—comprising Kano, Kaduna, Katsina, Sokoto, Zamfara, Kebbi, and Jigawa states—has the highest absolute number of food-insecure persons, driven by a combination of high population density, climate-related agricultural stress (particularly erratic rainfall patterns affecting the rainfed savanna agriculture on which the majority of rural households depend), conflict and banditry disrupting market access, and historically low social protection coverage. The North-East zone has the highest per-capita food insecurity rate, reflecting the ongoing Boko Haram/ISWAP-related displacement.
+      </p>
+      <p>
+        The South-West zone, including Lagos, presents a different but increasingly severe pattern. Urban food insecurity in Lagos—characterised by large informal settlements with limited land for subsistence food production—is primarily driven by the purchasing power erosion described in Section 2. The World Bank high-frequency phone survey data suggest that food expenditure shares among urban households in the South-West rose from approximately 52% pre-reform to 66% post-reform, indicating severe budget compression across other expenditure categories including healthcare and children's education. This compression is itself a food security risk vector, as health shocks in the absence of savings rapidly accelerate dietary deterioration.
+      </p>
+      <p>
+        Dietary diversity, measured using the Household Dietary Diversity Score (HDDS) methodology, declined across all regions in the post-reform period. The most consistent finding across rapid assessments is the reduction in protein consumption: eggs, fish, meat, and dairy were the first items removed from household menus as prices rose, in line with their relatively high unit cost per calorie. This shift toward cheaper caloric sources—primarily cassava and sorghum in the North, gari and yam in the South-East and South-South—has direct implications for child nutrition outcomes, particularly for children in the 6–24 month age range whose brain development is highly sensitive to protein and micronutrient adequacy.
+      </p>
+    </div>
+
+    <!-- SECTION 7 — with Table 1 -->
+    <div class="paper-section" id="sec7">
+      <h2>7. Household Coping Strategies and Their Limits</h2>
+      <p>
+        The sustainable livelihoods framework predicts a predictable sequencing of coping strategies as households move from manageable stress to crisis to collapse. The Nigerian evidence from the 2023–2025 period broadly conforms to this sequence, though with considerable variation by household wealth quintile, urban-rural location, and geopolitical zone. The following three-phase typology organises the available evidence:
+      </p>
+
+      <div class="table-wrapper">
+        <div class="table-caption"><strong>Table 1.</strong> Household Coping Phases: Indicators, Strategies, and Asset Erosion Patterns</div>
+        <table class="academic-table">
+          <thead>
+            <tr>
+              <th>Phase</th>
+              <th>Label</th>
+              <th>Primary Strategies</th>
+              <th>Asset Class Depleted</th>
+              <th>Reversibility</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Phase 1</strong></td>
+              <td>Dietary Adjustment</td>
+              <td>Reduce meal frequency; substitute cheaper food items; reduce portion sizes; skip protein sources</td>
+              <td>Financial capital (food budget reallocated)</td>
+              <td>Fully reversible with income recovery</td>
+            </tr>
+            <tr>
+              <td><strong>Phase 2</strong></td>
+              <td>Asset Depletion</td>
+              <td>Draw down savings; sell livestock, jewellery, household equipment; reduce health and education spending; borrow from family/community networks</td>
+              <td>Financial capital, physical capital, social capital</td>
+              <td>Partially reversible; slow social capital rebuild; asset replacement requires investment</td>
+            </tr>
+            <tr>
+              <td><strong>Phase 3</strong></td>
+              <td>Crisis / Distress Strategies</td>
+              <td>Child labour and school withdrawal; distress migration; risky income strategies (petty theft, sex work, child marriage as asset transfer); abandonment of agricultural land; begging</td>
+              <td>Human capital, natural capital</td>
+              <td>Largely irreversible; human capital losses persist across generations; land abandonment creates long-term productivity losses</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="table-note">Note: Adapted from IFPRI (2024) Nigeria Emergency Food Security Assessment and author fieldwork synthesis. Phase progression is neither uniform nor linear; households oscillate between phases based on seasonal income patterns and emergency event occurrence.</p>
+      </div>
+
+      <p>
+        The survey evidence from 2023–2024 indicates that the vast majority of Nigerian households—including many that would previously have been considered non-poor—were operating in Phase 1 or Phase 2 during the period under review. The World Bank high-frequency survey found that 73% of households reported reducing the number of meals consumed per day, and 61% reported removing meat, fish, or eggs from their diet entirely. These Phase 1 responses, if sustained over periods of twelve months or more, generate nutritional deficits that are not immediately visible but manifest in weight-for-age and height-for-age reductions among children.
+      </p>
+      <p>
+        Phase 2 strategies were particularly pronounced among urban households without land assets. The same survey found that 38% of Lagos-based households had drawn down savings to zero and 27% had sold physical assets. Community lending networks (known as esusu or ajo in Yoruba-speaking areas, and by similar names in other regions) came under severe strain as simultaneous shocks reduced the ability of network members to contribute, eroding the social insurance function that these informal institutions have historically provided during localised crises.
+      </p>
+      <p>
+        Phase 3 strategies—the most destructive and least reversible—were documented in qualitative fieldwork from North-West Nigeria and parts of Lagos peri-urban zones. Child school withdrawal rates increased by an estimated 12–18 percentage points in food-insecure zones of the North-West between 2023 and 2024, with children entering petty trade and agricultural labour. UNICEF's child protection monitoring flagged increases in reported child marriage incidence in Sokoto and Zamfara states, consistent with the distress asset-transfer pattern identified in the literature on extreme food insecurity. These are not merely social welfare indicators; they represent the permanent erosion of the human capital base that determines Nigeria's long-run productivity trajectory.
+      </p>
+    </div>
+
+    <!-- SECTION 8 — with Table 2 -->
+    <div class="paper-section" id="sec8">
+      <h2>8. Social Protection Architecture and Its Gaps</h2>
+      <p>
+        Nigeria's formal social protection system—the set of public programmes designed to buffer households against exactly the kind of shock described in Sections 6 and 7—was inadequate to the scale of the 2023–2025 crisis by any reasonable assessment. The flagship programme, the National Social Investment Programme (NSIP), was established in 2016 and contains four components: the Conditional Cash Transfer (CCT) scheme; the Government Enterprise and Empowerment Programme (GEEP) for small business credit; the National Homegrown School Feeding Programme (NHGSFP); and N-Power for youth employment. Of these, only the CCT scheme is directly relevant to acute food insecurity mitigation.
+      </p>
+      <p>
+        The CCT scheme's design parameters are modest: a transfer of ₦5,000 per month (approximately $3.30 at mid-2024 exchange rates) per household, conditional on school attendance for households with children and healthcare registration for others. The scheme was designed in 2016, when food prices were dramatically lower, and the transfer value has never been formally indexed to inflation. In real terms, the ₦5,000 transfer had lost approximately 80% of its purchasing power between 2016 and 2024, rendering it economically insignificant relative to the food deficits households were experiencing.
+      </p>
+
+      <div class="table-wrapper">
+        <div class="table-caption"><strong>Table 2.</strong> Food Insecurity Indicators Before and After the 2023 Policy Shock</div>
+        <table class="academic-table">
+          <thead>
+            <tr>
+              <th>Indicator</th>
+              <th>Pre-Reform (Q1 2023)</th>
+              <th>Post-Reform (Q1 2024)</th>
+              <th>Change</th>
+              <th>Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Food CPI (year-on-year)</td>
+              <td>25.3%</td>
+              <td>40.2%</td>
+              <td>+14.9 pp</td>
+              <td>NBS, 2024</td>
+            </tr>
+            <tr>
+              <td>Population in IPC Phase 3+ (millions)</td>
+              <td>25.3m</td>
+              <td>31.4m</td>
+              <td>+6.1m (+24%)</td>
+              <td>IPC, 2024</td>
+            </tr>
+            <tr>
+              <td>Households reducing meal frequency (%)</td>
+              <td>38%</td>
+              <td>73%</td>
+              <td>+35 pp</td>
+              <td>World Bank HF Survey</td>
+            </tr>
+            <tr>
+              <td>Households with zero food savings (%)</td>
+              <td>22%</td>
+              <td>51%</td>
+              <td>+29 pp</td>
+              <td>World Bank HF Survey</td>
+            </tr>
+            <tr>
+              <td>Urban food expenditure share (median)</td>
+              <td>52%</td>
+              <td>66%</td>
+              <td>+14 pp</td>
+              <td>World Bank HF Survey</td>
+            </tr>
+            <tr>
+              <td>Price of 50kg rice (₦)</td>
+              <td>~32,000</td>
+              <td>~80,000</td>
+              <td>+150%</td>
+              <td>FEWS NET, 2024</td>
+            </tr>
+            <tr>
+              <td>Real value of CCT transfer (2016 = 100)</td>
+              <td>28</td>
+              <td>18</td>
+              <td>-35%</td>
+              <td>Author calculation, NBS</td>
+            </tr>
+            <tr>
+              <td>Active CCT beneficiary households (millions)</td>
+              <td>1.0m</td>
+              <td>0.96m</td>
+              <td>-4%</td>
+              <td>FMoHSA, 2024</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="table-note">Note: pp = percentage points. Pre-reform figures are Q1 2023 averages; post-reform figures are Q1 2024 averages. IPC figures refer to the lean-season projection periods. CCT = Conditional Cash Transfer. FMoHSA = Federal Ministry of Humanitarian Affairs and Social Development.</p>
+      </div>
+
+      <p>
+        Beyond the inadequacy of transfer values, the targeting accuracy of the Social Register presents a fundamental structural problem. The register, which underpins beneficiary selection for the CCT, was last comprehensively updated using Community-Based Targeting (CBT) methods in 2019–2020. It does not therefore capture the significant numbers of previously non-poor households pushed into poverty by the 2023 reforms, nor does it reflect the geographic redistribution of poverty associated with urban migration patterns. Independent assessments have found significant rates of both exclusion error (genuinely poor households not on the register) and inclusion error (non-poor or deceased households still receiving transfers).
+      </p>
+      <p>
+        The government's immediate policy response to the food crisis took several forms, including a ₦8,000 (later raised to ₦25,000) one-off relief payment to 15 million households announced in late 2023, and various state-government palliative programmes distributing food items in major urban centres. While politically significant, these interventions were characterised by inadequate coverage (15 million households against an estimated 40+ million in food insecurity), implementation delays, and targeting failures that replicated the structural problems of the Social Register. The relief payments, where they arrived, provided a one-time income supplement of roughly one to two months' food deficit—insufficient to alter the medium-term coping trajectory of beneficiary households.
+      </p>
+    </div>
+
+    <!-- SECTION 9 -->
+    <div class="paper-section" id="sec9">
+      <h2>9. Discussion</h2>
+      <p>
+        The evidence assembled in the preceding sections makes clear that Nigeria's 2023–2025 food insecurity crisis is, fundamentally, an entitlement crisis rather than a supply crisis. Food was, and largely remains, physically present in Nigerian markets. The problem—and Sen's framework predicts this precisely—is that the commodity bundle that a household can obtain with its available income exchange entitlement shrank dramatically as nominal food prices rose faster than nominal incomes. This distinction matters enormously for policy design, because interventions that target food supply (import subsidies, trade facilitation, food distribution) will have limited impact on households whose primary constraint is purchasing power, not physical food availability.
+      </p>
+      <p>
+        The analysis also confirms that the crisis has not been experienced uniformly. There is a structured inequality in exposure that maps on to pre-existing dimensions of disadvantage: rural farming households in the South-West with access to land and food production have been relatively less vulnerable than urban renters in Lagos or Kano with entirely monetised food access. Women-headed households, which are disproportionately represented in the urban informal sector and have fewer capital assets than male-headed households, have experienced more severe and more rapid coping transitions. The conflict-affected North-East is in a category of its own, where food insecurity determinants are primarily security-related and respond only marginally to the economic policy interventions relevant to other zones.
+      </p>
+      <p>
+        The social protection architecture's failure under the 2023–2025 crisis reflects a broader design philosophy that was optimised for steady-state poverty management rather than crisis response. The CCT scheme, in its current form, is a targeting instrument for the chronically poor—households whose poverty status is stable and was captured in a register compiled several years ago. It was not designed with a dynamic component to absorb newly-poor households or to scale benefit values in response to price shocks. This design gap is not unique to Nigeria; many African social protection systems suffer from the same optimisation problem. But Nigeria's size and demographic trajectory make the consequences of this design failure uniquely consequential.
+      </p>
+      <p>
+        The international comparison is instructive. Ghana's 2013 subsidy reform was accompanied by a rapid but temporary expansion of the Livelihood Empowerment Against Poverty (LEAP) programme's beneficiary register and benefit values, which helped moderate the social impact of the reform. Nigeria had no equivalent counter-cyclical mechanism in place in 2023, and the improvised relief payments that were eventually deployed reflected the absence of such a mechanism. Ethiopia's Productive Safety Net Programme, which has a built-in public works response component that expands automatically during lean seasons, represents a more structurally appropriate model, though its relevance to Nigeria's predominantly urban poor is limited.
+      </p>
+    </div>
+
+    <!-- SECTION 10 -->
+    <div class="paper-section" id="sec10">
+      <h2>10. Conclusion and Policy Recommendations</h2>
+      <p>
+        Nigeria's 2023 dual shock—subsidy removal and exchange rate unification—was a necessary macroeconomic correction long deferred. The economic case for removing the PMS subsidy was overwhelming: the subsidy primarily benefited higher-income vehicle owners and the refinery and distribution value chain, was fiscally unsustainable, and was crowding out productive public investment in health, education, and infrastructure. But necessary reform and well-managed reform are not the same thing, and the evidence reviewed in this paper demonstrates that the social management of the transition was inadequate to protect the large population of economically marginal households for whom the simultaneous shock was simply too large to absorb.
+      </p>
+      <p>
+        The policy recommendations that follow are organised by time horizon and are grounded in the specific gaps identified in the analysis.
+      </p>
+      <p>
+        <strong>Short-term (0–12 months):</strong> The most urgent priority is to close the transport cost pass-through channel, which continues to act as an amplifier of food price inflation. This can be done through targeted fuel cost subsidies for food commodity trucks operating on defined farm-to-market corridors—a much more fiscally efficient instrument than a general consumer subsidy, and one that directly addresses the supply chain bottleneck identified in Section 2. Complementarily, the government should immediately increase CCT transfer values to a minimum of ₦25,000 per month per household—equivalent to approximately the cost of a basic food basket—and index this value to the monthly food CPI automatically. This does not require a rebuilt Social Register; it requires only a political decision on the benefit level.
+      </p>
+      <p>
+        <strong>Medium-term (12–36 months):</strong> The Social Register requires a fundamental overhaul. The current Community-Based Targeting approach should be supplemented with a continuous enrollment mechanism that allows newly-impoverished households to self-register with verification through biometric identity infrastructure (the National Identity Management Commission's system is already operational and broadly enrolled). The register should be updated at least annually, and there should be a formal mechanism—analogous to the automatic stabilizer concept in fiscal policy—to expand coverage and benefit values when national food CPI exceeds a predefined threshold. Institutional responsibility for this mechanism should be clearly assigned and resourced, rather than dispersed across the multiple ministries and agencies that currently share social protection mandates.
+      </p>
+      <p>
+        <strong>Long-term (3–7 years):</strong> Neither short-term price interventions nor improved cash transfer targeting addresses the structural determinants of Nigeria's food vulnerability: the low productivity and high cost structure of domestic food production, the near-total absence of functional cold chain infrastructure connecting farmers to consumers, and the rural road network deficit that makes transport costs so sensitive to fuel price movements. The smallholder farmers who produce the majority of Nigeria's domestically consumed food operate with minimal access to improved inputs, irrigation, extension services, or credit. Sustained investment in the rural productive base—particularly targeted at the semi-arid North where climate stress is intensifying—is the only durable path toward a food system in which macroeconomic shocks do not automatically translate into household dietary collapse.
+      </p>
+      <p>
+        Nigeria's experience carries clear lessons for other countries contemplating subsidy reform under conditions of high inflation and fragile institutions. The reform itself may be correct; the sequencing, social cushion, and compensation architecture matter enormously for whether the adjustment costs are borne by those least able to bear them. Getting that architecture right is not a technocratic afterthought—it is the political economy precondition for sustainable reform.
+      </p>
+    </div>
+
+    <!-- Declarations -->
+    <div class="paper-section" id="declarations">
+      <h2>Declarations</h2>
+      <h3>Acknowledgements</h3>
+      <p>The author thanks the Mabrig Research Institute for institutional support and the editorial team of the Mabrig Journal of Interdisciplinary Research for rigorous peer review. Gratitude is extended to colleagues at the NBS, FEWS NET Nigeria, and IFPRI Abuja for data access and technical discussion. Any errors of fact or interpretation remain solely the author's responsibility.</p>
+      <h3>Conflict of Interest Statement</h3>
+      <p>The author declares no conflict of interest. This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.</p>
+      <h3>Data Availability Statement</h3>
+      <p>All quantitative data used in this paper are drawn from publicly available sources as cited. The NBS Consumer Price Index data are available at <em>nigerianstat.gov.ng</em>. The IPC Nigeria analyses are available at <em>ipcinfo.org</em>. FEWS NET market price bulletins are available at <em>fews.net/west-africa/nigeria</em>. World Bank high-frequency survey microdata are available through the World Bank Microdata Library under a restricted-access licence.</p>
+    </div>
+
+    <!-- References -->
+    <div class="paper-section" id="references">
+      <h2>References</h2>
+      <ol class="references-list">
+        <li>Attanasio, O. P., &amp; Lechene, V. (2002). Tests of income pooling in household decisions. <em>Review of Economic Dynamics, 5</em>(4), 720–748.</li>
+        <li>Chambers, R., &amp; Conway, G. R. (1992). <em>Sustainable rural livelihoods: Practical concepts for the 21st century</em> (IDS Discussion Paper 296). Institute of Development Studies.</li>
+        <li>Deaton, A., &amp; Subramanian, S. (1996). The demand for food and calories. <em>Journal of Political Economy, 104</em>(1), 133–162.</li>
+        <li>DFID. (1999). <em>Sustainable livelihoods guidance sheets</em>. Department for International Development.</li>
+        <li>FEWS NET. (2024, March). <em>Nigeria food security outlook, February–September 2024</em>. Famine Early Warning Systems Network.</li>
+        <li>Federal Ministry of Humanitarian Affairs and Social Development. (2024). <em>National Social Investment Programme annual report 2023</em>. Government of Nigeria.</li>
+        <li>Food and Agriculture Organization of the United Nations. (2023). <em>The state of food security and nutrition in the world 2023</em>. FAO.</li>
+        <li>IFPRI. (2024). <em>Nigeria emergency food security assessment: Implications of the 2023 subsidy reform</em> (Policy Note). International Food Policy Research Institute.</li>
+        <li>IPC. (2024, March). <em>Nigeria: Acute food insecurity and acute malnutrition situation, March–May 2024 and projection, June–September 2024</em>. Integrated Food Security Phase Classification.</li>
+        <li>National Bureau of Statistics. (2023). <em>Consumer price index: December 2023</em>. NBS.</li>
+        <li>National Bureau of Statistics. (2024a). <em>Consumer price index: May 2024</em>. NBS.</li>
+        <li>National Bureau of Statistics. (2024b). <em>Nigeria living standards survey 2018–19: Revised estimates</em>. NBS/World Bank.</li>
+        <li>Ojo, A., &amp; Akanji, B. (2023). Urban food insecurity and the informal economy: Evidence from Lagos and Abuja. <em>African Development Review, 35</em>(2), 88–104.</li>
+        <li>Oyekale, A. S. (2022). Spatial dimensions of food poverty in Nigeria: Evidence from the National Living Standards Survey. <em>Journal of African Economies, 31</em>(3), 265–289.</li>
+        <li>Sen, A. (1981). <em>Poverty and famines: An essay on entitlement and deprivation</em>. Oxford University Press.</li>
+        <li>Timmer, C. P., Falcon, W. P., &amp; Pearson, S. R. (1983). <em>Food policy analysis</em>. Johns Hopkins University Press for the World Bank.</li>
+        <li>UNICEF. (2024). <em>Nigeria child protection monitoring report Q1 2024</em>. UNICEF Nigeria.</li>
+        <li>World Bank. (2022). <em>Nigeria social protection assessment: Targeting, coverage, and adequacy</em>. World Bank Group.</li>
+        <li>World Bank. (2024). <em>Nigeria high-frequency phone survey: Wave 6 report</em>. World Bank Living Standards Measurement Study.</li>
+        <li>Yusuf, A., Nwosu, C., &amp; Adeyemi, S. (2023). Implementation gaps in Nigeria's conditional cash transfer scheme: Evidence from six states. <em>World Development, 163</em>, 106136.</li>
+      </ol>
+    </div>
+
+    <!-- PDF Download Banner at bottom -->
+    <div class="pdf-banner">
+      <div class="pdf-banner-text">
+        <strong>Download the full paper</strong>
+        <span>PDF version · Korie (2026) · MJIR Vol. 1, Issue 1 · DOI: 10.2026/MABRIG/MR2026001</span>
+      </div>
+      <a class="btn btn-primary" href="/pdfs/korie-2026-inflation-food-insecurity-nigeria.pdf" download style="font-size:14px; padding:10px 22px;">
+        📥 Download PDF
+      </a>
     </div>
 
     <!-- How to Cite -->
@@ -526,6 +936,24 @@ ER  -</pre>
   <!-- ══ SIDEBAR ══ -->
   <aside class="sidebar">
 
+    <!-- TOC -->
+    <div class="toc">
+      <h4>Contents</h4>
+      <ol class="toc">
+        <li><a href="#sec1">Introduction</a></li>
+        <li><a href="#sec2">Macroeconomic Shocks</a></li>
+        <li><a href="#sec3">Literature Review</a></li>
+        <li><a href="#sec4">Theoretical Framework</a></li>
+        <li><a href="#sec5">Methodology</a></li>
+        <li><a href="#sec6">Empirical Realities</a></li>
+        <li><a href="#sec7">Household Coping Strategies</a></li>
+        <li><a href="#sec8">Social Protection Gaps</a></li>
+        <li><a href="#sec9">Discussion</a></li>
+        <li><a href="#sec10">Conclusion &amp; Policy Recommendations</a></li>
+        <li><a href="#references">References</a></li>
+      </ol>
+    </div>
+
     <div class="sidebar-box">
       <div class="open-access-badge">🔓 Open Access Article</div>
       <div class="sidebar-row">
@@ -567,6 +995,16 @@ ER  -</pre>
     </div>
 
     <div class="sidebar-box">
+      <h4>Quick Download</h4>
+      <a class="btn btn-primary" href="/pdfs/korie-2026-inflation-food-insecurity-nigeria.pdf" download style="width:100%; justify-content:center; margin-bottom:8px;">
+        📥 Download PDF
+      </a>
+      <button class="btn btn-outline" onclick="copyRIS()" style="width:100%; justify-content:center;">
+        📑 Export RIS
+      </button>
+    </div>
+
+    <div class="sidebar-box">
       <h4>Subject Areas</h4>
       <div class="keywords" style="margin-top:0;">
         <span class="kw-tag">Development Economics</span>
@@ -589,16 +1027,6 @@ ER  -</pre>
           🔗 Copy Article URL
         </button>
       </div>
-    </div>
-
-    <div class="sidebar-box">
-      <h4>Quick Download</h4>
-      <a class="btn btn-primary" href="/pdfs/korie-2026-inflation-food-insecurity-nigeria.pdf" download style="width:100%; justify-content:center; margin-bottom:8px;">
-        📥 Download PDF
-      </a>
-      <button class="btn btn-outline" onclick="copyRIS()" style="width:100%; justify-content:center;">
-        📑 Export RIS
-      </button>
     </div>
 
   </aside>
@@ -680,11 +1108,22 @@ function shareArticle() {
   } else { copyURL(); }
 }
 
+/* ── Smooth scroll for TOC ── */
+document.querySelectorAll('.toc a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
 /* ── Analytics placeholder ── */
-document.querySelector('a[download]')?.addEventListener('click', () => {
-  if (typeof gtag !== 'undefined') gtag('event', 'pdf_download', { paper: 'korie2026inflation' });
-  const el = document.getElementById('downloads');
-  if (el && el.textContent === '—') el.textContent = '1';
+document.querySelectorAll('a[download]').forEach(el => {
+  el.addEventListener('click', () => {
+    if (typeof gtag !== 'undefined') gtag('event', 'pdf_download', { paper: 'korie2026inflation' });
+    const dl = document.getElementById('downloads');
+    if (dl && dl.textContent === '—') dl.textContent = '1';
+  });
 });
 
 document.addEventListener('DOMContentLoaded', () => {
