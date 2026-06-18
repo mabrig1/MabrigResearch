@@ -1,0 +1,287 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat
+{\fonttbl{\f0\froman\fcharset0 Times New Roman;}{\f1\fswiss\fcharset0 Arial;}}
+{\colortbl;\red22\green78\blue99;\red0\green0\blue0;}
+\f0\fs24
+\pard\qc\b\fs32 A Network Pharmacology and Molecular Docking Framework for Decoding\b0\fs24\par
+\pard\qc\b\fs32 Multi-Target Synergistic Mechanisms of Anacardiaceae and Poaceae Leaf Combinations\b0\fs24\par
+\pard\qc\b\fs32 Methodology and a Worked Illustrative Example\b0\fs24\par
+\par
+\pard\qc Mabrig Korie\par
+\pard\qc Mabrig Research Institute (MRI)\par
+\pard\qc contact@mabrigkorie.org | mabrigkorie.org\par
+\par
+\pard\qc Mabrig Journal of Interdisciplinary Research (MJIR)\par
+\pard\qc Volume 2, Issue 1, Article 008, pp. 159-184 (2026)\par
+\pard\qc DOI: 10.5678/mjir.v2i1.008\par
+\par
+\pard\qj\sa160\sb160\b\fs22\cf1 METHODOLOGICAL NOTICE: This article is a framework and worked-example paper, not a results paper. No target-prediction queries, network construction, hub analysis, enrichment analysis, or molecular docking runs were actually executed for this article. All network statistics, enrichment patterns, and docking affinity figures presented in the Results section are illustrative and hypothetical, intended only to demonstrate how the described pipeline's output should be read. They must not be cited or treated as empirical findings.\b0\fs24\cf0\par
+\pard\qj\b\fs28\sb240\sa120 Abstract\b0\fs24\par
+\pard\qj\sa160 Network pharmacology and molecular docking have become standard tools for explaining why multi-component plant extracts so often outperform single isolated compounds: by mapping each constituent onto its predicted protein targets, building the resulting protein-protein interaction network, and ranking targets by topological importance, researchers can generate testable hypotheses about which proteins a given botanical combination is most likely to act through, well before any wet-laboratory or clinical work begins. This article sets out a complete, reproducible computational framework for applying that approach to a specific, previously unexamined combination - leaf-derived flavonoids and phenolics from the Anacardiaceae family (Mangifera indica, mango, and Anacardium occidentale, cashew) paired with bioactives from Poaceae leaf sources (Bambusa spp., bamboo) - built around five recurring bioactive compounds: mangiferin, quercetin, anacardic acid, orientin, and vitexin.\par
+\pard\qj\sa160 A central methodological note governs everything that follows and is stated here without qualification: this is a methodology and framework paper, not a results paper. No target-prediction queries, protein-protein interaction network construction, topological hub analysis, enrichment analysis, or molecular docking runs were actually executed for this article. Every quantitative figure presented in the Results section - network node and edge counts, degree/betweenness/closeness/MCC scores, enrichment p-values, and docking binding-affinity values - is an illustrative, hypothetical worked example, constructed to demonstrate what the described pipeline's output would look like and how it would be interpreted, modelled loosely on the typical ranges reported in published network pharmacology and docking studies of structurally related flavonoids and phenolics. These figures are not the product of completed computational experiments on this specific compound set, and they must not be cited, reused, or treated as genuine findings. The contribution of this article is the framework itself - a fully specified, reproducible protocol that any researcher with access to the named (real, publicly available) tools and databases could execute to generate actual results - together with a worked example that shows, transparently and end to end, how the pipeline's output should be read once it has genuinely been run.\par
+\pard\qj\sa160 {\b Keywords:} Network Pharmacology, Molecular Docking, Anacardiaceae, Poaceae, Mangifera indica, Anacardium occidentale, Multi-Target Synergy, Computational Pharmacology, In Silico Methods, Ethnobotany.\par
+\pard\qj\b\fs28\sb240\sa120 1. Introduction: A Framework in Search of Its First Real Run\b0\fs24\par
+\pard\qj\sa160 Network pharmacology starts from a simple observation that classical, one-drug-one-target pharmacology is often poorly equipped to handle: most complex diseases, and certainly most chronic metabolic and inflammatory conditions, are not driven by a single defective protein but by a web of interacting genes, proteins, and signalling pathways acting together (Hopkins, 2008). A plant extract that contains dozens of bioactive compounds, each weakly engaging several targets at once, can in principle achieve a therapeutic effect that no single isolated compound engaging one target with high affinity could match - not because any one interaction is especially strong, but because the combination's targets converge on the same disease-relevant network nodes from several directions simultaneously (Wagner & Ulrich-Merzenich, 2009). This is, in computational language, exactly the logic that African and Asian traditional polyherbal medicine has followed for centuries on purely empirical grounds (Sofowora, 1993; Iwu, 1993; Gurib-Fakim, 2006).\par
+\pard\qj\sa160 Turning that intuition into a testable scientific claim requires tools that did not exist a generation ago: public databases that predict, from a compound's structure alone, which human proteins it is likely to bind (Daina et al., 2019); protein-protein interaction databases that describe how those predicted targets relate to one another inside the cell (Szklarczyk et al., 2023); network visualisation and analysis software that can take a list of proteins and compute which of them sit at structurally important "hub" positions within the resulting network (Shannon et al., 2003); functional enrichment tools that translate a list of hub genes into the biological pathways and processes they collectively represent (Kanehisa & Goto, 2000; Ashburner et al., 2000; Yu, Wang, Han, & He, 2012); and molecular docking software that estimates, in silico, how tightly a given compound is likely to bind a given target protein's three-dimensional structure (Trott & Olson, 2010). Used together, in sequence, these tools constitute what is now widely called a network pharmacology and molecular docking pipeline, and it has become one of the most common methodological templates in the contemporary natural-products literature.\par
+\pard\qj\sa160 This article applies that template, conceptually and procedurally, to a combination that - so far as a careful search of the published literature could establish - has not yet been examined as a unit: leaf-derived bioactives from two Anacardiaceae sources, Mangifera indica (mango) and Anacardium occidentale (cashew), considered alongside leaf-derived bioactives from a Poaceae source, Bambusa spp. (bamboo). All three plants are common, inexpensive, and widely available across Nigeria and much of tropical Africa and Asia, and all three have independent histories of traditional use for metabolic, inflammatory, and hepatic complaints. Five compounds recur across the published phytochemical profiles of these three botanical sources and anchor the worked example that follows: mangiferin and quercetin (both well represented in mango leaf), anacardic acid (the principal phenolic lipid of cashew leaf and shell), and orientin and vitexin (C-glycosylflavones common to bamboo leaf and reported elsewhere in the bamboo-and-MASLD literature this journal has previously discussed; Korie, 2026).\par
+\pard\qj\sa160 It is necessary to be unusually explicit, at the very outset, about what kind of paper this is and is not. It is not a report of a completed network pharmacology study with empirically generated results: no target-prediction database was queried for this specific compound set, no protein-protein interaction network was actually constructed and analysed in Cytoscape or an equivalent tool, no enrichment analysis was run, and no docking simulation was performed. It is, instead, a methodology paper - a complete, step-by-step, reproducible protocol, specified at the level of named software, named databases, and named parameters, accompanied throughout by a fully worked illustrative example that shows what each step's output looks like and how it should be read. The illustrative figures exist to teach the method, not to report a discovery. Anyone wishing to know whether this specific combination genuinely engages the targets and pathways sketched out below must run the pipeline described in Section 3 themselves; this article supplies the protocol and the interpretive scaffolding, not the empirical answer.\par
+\pard\qj\sa160 Three tasks organise what follows. First, the conceptual and biological rationale for treating these five compounds as a candidate multi-target combination is laid out, with attention to the protein targets and pathways most often implicated in flavonoid and phenolic pharmacology generally. Second, a complete computational framework - compound and target selection, network construction, topological hub analysis, functional enrichment, and molecular docking - is specified in enough procedural detail that another researcher could execute it without further guidance, using exclusively real, publicly available, named tools. Third, a fully labelled worked example walks through what each stage of that pipeline would output and how a researcher would interpret it, with every illustrative number clearly and repeatedly marked as such, and the article closes with a concrete roadmap for converting this framework into an empirically validated study.\par
+\pard\qj\b\fs28\sb240\sa120 2. Conceptual Background: Five Compounds, Three Plants, One Network\b0\fs24\par
+\pard\qj\b\i\fs24\sb200\sa100 2.1 Why Network Pharmacology Fits Multi-Plant Combinations\b0\i0\par
+\pard\qj\sa160 Classical pharmacology has historically rewarded selectivity: the ideal drug binds one target tightly and leaves everything else alone, because off-target binding is usually where side effects come from. Network pharmacology inverts that intuition for a specific class of problem - complex, multifactorial disease - by treating limited, distributed polypharmacology as a feature rather than a bug (Hopkins, 2008). A compound that binds ten different proteins weakly, each of which sits in a disease-relevant pathway, can in principle move a biological system further than a compound that binds one protein perfectly, provided the ten weak interactions are not simply redundant. Multi-plant combinations, by definition, multiply this effect: each additional botanical source contributes its own compound list, and therefore its own set of predicted targets, increasing both the breadth of pathway coverage and the analytical complexity of working out which targets actually matter.\par
+\pard\qj\b\i\fs24\sb200\sa100 2.2 The Five Anchor Compounds and Their Botanical Sources\b0\i0\par
+\pard\qj\sa160 Five compounds anchor the worked example developed in this article, chosen because each is well represented in the published phytochemical literature on the three plants under consideration and each belongs to a structural class - xanthones, flavonoids, and phenolic lipids - with an established record of multi-target pharmacological activity. Mangiferin, a C-glycosyl xanthone, is the signature compound of Mangifera indica leaf and has been studied extensively for antioxidant, antidiabetic, and anti-inflammatory activity. Quercetin, one of the most widely distributed flavonols in the plant kingdom and present in mango leaf alongside mangiferin, is among the most frequently modelled compounds in the network pharmacology literature precisely because of its broad, well-characterised target profile. Anacardic acid, a phenolic lipid distinctive to Anacardium occidentale (cashew) leaf, shell, and nut testa, has documented anti-inflammatory and antimicrobial activity attributed in part to its capacity to inhibit certain lipoxygenase and histone acetyltransferase enzymes. Orientin and vitexin, both C-glycosylflavones, are recurring constituents of Bambusa spp. leaf and were among the compounds implicated in the bamboo-leaf MASLD mechanism this journal has previously discussed (Korie, 2026).\par
+\pard\qj\b\i\fs24\sb200\sa100 2.3 Candidate Hub Targets Suggested by the General Flavonoid and Phenolic Literature\b0\i0\par
+\pard\qj\sa160 Without having run a target-prediction query for this specific compound set, it is nonetheless possible - and useful, for framing the worked example in Section 4 - to note which protein targets recur most often when structurally similar flavonoids, xanthones, and phenolic lipids are profiled individually in the published literature. AKT1, TNF, IL6, and STAT3 recur across inflammatory and metabolic disease network pharmacology studies of plant flavonoids generally; HIF1A and NFE2L2 (the gene encoding Nrf2) appear frequently in oxidative-stress-related target lists; PRKAA1 (encoding the catalytic subunit of AMPK) and MAPK1 appear in metabolic-pathway-focused studies; and RELA and JUN recur as downstream transcriptional nodes in NF-kB- and AP-1-linked inflammatory signalling. None of this constitutes a target-prediction result for the five compounds discussed here - it is background context, drawn from the wider literature on structurally related compounds, intended only to make the illustrative worked example in Section 4 plausible rather than arbitrary.\par
+\pard\qj\b\i\fs24\sb200\sa100 2.4 What a Genuine Pipeline Run Would Need to Establish\b0\i0\par
+\pard\qj\sa160 Converting this background plausibility into an actual finding requires four things that this article does not supply: a genuine target-prediction query for each of the five named compounds against a current database such as SwissTargetPrediction (Daina et al., 2019); construction of the resulting protein-protein interaction network in STRING (Szklarczyk et al., 2023) and Cytoscape (Shannon et al., 2003); topological analysis to identify which predicted targets actually occupy hub positions in that specific network, rather than in network pharmacology studies of other compounds; and molecular docking of each compound against the crystal structures of its top-ranked predicted hub targets using a tool such as AutoDock Vina (Trott & Olson, 2010). Section 3 specifies exactly how each of these four steps should be carried out.\par
+\pard\qj\b\fs28\sb240\sa120 3. Methods: A Reproducible Computational Framework\b0\fs24\par
+\pard\qj\sa160 This section is written as a protocol - detailed enough that a researcher with access to the named tools and databases could follow it step by step to produce a genuine result for this or any comparable compound set. Every tool and database named below is real and publicly accessible at the time of writing. No claim is made anywhere in this section that the steps described were carried out for the five compounds discussed in this article; Section 4 illustrates what carrying them out would look like, using clearly labelled hypothetical figures.\par
+\pard\qj\b\i\fs24\sb200\sa100 3.1 Compound and Target Data Acquisition\b0\i0\par
+\pard\qj\sa160 The framework begins with formal structural identification of each candidate compound - mangiferin, quercetin, anacardic acid, orientin, and vitexin in the worked example - by retrieving its canonical SMILES string and basic physicochemical descriptors (molecular weight, LogP, hydrogen bond donor and acceptor counts, topological polar surface area) from a public compound database such as PubChem (Kim et al., 2021) or ChEMBL (Mendez et al., 2019). These descriptors serve two purposes: they support a basic drug-likeness screen against established medicinal-chemistry heuristics such as Lipinski's Rule of Five (Lipinski, Lombardo, Dominy, & Feeney, 2001), and they are the required input format for target-prediction tools. Each compound's SMILES string is then submitted to a ligand-based target-prediction service - SwissTargetPrediction is specified here for concreteness (Daina et al., 2019) - restricting predictions to human protein targets and retaining hits above a stated probability or confidence threshold (a 0.1 minimum probability score is a common, defensible cutoff in the published literature, though any threshold used should be stated explicitly and applied uniformly across compounds).\par
+\pard\qj\b\i\fs24\sb200\sa100 3.2 Protein-Protein Interaction Network Construction\b0\i0\par
+\pard\qj\sa160 The union of all predicted targets across the compound set forms the input gene/protein list for network construction. This list is submitted to the STRING database (Szklarczyk et al., 2023), restricted to Homo sapiens, with a minimum required interaction confidence score specified in advance (a "high confidence" threshold of 0.7 is standard practice and should be reported explicitly rather than left to STRING's default). The resulting interaction network - proteins as nodes, predicted or experimentally validated interactions as edges - is exported and imported into Cytoscape (Shannon et al., 2003) for analysis and visualisation. Any isolated nodes with no edges to the rest of the network are typically excluded from downstream hub analysis, since topological centrality measures are not meaningfully defined for disconnected nodes.\par
+\pard\qj\b\i\fs24\sb200\sa100 3.3 Topological Hub Analysis\b0\i0\par
+\pard\qj\sa160 Within Cytoscape, the CytoHubba or NetworkAnalyzer plugin (or equivalent) is used to compute, for every node in the network, a standard set of topological centrality measures: degree centrality (the number of direct connections a node has), betweenness centrality (how often a node lies on the shortest path between other node pairs, a proxy for its role as an information bottleneck), closeness centrality (how few steps separate a node from every other node in the network), and the Maximal Clique Centrality (MCC) score, which has been reported in the bioinformatics literature to outperform simpler degree-based measures at identifying genuine biological hub proteins in protein-protein interaction networks. Nodes are ranked by MCC score (or by a combination of the four measures, with the specific combination rule stated explicitly), and a pre-specified number of top-ranked nodes - ten is used as the illustrative cutoff in Section 4, though this should be set based on network size and reported transparently - are carried forward as candidate "hub targets" for the next stage.\par
+\pard\qj\b\i\fs24\sb200\sa100 3.4 Functional Enrichment Analysis\b0\i0\par
+\pard\qj\sa160 The full predicted-target list (not only the top hub nodes) is submitted to Gene Ontology enrichment analysis, covering biological process, molecular function, and cellular component categories (Ashburner et al., 2000), and to Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway enrichment analysis (Kanehisa & Goto, 2000), using a tool such as the R package clusterProfiler (Yu et al., 2012) or an equivalent web-based enrichment service. Enrichment results are filtered to a pre-specified statistical significance threshold (an adjusted p-value, corrected for multiple testing using the Benjamini-Hochberg or equivalent method, below 0.05 is standard) and reported with the number of target genes contributing to each enriched term, since pathway terms enriched on the strength of one or two genes warrant more cautious interpretation than those supported by many.\par
+\pard\qj\b\i\fs24\sb200\sa100 3.5 Molecular Docking Protocol\b0\i0\par
+\pard\qj\sa160 For each compound-hub-target pair selected from Section 3.3's output, a three-dimensional crystal or cryo-EM structure of the target protein is retrieved from the Protein Data Bank (Berman et al., 2000), prioritising structures with high resolution, a relevant bound ligand or apo conformation, and minimal missing residues near the predicted binding site. Target structures are prepared by removing crystallographic water and co-crystallised ligands, adding polar hydrogens, and assigning partial charges; compound structures are prepared by generating a reasonable low-energy 3D conformer and likewise assigning partial charges. Docking itself is performed with AutoDock Vina (Trott & Olson, 2010), with the search space (grid box) centred on the target's known or predicted binding site and sized generously enough to allow the ligand reasonable conformational freedom. Each docking run should be repeated with several random seeds to assess pose reproducibility, and the lowest (most negative) binding energy across replicate runs, expressed in kcal/mol, is reported as the compound-target binding affinity estimate. A small set of known active and known inactive control ligands for each target, where available, should be docked alongside the compounds of interest as a sanity check on the protocol's discriminative validity.\par
+\pard\qj\b\i\fs24\sb200\sa100 3.6 Validation, Reporting Standards, and the Limits of This Framework\b0\i0\par
+\pard\qj\sa160 A complete, honest report of any genuine run of this pipeline should disclose, at minimum: the exact database version and access date for every tool used (target-prediction, network, and enrichment databases are updated frequently, and results can shift between versions); the confidence and significance thresholds applied at every filtering step; redocking validation of the docking protocol itself against any co-crystallised reference ligand, with the resulting root-mean-square deviation (RMSD) between the redocked and crystallographic pose reported explicitly, since a protocol that cannot reproduce a known binding pose within a reasonable RMSD tolerance (commonly under 2.0 angstroms) cannot be trusted to predict novel ones; and a clear statement that in silico docking scores are binding-affinity estimates, not measurements, and that any compound found to dock favourably in this kind of analysis still requires biochemical or cell-based confirmation before its predicted activity can be treated as established. This framework, followed faithfully and reported with this level of transparency, would constitute a genuine network pharmacology and molecular docking study. What follows in Section 4 is not that study; it is a demonstration of what such a study's output would look like.\par
+\pard\qj\b\fs28\sb240\sa120 4. Results: A Fully Labelled Illustrative Worked Example\b0\fs24\par
+\pard\qj\sa160\sb160\b\fs22\cf1 Everything in this section is hypothetical. No target-prediction query, network construction, hub analysis, enrichment analysis, or docking run was executed for this article. The tables and figures below illustrate, with example numbers loosely modelled on typical ranges reported in published studies of structurally related flavonoids and phenolics, what the framework specified in Section 3 would output and how a researcher would read that output - nothing more.\b0\fs24\cf0\par
+\pard\qj\b\i\fs24\sb200\sa100 4.1 Compound and Botanical Source Overview\b0\i0\par
+\pard\qj\sa160 Table 1 summarises the five anchor compounds and their reported physicochemical character and source plants. Unlike the tables that follow, the broad physicochemical classes described here (compound family, approximate molecular weight range, general lipophilicity) reflect well-established, publicly documented chemistry for these compounds rather than illustrative pipeline output; precise database identifiers and exact computed values are intentionally omitted here and should be retrieved directly from PubChem or ChEMBL by any researcher executing the framework, rather than taken from this table.\par
+\pard\qj\b\i\fs24\sb200\sa100 Table 1. Five Anchor Compounds: Botanical Source and General Phytochemical Character\b0\i0\par
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj \b Compound\b0\cell
+\pard\intbl\qj \b Class\b0\cell
+\pard\intbl\qj \b Primary Source\b0\cell
+\pard\intbl\qj \b Reported Activity Classes\b0\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj Mangiferin\cell
+\pard\intbl\qj C-glycosyl xanthone\cell
+\pard\intbl\qj Mangifera indica leaf\cell
+\pard\intbl\qj Antioxidant, antidiabetic, anti-inflammatory\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj Quercetin\cell
+\pard\intbl\qj Flavonol\cell
+\pard\intbl\qj Mangifera indica leaf\cell
+\pard\intbl\qj Antioxidant, anti-inflammatory, broad polypharmacology\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj Anacardic acid\cell
+\pard\intbl\qj Phenolic lipid\cell
+\pard\intbl\qj Anacardium occidentale leaf/shell\cell
+\pard\intbl\qj Anti-inflammatory, antimicrobial, enzyme-inhibitory\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj Orientin\cell
+\pard\intbl\qj C-glycosylflavone\cell
+\pard\intbl\qj Bambusa spp. leaf\cell
+\pard\intbl\qj Antioxidant, hepatoprotective, metabolic\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj Vitexin\cell
+\pard\intbl\qj C-glycosylflavone\cell
+\pard\intbl\qj Bambusa spp. leaf\cell
+\pard\intbl\qj Antioxidant, anti-inflammatory, metabolic\cell
+\row
+\pard\qc\fs18 General phytochemical classifications only; exact computed physicochemical descriptors and database identifiers are omitted and should be retrieved directly from PubChem/ChEMBL by any researcher executing the framework.\par
+\par
+\pard\qj\b\i\fs24\sb200\sa100 4.2 Illustrative Hub Target Network\b0\i0\par
+\pard\qj\sa160 Were the framework in Section 3.2-3.3 genuinely executed, it would output a protein-protein interaction network of some specific size and a ranked list of hub nodes. Table 2 illustrates the form that output typically takes, using example network statistics and example topological scores that are not the result of an actual STRING/Cytoscape run on this compound set. The ten illustrative hub candidates shown (AKT1, TNF, IL6, STAT3, HIF1A, NFE2L2, PRKAA1, MAPK1, RELA, JUN) are drawn from the general flavonoid and phenolic literature discussed in Section 2.3, selected here purely to make the worked example biologically plausible.\par
+\pard\qj\b\i\fs24\sb200\sa100 Table 2 (Illustrative Example - Not Actual Output). Hypothetical Network Topology and Candidate Hub Targets\b0\i0\par
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj \b Candidate Hub\b0\cell
+\pard\intbl\qj \b Illustrative Degree\b0\cell
+\pard\intbl\qj \b Illustrative Betweenness\b0\cell
+\pard\intbl\qj \b Illustrative MCC Rank\b0\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj AKT1\cell
+\pard\intbl\qj example: high\cell
+\pard\intbl\qj example: high\cell
+\pard\intbl\qj 1 (illustrative)\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj TNF\cell
+\pard\intbl\qj example: high\cell
+\pard\intbl\qj example: moderate-high\cell
+\pard\intbl\qj 2 (illustrative)\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj IL6\cell
+\pard\intbl\qj example: moderate-high\cell
+\pard\intbl\qj example: moderate\cell
+\pard\intbl\qj 3 (illustrative)\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj STAT3\cell
+\pard\intbl\qj example: moderate\cell
+\pard\intbl\qj example: moderate\cell
+\pard\intbl\qj 4 (illustrative)\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj HIF1A\cell
+\pard\intbl\qj example: moderate\cell
+\pard\intbl\qj example: moderate\cell
+\pard\intbl\qj 5 (illustrative)\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj NFE2L2 (Nrf2)\cell
+\pard\intbl\qj example: moderate\cell
+\pard\intbl\qj example: low-moderate\cell
+\pard\intbl\qj 6 (illustrative)\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj PRKAA1 (AMPK)\cell
+\pard\intbl\qj example: low-moderate\cell
+\pard\intbl\qj example: low-moderate\cell
+\pard\intbl\qj 7 (illustrative)\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj MAPK1\cell
+\pard\intbl\qj example: low-moderate\cell
+\pard\intbl\qj example: low\cell
+\pard\intbl\qj 8 (illustrative)\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj RELA\cell
+\pard\intbl\qj example: low\cell
+\pard\intbl\qj example: low\cell
+\pard\intbl\qj 9 (illustrative)\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj JUN\cell
+\pard\intbl\qj example: low\cell
+\pard\intbl\qj example: low\cell
+\pard\intbl\qj 10 (illustrative)\cell
+\row
+\pard\qc\fs18 All values are illustrative placeholders expressed qualitatively, since no network of this kind has actually been built for this compound set.\par
+\par
+\pard\qj\b\i\fs24\sb200\sa100 4.3 Illustrative Functional Enrichment Pattern\b0\i0\par
+\pard\qj\sa160 If the ten illustrative hub candidates in Table 2 were genuinely the output of a real network analysis, KEGG and Gene Ontology enrichment of the full predicted-target list would plausibly highlight pathways consistent with the biology already known for these protein families - the PI3K-Akt and MAPK signalling pathways (via AKT1, MAPK1), the HIF-1 and AMPK signalling pathways (via HIF1A, PRKAA1), TNF and NF-kB signalling (via TNF, RELA), and glutathione metabolism / oxidative stress response pathways (via NFE2L2). This is offered strictly as a plausibility check on the illustrative hub list, consistent with the general literature on these protein families - not as an enrichment result, since no enrichment analysis was actually run.\par
+\pard\qj\b\i\fs24\sb200\sa100 4.4 Illustrative Docking Affinity Pattern\b0\i0\par
+\pard\qj\sa160 Were the docking protocol in Section 3.5 genuinely carried out, it would return a binding-affinity estimate, in kcal/mol, for each compound-target pair docked. Published docking studies of structurally comparable flavonoids and phenolic compounds against comparable target classes commonly report binding affinities in the broad range of roughly -6 to -10 kcal/mol, with more negative values conventionally read as more favourable predicted binding. Table 3 illustrates the qualitative pattern such a study's output table would take - relative, not absolute, since the specific numbers shown are demonstration values, not docking results for these five compounds against these ten targets.\par
+\pard\qj\b\i\fs24\sb200\sa100 Table 3 (Illustrative Example - Not Actual Output). Qualitative Pattern of Hypothetical Docking Affinity Strength\b0\i0\par
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj \b Compound\b0\cell
+\pard\intbl\qj \b vs. AKT1/MAPK1 (illustrative)\b0\cell
+\pard\intbl\qj \b vs. TNF/IL6/STAT3 (illustrative)\b0\cell
+\pard\intbl\qj \b vs. NFE2L2/PRKAA1 (illustrative)\b0\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj Mangiferin\cell
+\pard\intbl\qj example: moderate-strong\cell
+\pard\intbl\qj example: moderate\cell
+\pard\intbl\qj example: moderate-strong\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj Quercetin\cell
+\pard\intbl\qj example: strong\cell
+\pard\intbl\qj example: moderate-strong\cell
+\pard\intbl\qj example: moderate\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj Anacardic acid\cell
+\pard\intbl\qj example: moderate\cell
+\pard\intbl\qj example: moderate-strong\cell
+\pard\intbl\qj example: moderate\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj Orientin\cell
+\pard\intbl\qj example: moderate\cell
+\pard\intbl\qj example: moderate\cell
+\pard\intbl\qj example: moderate-strong\cell
+\row
+\trowd\trgaph80\trleft-80\cellx2250\cellx4500\cellx6750\cellx9000
+\pard\intbl\qj Vitexin\cell
+\pard\intbl\qj example: moderate\cell
+\pard\intbl\qj example: moderate\cell
+\pard\intbl\qj example: moderate\cell
+\row
+\pard\qc\fs18 Qualitative, illustrative pattern only - not the product of completed docking simulations.\par
+\par
+\pard\qj\b\i\fs24\sb200\sa100 4.5 What This Illustrative Pattern Would Mean, If It Were Confirmed\b0\i0\par
+\pard\qj\sa160 Read purely as a demonstration of interpretation, a confirmed version of the pattern sketched above would suggest a multi-target profile in which quercetin and mangiferin contribute the strongest predicted engagement with growth-factor and survival signalling (AKT1/MAPK1) and inflammatory hub nodes (TNF/IL6/STAT3), anacardic acid contributes complementary anti-inflammatory engagement consistent with its documented enzyme-inhibitory activity, and the bamboo-derived C-glycosylflavones orientin and vitexin contribute relatively more toward the oxidative-stress and energy-sensing axis (NFE2L2/PRKAA1) - a division of labour across the three botanical sources that would echo, at the level of network pharmacology, the same complementary-mechanism logic this journal has previously discussed for a different bamboo-leaf combination (Korie, 2026). Whether this pattern reflects anything real about these five compounds and these ten targets is precisely the question that running the framework in Section 3 - and not this article - would answer.\par
+\pard\qj\b\fs28\sb240\sa120 5. Discussion\b0\fs24\par
+\pard\qj\b\i\fs24\sb200\sa100 5.1 Why Publish a Framework Without Results\b0\i0\par
+\pard\qj\sa160 Network pharmacology and molecular docking studies have become common enough in the natural-products literature that the methodological template itself - which databases to query, in what order, with which thresholds - is now reasonably well established, even though individual papers rarely spell every step out in enough detail for independent replication. Publishing the framework on its own, decoupled from any specific claimed result, serves a narrower but genuine purpose: it gives other researchers, particularly those working with limited computational resources or just beginning to apply these tools to African ethnobotanical material, a complete, named, reproducible protocol to follow, together with a worked example that shows what correctly interpreted output looks like before they have generated any of their own. This is the same logic that justified publishing a literature-synthesis-only paper elsewhere in this journal (Korie, 2026): doing the preparatory, hypothesis-shaping work openly and honestly, clearly labelled as preparatory, before the resource-intensive primary work begins.\par
+\pard\qj\b\i\fs24\sb200\sa100 5.2 The Risk This Framing Is Designed to Avoid\b0\i0\par
+\pard\qj\sa160 Network pharmacology and docking studies carry a specific, well-documented risk: because the computational pipeline produces numbers - node counts, centrality scores, binding energies - that look identical in format whether or not the underlying analysis was actually run with care, it is comparatively easy for such numbers to be presented with more confidence than the underlying work supports, or, in the worst case, fabricated outright. This article was deliberately structured specifically to avoid that risk: every quantitative figure in Section 4 is qualitatively hedged ("example: moderate," "illustrative," explicit rank labels marked "(illustrative)") rather than presented as a precise number with false authority, and the methodological notice repeated at the start of the document, in the Abstract, and again before Section 4 carries the same caveat in case a reader arrives at any one section without having read the others. Readers, reviewers, and anyone citing this work should treat that repetition as intentional rather than redundant.\par
+\pard\qj\b\i\fs24\sb200\sa100 5.3 Limitations\b0\i0\par
+\pard\qj\sa160 The limitations of this article are, by design, total with respect to empirical findings: there are none, because none were generated. What can be assessed is the quality of the framework itself. The protocol specified in Section 3 follows widely accepted practice in the published network pharmacology literature, but it is not the only defensible version of such a pipeline - reasonable researchers differ on confidence thresholds, on which centrality measure or combination of measures best identifies genuine hubs, and on how many top-ranked targets merit docking follow-up. The illustrative target list in Section 2.3 and Table 2 is drawn from the general literature on structurally related compounds and is not, and cannot be, a substitute for an actual target-prediction query against this specific compound set; a genuine run could easily surface a substantially different hub list. Equally, the qualitative docking pattern in Table 3 should not be treated as even a weak prior on the real outcome of a genuine docking study - it illustrates how to read a results table, not what such a table would actually contain.\par
+\pard\qj\b\i\fs24\sb200\sa100 5.4 Staged Roadmap From Framework to Validated Findings\b0\i0\par
+\pard\qj\b\i\fs24\sb200\sa100 Table 4. Staged Pathway From Methodological Framework to Empirically Validated Findings\b0\i0\par
+\trowd\trgaph80\trleft-80\cellx3000\cellx6000\cellx9000
+\pard\intbl\qj \b Stage\b0\cell
+\pard\intbl\qj \b Activity\b0\cell
+\pard\intbl\qj \b Key Output\b0\cell
+\row
+\trowd\trgaph80\trleft-80\cellx3000\cellx6000\cellx9000
+\pard\intbl\qj 0 (this article)\cell
+\pard\intbl\qj Specification of a reproducible computational framework with a worked illustrative example\cell
+\pard\intbl\qj Named-tool methodology; no empirical results\cell
+\row
+\trowd\trgaph80\trleft-80\cellx3000\cellx6000\cellx9000
+\pard\intbl\qj 1\cell
+\pard\intbl\qj Genuine target prediction for all five compounds\cell
+\pard\intbl\qj Compound-target prediction tables with stated confidence thresholds\cell
+\row
+\trowd\trgaph80\trleft-80\cellx3000\cellx6000\cellx9000
+\pard\intbl\qj 2\cell
+\pard\intbl\qj Real PPI network construction and topological hub analysis\cell
+\pard\intbl\qj Network file, node/edge statistics, ranked hub list\cell
+\row
+\trowd\trgaph80\trleft-80\cellx3000\cellx6000\cellx9000
+\pard\intbl\qj 3\cell
+\pard\intbl\qj Functional enrichment analysis\cell
+\pard\intbl\qj GO/KEGG enrichment tables with corrected p-values\cell
+\row
+\trowd\trgaph80\trleft-80\cellx3000\cellx6000\cellx9000
+\pard\intbl\qj 4\cell
+\pard\intbl\qj Molecular docking with redocking validation\cell
+\pard\intbl\qj Binding energy table (kcal/mol) and RMSD validation report\cell
+\row
+\trowd\trgaph80\trleft-80\cellx3000\cellx6000\cellx9000
+\pard\intbl\qj 5\cell
+\pard\intbl\qj In vitro biochemical or cell-based confirmation\cell
+\pard\intbl\qj Biochemical assay or cell-based activity data\cell
+\row
+\pard\qc\fs18 Stages are sequential. This article corresponds only to Stage 0.\par
+\par
+\pard\qj\b\i\fs24\sb200\sa100 5.5 Relevance to Nigerian and African Computational Pharmacology Capacity\b0\i0\par
+\pard\qj\sa160 Every tool named in Section 3 - PubChem, ChEMBL, SwissTargetPrediction, STRING, Cytoscape, the relevant R or Python enrichment packages, AutoDock Vina, and the Protein Data Bank - is free to access and runs on modest computing hardware, which makes this kind of framework genuinely usable by researchers and graduate students working in Nigerian and other African institutions without specialist wet-laboratory funding or high-performance computing infrastructure. Mangifera indica, Anacardium occidentale, and Bambusa species are all common, inexpensive, and widely cultivated across Nigeria, which lowers the practical barrier to eventually pairing any computational findings with locally sourced extracts for the in vitro and in vivo confirmation work described in Table 4. Making the methodology explicit and freely reusable, rather than treating it as a black box behind a results table, is itself a small contribution toward building that capacity.\par
+\pard\qj\b\fs28\sb240\sa120 6. Conclusion\b0\fs24\par
+\pard\qj\sa160 This article specifies a complete, reproducible network pharmacology and molecular docking framework for examining multi-target synergy between Anacardiaceae leaf compounds (mangiferin and quercetin from Mangifera indica; anacardic acid from Anacardium occidentale) and Poaceae leaf compounds (orientin and vitexin from Bambusa spp.), and illustrates, through a fully labelled worked example, what each stage of that framework's output would look like and how it should be interpreted. It deliberately stops short of claiming any empirical result: no target-prediction query, network construction, enrichment analysis, or docking run was executed for this specific compound set, and every quantitative figure in Section 4 is marked as illustrative for exactly that reason.\par
+\pard\qj\sa160 What this article offers instead is a named, citable, step-by-step protocol - built entirely from real, publicly available tools and databases - together with the interpretive scaffolding needed to read its eventual output correctly, and a staged roadmap (Table 4) showing exactly what primary computational and laboratory work remains before any claim about this combination's actual multi-target mechanism could be responsibly made. Whether mangiferin, quercetin, anacardic acid, orientin, and vitexin genuinely converge on the hub targets sketched illustratively in Section 4 is an open, answerable, and inexpensive question for the next researcher - in Nigeria or elsewhere - willing to run the framework for real.\par
+\pard\qj\b\fs28\sb240\sa120 Acknowledgements\b0\fs24\par
+\pard\qj\sa160 {\b Declaration of Competing Interest:} The author declares no competing financial or non-financial interests related to this work.\par
+\pard\qj\sa160 {\b Funding:} This methodological framework paper received no specific external funding.\par
+\pard\qj\sa160 {\b Data Availability:} This article presents a methodological framework illustrated with a worked, hypothetical example. No new primary computational datasets, network files, docking output files, or enrichment results were generated, and none are deposited in any repository. Researchers wishing to execute the framework described in Section 3 should generate their own primary data using the named public tools and databases.\par
+\pard\qj\b\fs28\sb240\sa120 References\b0\fs24\par
+\pard\qj\fi-360\li360\sa120 Ashburner, M., Ball, C. A., Blake, J. A., Botstein, D., Butler, H., Cherry, J. M., ... Sherlock, G. (2000). Gene ontology: Tool for the unification of biology. Nature Genetics, 25(1), 25-29.\par
+\pard\qj\fi-360\li360\sa120 Berman, H. M., Westbrook, J., Feng, Z., Gilliland, G., Bhat, T. N., Weissig, H., Shindyalov, I. N., & Bourne, P. E. (2000). The Protein Data Bank. Nucleic Acids Research, 28(1), 235-242.\par
+\pard\qj\fi-360\li360\sa120 Daina, A., Michielin, O., & Zoete, V. (2017). SwissADME: A free web tool to evaluate pharmacokinetics, drug-likeness and medicinal chemistry friendliness of small molecules. Scientific Reports, 7, 42717.\par
+\pard\qj\fi-360\li360\sa120 Daina, A., Michielin, O., & Zoete, V. (2019). SwissTargetPrediction: Updated data and new features for efficient prediction of protein targets of small molecules. Nucleic Acids Research, 47(W1), W357-W364.\par
+\pard\qj\fi-360\li360\sa120 Gurib-Fakim, A. (2006). Medicinal plants: Traditions of yesterday and drugs of tomorrow. Molecular Aspects of Medicine, 27(1), 1-93.\par
+\pard\qj\fi-360\li360\sa120 Hopkins, A. L. (2008). Network pharmacology: The next paradigm in drug discovery. Nature Chemical Biology, 4(11), 682-690.\par
+\pard\qj\fi-360\li360\sa120 Iwu, M. M. (1993). Handbook of African medicinal plants. CRC Press.\par
+\pard\qj\fi-360\li360\sa120 Kanehisa, M., & Goto, S. (2000). KEGG: Kyoto encyclopedia of genes and genomes. Nucleic Acids Research, 28(1), 27-30.\par
+\pard\qj\fi-360\li360\sa120 Kim, S., Chen, J., Cheng, T., Gindulyte, A., He, J., He, S., ... Bolton, E. E. (2021). PubChem in 2021: New data content and improved web interfaces. Nucleic Acids Research, 49(D1), D1388-D1395.\par
+\pard\qj\fi-360\li360\sa120 Korie, M. (2026). Preliminary investigation and mechanistic synthesis: A novel quadriherbal formulation targeting AMPK activation and PPAR-gamma downregulation for metabolic dysfunction-associated steatotic liver disease (MASLD) and diabetes. Mabrig Journal of Interdisciplinary Research, 2(1), 136-158.\par
+\pard\qj\fi-360\li360\sa120 Lipinski, C. A., Lombardo, F., Dominy, B. W., & Feeney, P. J. (2001). Experimental and computational approaches to estimate solubility and permeability in drug discovery and development settings. Advanced Drug Delivery Reviews, 46(1-3), 3-26.\par
+\pard\qj\fi-360\li360\sa120 Mendez, D., Gaulton, A., Bento, A. P., Chambers, J., De Veij, M., Felix, E., ... Leach, A. R. (2019). ChEMBL: Towards direct deposition of bioassay data. Nucleic Acids Research, 47(D1), D930-D940.\par
+\pard\qj\fi-360\li360\sa120 Shannon, P., Markiel, A., Ozier, O., Baliga, N. S., Wang, J. T., Ramage, D., ... Ideker, T. (2003). Cytoscape: A software environment for integrated models of biomolecular interaction networks. Genome Research, 13(11), 2498-2504.\par
+\pard\qj\fi-360\li360\sa120 Sofowora, A. (1993). Medicinal plants and traditional medicine in Africa. Spectrum Books.\par
+\pard\qj\fi-360\li360\sa120 Szklarczyk, D., Kirsch, R., Koutrouli, M., Nastou, K., Mehryary, F., Hachilif, R., ... von Mering, C. (2023). The STRING database in 2023. Nucleic Acids Research, 51(D1), D638-D646.\par
+\pard\qj\fi-360\li360\sa120 Trott, O., & Olson, A. J. (2010). AutoDock Vina: Improving the speed and accuracy of docking with a new scoring function, efficient optimization, and multithreading. Journal of Computational Chemistry, 31(2), 455-461.\par
+\pard\qj\fi-360\li360\sa120 Wagner, H., & Ulrich-Merzenich, G. (2009). Synergy research: Approaching a new generation of phytopharmaceuticals. Phytomedicine, 16(2-3), 97-110.\par
+\pard\qj\fi-360\li360\sa120 Yu, G., Wang, L. G., Han, Y., & He, Q. Y. (2012). clusterProfiler: An R package for comparing biological themes among gene clusters. OMICS: A Journal of Integrative Biology, 16(5), 284-287.\par
+\par
+\pard\qc\fs18 How to cite: Korie, M. (2026). A network pharmacology and molecular docking framework for decoding multi-target synergistic mechanisms of Anacardiaceae and Poaceae leaf combinations: Methodology and a worked illustrative example. Mabrig Journal of Interdisciplinary Research, 2(1), Article 008, 159-184. https://doi.org/10.5678/mjir.v2i1.008\par
+\pard\qc\fs18 (c) 2026 Mabrig Research Institute. Published in the Mabrig Journal of Interdisciplinary Research under CC BY 4.0.\par
+}

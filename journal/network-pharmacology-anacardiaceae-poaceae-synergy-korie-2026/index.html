@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- SEO -->
+<title>A Network Pharmacology &amp; Molecular Docking Framework for Anacardiaceae–Poaceae Leaf Combinations | MJIR Vol.2</title>
+<meta name="description" content="Korie (2026) presents a structured network pharmacology and molecular docking framework for analysing multi-target synergy in Anacardiaceae and Poaceae leaf combinations, illustrated with a fully labelled worked example. MJIR, Vol. 2, Issue 1, pp. 159–184."/>
+<meta name="keywords" content="network pharmacology, molecular docking, Anacardiaceae, Poaceae, Mangifera indica, Anacardium occidentale, Bambusa, mangiferin, quercetin, anacardic acid, multi-target synergy, computational pharmacology, in silico methods, ethnobotany, Mabrig Korie, MJIR"/>
+<meta name="author" content="Mabrig Korie"/>
+<link rel="canonical" href="https://mabrigresearch.online/journal/network-pharmacology-anacardiaceae-poaceae-synergy-korie-2026/"/>
+
+<!-- Open Graph -->
+<meta property="og:type"        content="article"/>
+<meta property="og:title"       content="A Network Pharmacology and Molecular Docking Framework for Anacardiaceae–Poaceae Leaf Combinations — Mabrig Korie (2026)"/>
+<meta property="og:description" content="A methodological framework and fully labelled worked illustrative example for decoding multi-target synergistic mechanisms of Anacardiaceae and Poaceae leaf combinations using network pharmacology and molecular docking."/>
+<meta property="og:url"         content="https://mabrigresearch.online/journal/network-pharmacology-anacardiaceae-poaceae-synergy-korie-2026/"/>
+<meta property="og:site_name"   content="Mabrig Research Institute"/>
+<meta property="article:published_time" content="2026-06-18"/>
+<meta property="article:author"         content="Mabrig Korie"/>
+<meta property="article:section"        content="Computational Pharmacology / Network Biology"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card"        content="summary_large_image"/>
+<meta name="twitter:title"       content="Network Pharmacology &amp; Docking Framework: Anacardiaceae–Poaceae Synergy — MJIR 2026"/>
+<meta name="twitter:description" content="A worked-example methodology for mapping multi-target synergy between cashew/mango leaf flavonoids and bamboo leaf compounds using network pharmacology and docking."/>
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "A Network Pharmacology and Molecular Docking Framework for Decoding Multi-Target Synergistic Mechanisms of Anacardiaceae and Poaceae Leaf Combinations: Methodology and a Worked Illustrative Example",
+  "name": "A Network Pharmacology and Molecular Docking Framework for Decoding Multi-Target Synergistic Mechanisms of Anacardiaceae and Poaceae Leaf Combinations: Methodology and a Worked Illustrative Example",
+  "author": {
+    "@type": "Person",
+    "name": "Mabrig Korie",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Mabrig Research Institute (MRI)",
+      "url": "https://mabrigresearch.online"
+    },
+    "email": "contact@mabrigkorie.org"
+  },
+  "datePublished": "2026-06-18",
+  "dateModified": "2026-06-18",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Mabrig Research Institute",
+    "url": "https://mabrigresearch.online"
+  },
+  "isPartOf": {
+    "@type": "PublicationVolume",
+    "name": "Mabrig Journal of Interdisciplinary Research",
+    "volumeNumber": "2",
+    "issueNumber": "1"
+  },
+  "pageStart": "159",
+  "pageEnd": "184",
+  "keywords": "network pharmacology, molecular docking, Anacardiaceae, Poaceae, Mangifera indica, Anacardium occidentale, Bambusa, mangiferin, quercetin, anacardic acid, multi-target synergy, computational pharmacology, in silico methods, ethnobotany",
+  "description": "Presents a structured, reproducible network pharmacology and molecular docking framework for analysing multi-target synergy in Anacardiaceae and Poaceae leaf combinations, illustrated throughout with a clearly labelled worked example rather than completed experimental results.",
+  "url": "https://mabrigresearch.online/journal/network-pharmacology-anacardiaceae-poaceae-synergy-korie-2026/",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "DOI",
+    "value": "10.5678/mjir.v2i1.008"
+  },
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "inLanguage": "en"
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+
+<style>
+:root {
+  --blue:#1e3a8a; --blue2:#2563eb; --gold:#f5b301;
+  --dark:#0f172a; --slate:#334155; --muted:#64748b;
+  --light:#f8fafc; --white:#ffffff; --border:#e2e8f0;
+  --cyan:#164e63; --cyan2:#0e7490; --cyan3:#06b6d4;
+  --cyan-light:#ecfeff; --cyan-border:#a5f3fc;
+  --radius:10px;
+}
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; background:var(--light); color:var(--dark); line-height:1.6; }
+a { color:var(--cyan2); text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+.navbar {
+  background:var(--white); border-bottom:1px solid var(--border);
+  padding:14px 40px; display:flex; justify-content:space-between;
+  align-items:center; position:sticky; top:0; z-index:100;
+  box-shadow:0 1px 8px rgba(0,0,0,0.06);
+}
+.nav-logo { font-size:18px; font-weight:700; color:var(--blue); text-decoration:none; }
+.nav-logo span { font-size:11px; font-weight:400; color:var(--muted); display:block; }
+.nav-links { display:flex; gap:24px; align-items:center; }
+.nav-links a { font-size:14px; font-weight:500; color:var(--slate); }
+.nav-links a:hover { color:var(--blue); text-decoration:none; }
+.btn { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; border:none; transition:0.2s; white-space:nowrap; }
+.btn-primary   { background:var(--cyan);  color:#fff; }
+.btn-secondary { background:var(--gold);  color:#000; }
+.btn-outline   { background:transparent; border:1.5px solid var(--border); color:var(--slate); }
+.btn-outline:hover { border-color:var(--cyan); color:var(--cyan); text-decoration:none; }
+.btn:hover { opacity:0.88; text-decoration:none; }
+.btn-cyan { background:var(--cyan); color:#fff; }
+
+.breadcrumb { padding:12px 40px; font-size:13px; color:var(--muted); background:var(--white); border-bottom:1px solid var(--border); }
+.breadcrumb a { color:var(--muted); }
+.breadcrumb a:hover { color:var(--blue); }
+.breadcrumb span { margin:0 6px; }
+
+.article-header {
+  background:linear-gradient(135deg, #164e63 0%, #0e7490 100%);
+  color:#fff; padding:56px 40px 48px;
+}
+.article-header-inner { max-width:860px; margin:0 auto; }
+.article-meta-top { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+.meta-tag {
+  background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.25);
+  padding:4px 12px; border-radius:20px; font-size:12px; font-weight:500;
+}
+.meta-tag.gold { background:var(--gold); color:#000; border-color:var(--gold); }
+.article-title {
+  font-family:'Merriweather',serif; font-size:26px; line-height:1.4;
+  margin-bottom:20px; font-weight:700;
+}
+.article-title em { font-style:italic; }
+.article-authors { margin-bottom:16px; }
+.author-name { font-size:16px; font-weight:600; margin-bottom:4px; }
+.author-affil { font-size:14px; opacity:0.8; }
+.author-email { font-size:13px; opacity:0.7; margin-top:2px; }
+.article-pub-info { display:flex; flex-wrap:wrap; gap:16px; margin-top:20px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.2); }
+.pub-info-item { font-size:13px; opacity:0.85; }
+.pub-info-item strong { opacity:1; display:block; font-size:12px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:2px; }
+.article-history { margin-top:16px; display:flex; flex-wrap:wrap; gap:16px; }
+.history-item { font-size:12px; opacity:0.8; }
+.history-item strong { display:block; font-size:11px; text-transform:uppercase; letter-spacing:0.05em; opacity:0.7; margin-bottom:1px; }
+.doi-badge {
+  display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.3); padding:6px 14px; border-radius:6px;
+  font-size:13px; font-family:monospace; color:#fff; margin-top:16px;
+}
+.doi-badge:hover { background:rgba(255,255,255,0.25); text-decoration:none; }
+
+.action-bar {
+  background:var(--white); border-bottom:1px solid var(--border);
+  padding:14px 40px; display:flex; gap:10px; flex-wrap:wrap;
+  align-items:center; position:sticky; top:57px; z-index:99;
+}
+
+.article-body { max-width:1100px; margin:0 auto; padding:40px; display:grid; grid-template-columns:1fr 300px; gap:40px; }
+
+.section { margin-bottom:36px; }
+.section-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.section-label::after { content:''; flex:1; height:1px; background:var(--border); }
+.abstract-text { font-family:'Merriweather',serif; font-size:15px; line-height:1.9; color:var(--slate); }
+
+.paper-section { margin-bottom:40px; }
+.paper-section h2 {
+  font-family:'Merriweather',serif; font-size:18px; font-weight:700;
+  color:var(--dark); margin-bottom:16px; padding-bottom:10px;
+  border-bottom:2px solid var(--border); line-height:1.4;
+}
+.paper-section h3 {
+  font-family:'Merriweather',serif; font-size:15px; font-weight:700;
+  color:var(--slate); margin:24px 0 10px; padding-bottom:6px;
+  border-bottom:1px dashed var(--border);
+}
+.paper-section p {
+  font-family:'Merriweather',serif; font-size:15px; line-height:1.9;
+  color:var(--slate); margin-bottom:16px; text-align:justify;
+}
+.paper-section p:last-child { margin-bottom:0; }
+.paper-section ol, .paper-section ul {
+  font-family:'Merriweather',serif; font-size:15px; line-height:1.9;
+  color:var(--slate); padding-left:28px; margin-bottom:16px;
+}
+.paper-section li { margin-bottom:12px; }
+.paper-section strong { font-weight:700; color:var(--dark); }
+.paper-section em { font-style:italic; }
+
+.pull-quote {
+  border-left:4px solid var(--cyan3); padding:16px 24px; margin:24px 0;
+  background:var(--cyan-light); border-radius:0 8px 8px 0;
+  font-family:'Merriweather',serif; font-size:16px; line-height:1.8;
+  color:var(--cyan); font-style:italic;
+}
+
+.table-wrapper { overflow-x:auto; margin:24px 0; }
+.table-caption {
+  font-family:'Inter',sans-serif; font-size:13px; font-weight:600;
+  color:var(--dark); margin-bottom:8px; text-align:center;
+}
+.academic-table {
+  width:100%; border-collapse:collapse; font-size:13px;
+  font-family:'Inter',sans-serif; background:var(--white);
+  border:1px solid var(--border);
+}
+.academic-table thead tr { background:#164e63; color:#fff; }
+.academic-table thead th { padding:10px 14px; text-align:left; font-weight:600; font-size:12px; }
+.academic-table tbody tr:nth-child(even) { background:#ecfeff; }
+.academic-table tbody tr:hover { background:#cffafe; }
+.academic-table td { padding:10px 14px; border-bottom:1px solid var(--border); vertical-align:top; line-height:1.5; }
+.academic-table tfoot tr { background:#0f172a; color:#fff; }
+.academic-table tfoot td { padding:10px 14px; font-weight:700; }
+.table-note { font-size:12px; color:var(--muted); margin-top:6px; font-style:italic; font-family:'Inter',sans-serif; }
+
+.references-list { list-style:none; counter-reset:ref-counter; }
+.references-list li {
+  counter-increment:ref-counter; font-family:'Merriweather',serif;
+  font-size:14px; line-height:1.8; color:var(--slate); margin-bottom:14px;
+  padding-left:36px; position:relative;
+}
+.references-list li::before {
+  content:counter(ref-counter) ".";
+  position:absolute; left:0; color:var(--muted); font-size:13px; font-weight:600;
+  font-family:'Inter',sans-serif;
+}
+
+.keywords { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.kw-tag { background:#ecfeff; color:#0e7490; padding:5px 12px; border-radius:20px; font-size:13px; font-weight:500; border:1px solid #a5f3fc; cursor:default; }
+.jel-tag { background:#f1f5f9; color:var(--slate); padding:5px 12px; border-radius:20px; font-size:13px; font-weight:500; border:1px solid var(--border); cursor:default; }
+
+.cite-box {
+  background:var(--light); border:1px solid var(--border); border-radius:var(--radius);
+  padding:20px; margin-bottom:16px;
+}
+.cite-box-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.cite-box-header h4 { font-size:13px; font-weight:700; color:var(--dark); }
+.cite-text { font-size:13px; color:var(--slate); line-height:1.7; font-family:'Merriweather',serif; }
+.cite-text em { font-style:italic; }
+
+.code-block {
+  background:#0f172a; color:#e2e8f0; padding:18px; border-radius:var(--radius);
+  font-family:'Courier New',monospace; font-size:12px; line-height:1.7;
+  overflow-x:auto; margin-bottom:16px; position:relative;
+}
+.copy-btn {
+  position:absolute; top:10px; right:10px; background:rgba(255,255,255,0.1);
+  color:#cbd5e1; border:1px solid rgba(255,255,255,0.2); padding:4px 10px;
+  border-radius:5px; font-size:11px; cursor:pointer; transition:0.2s;
+}
+.copy-btn:hover { background:rgba(255,255,255,0.2); }
+.copy-btn.copied { background:#0e7490; color:#fff; border-color:#0e7490; }
+
+.pdf-banner {
+  background:linear-gradient(135deg,#ecfeff,#cffafe); border:1.5px solid #a5f3fc;
+  border-radius:var(--radius); padding:20px 24px; margin:32px 0;
+  display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
+}
+.pdf-banner-text strong { display:block; font-size:15px; color:var(--dark); margin-bottom:4px; }
+.pdf-banner-text span { font-size:13px; color:var(--muted); }
+
+.sidebar { }
+.sidebar-box {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+  padding:20px; margin-bottom:20px;
+}
+.sidebar-box h4 { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin-bottom:14px; }
+.sidebar-row { display:flex; justify-content:space-between; align-items:flex-start; padding:8px 0; border-bottom:1px solid var(--border); font-size:13px; gap:10px; }
+.sidebar-row:last-child { border-bottom:none; }
+.sidebar-row .label { color:var(--muted); flex-shrink:0; }
+.sidebar-row .value { color:var(--dark); font-weight:500; text-align:right; }
+.open-access-badge {
+  display:flex; align-items:center; gap:8px; padding:10px 14px;
+  background:#ecfeff; border:1px solid #a5f3fc; border-radius:8px;
+  font-size:13px; color:var(--cyan2); font-weight:600; margin-bottom:14px;
+}
+.metrics-row { text-align:center; }
+.metric-num { font-size:26px; font-weight:700; color:#0e7490; display:block; }
+.metric-label { font-size:11px; color:var(--muted); }
+.metrics-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+
+.toc { background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:20px; margin-bottom:20px; }
+.toc h4 { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin-bottom:12px; }
+.toc ol { list-style:none; counter-reset:toc-counter; padding:0; }
+.toc li { counter-increment:toc-counter; font-size:12px; color:var(--slate); padding:5px 0; border-bottom:1px solid var(--border); }
+.toc li:last-child { border-bottom:none; }
+.toc li a { color:var(--slate); display:flex; gap:8px; align-items:flex-start; }
+.toc li a:hover { color:var(--cyan); text-decoration:none; }
+.toc li a::before { content:counter(toc-counter)"."; flex-shrink:0; color:var(--muted); min-width:16px; }
+
+.author-card {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+  padding:28px; display:flex; gap:20px; align-items:flex-start; margin-bottom:36px;
+}
+.author-avatar {
+  width:64px; height:64px; border-radius:50%; background:linear-gradient(135deg,#164e63,#06b6d4);
+  display:flex; align-items:center; justify-content:center; color:#fff;
+  font-size:22px; font-weight:700; flex-shrink:0;
+}
+.author-info h3 { font-size:16px; font-weight:700; margin-bottom:4px; }
+.author-info .affil { font-size:13px; color:var(--muted); margin-bottom:8px; }
+.author-info p { font-size:14px; color:var(--slate); line-height:1.6; }
+
+.related-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+.related-card {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+  padding:18px; transition:0.2s; cursor:pointer;
+}
+.related-card:hover { border-color:#06b6d4; transform:translateY(-2px); box-shadow:0 4px 16px rgba(0,0,0,0.08); }
+.related-card .tag { font-size:11px; font-weight:600; color:#0e7490; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:8px; }
+.related-card h4 { font-size:14px; font-weight:600; line-height:1.4; margin-bottom:8px; color:var(--dark); }
+.related-card .meta { font-size:12px; color:var(--muted); }
+
+.footer { background:var(--dark); color:#cbd5e1; padding:40px; margin-top:60px; }
+.footer-inner { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px; }
+.footer a { color:#94a3b8; font-size:13px; }
+.footer a:hover { color:var(--gold); text-decoration:none; }
+.footer-copy { font-size:13px; color:#475569; margin-top:20px; text-align:center; max-width:1100px; margin:20px auto 0; border-top:1px solid #1e293b; padding-top:20px; }
+
+.toast {
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px);
+  background:var(--dark); color:#fff; padding:12px 24px; border-radius:8px;
+  font-size:14px; font-weight:500; z-index:9999; transition:transform 0.3s ease;
+  box-shadow:0 8px 24px rgba(0,0,0,0.3);
+}
+.toast.show { transform:translateX(-50%) translateY(0); }
+
+@media (max-width:900px) {
+  .article-body { grid-template-columns:1fr; padding:24px 20px; }
+  .sidebar { order:-1; }
+  .metrics-grid { grid-template-columns:repeat(4,1fr); }
+}
+@media (max-width:768px) {
+  .navbar { padding:12px 20px; }
+  .nav-links { display:none; }
+  .breadcrumb { padding:10px 20px; }
+  .article-header { padding:36px 20px 32px; }
+  .article-title { font-size:20px; }
+  .action-bar { padding:12px 20px; top:53px; }
+  .pdf-banner { flex-direction:column; }
+}
+@media (max-width:480px) {
+  .article-title { font-size:18px; }
+  .action-bar .btn span { display:none; }
+  .metrics-grid { grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast">Copied to clipboard!</div>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<nav class="navbar">
+  <a href="/" class="nav-logo">
+    Mabrig Research Institute
+    <span>mabrigresearch.online</span>
+  </a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/journal/">MJIR Journal</a>
+    <a href="/#services">Services</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="https://www.afrigrantpipeline.com/" target="_blank">Grants ↗</a>
+  </div>
+</nav>
+
+<!-- ═══════════ BREADCRUMB ═══════════ -->
+<div class="breadcrumb">
+  <a href="/">Home</a><span>›</span>
+  <a href="/journal/">MJIR Journal</a><span>›</span>
+  <a href="/journal/#vol2">Volume 2, Issue 1</a><span>›</span>
+  Article 008
+</div>
+
+<!-- ═══════════ ARTICLE HEADER ═══════════ -->
+<header class="article-header">
+  <div class="article-header-inner">
+    <div class="article-meta-top">
+      <span class="meta-tag gold">Open Access</span>
+      <span class="meta-tag">MJIR Vol. 2, Issue 1</span>
+      <span class="meta-tag">Article 008</span>
+      <span class="meta-tag">2026</span>
+      <span class="meta-tag">Computational Pharmacology</span>
+      <span class="meta-tag">Network Biology</span>
+      <span class="meta-tag">Nigeria</span>
+    </div>
+
+    <h1 class="article-title">
+      A Network Pharmacology and Molecular Docking Framework for Decoding Multi-Target Synergistic Mechanisms of Anacardiaceae and Poaceae Leaf Combinations: Methodology and a Worked Illustrative Example
+    </h1>
+
+    <div class="article-authors">
+      <div class="author-name">Mabrig Korie</div>
+      <div class="author-affil">Independent Researcher, Computational Pharmacology &amp; Network Biology — Mabrig Korie Ministries Research Division | MABRIG Digital Media, Port Harcourt, Rivers State, Nigeria</div>
+      <div class="author-email">contact@mabrigkorie.org &nbsp;|&nbsp; mabrigkorie.org</div>
+    </div>
+
+    <div class="article-pub-info">
+      <div class="pub-info-item"><strong>Journal</strong>Mabrig Journal of Interdisciplinary Research</div>
+      <div class="pub-info-item"><strong>Volume / Issue</strong>Vol. 2, Issue 1</div>
+      <div class="pub-info-item"><strong>Year</strong>2026</div>
+      <div class="pub-info-item"><strong>Pages</strong>159 – 184</div>
+      <div class="pub-info-item"><strong>Article</strong>008</div>
+    </div>
+
+    <div class="article-history">
+      <div class="history-item"><strong>Received</strong>12 June 2026</div>
+      <div class="history-item"><strong>Revised</strong>15 June 2026</div>
+      <div class="history-item"><strong>Accepted</strong>17 June 2026</div>
+      <div class="history-item"><strong>Published</strong>18 June 2026</div>
+    </div>
+
+    <a class="doi-badge" href="https://doi.org/10.5678/mjir.v2i1.008" target="_blank">
+      🔗 DOI: 10.5678/mjir.v2i1.008
+    </a>
+  </div>
+</header>
+
+<!-- ═══════════ ACTION BAR ═══════════ -->
+<div class="action-bar">
+  <a class="btn btn-cyan" href="/pdfs/korie-2026-network-pharmacology-anacardiaceae-poaceae.rtf" download>
+    📥 <span>Download Paper</span>
+  </a>
+  <button class="btn btn-outline" onclick="copyCitation('apa')">
+    📋 <span>Cite This Paper</span>
+  </button>
+  <button class="btn btn-outline" onclick="copyBibtex()">
+    📄 <span>BibTeX</span>
+  </button>
+  <button class="btn btn-outline" onclick="shareArticle()">
+    ↗ <span>Share</span>
+  </button>
+  <a class="btn btn-secondary" href="/#publish" style="margin-left:auto;">
+    Publish with MRI →
+  </a>
+</div>
+
+<!-- ═══════════ BODY ═══════════ -->
+<div class="article-body">
+
+  <!-- ══ MAIN COLUMN ══ -->
+  <main>
+
+    <!-- Abstract -->
+    <div class="section">
+      <div class="section-label">Abstract</div>
+      <p class="abstract-text">
+        Network pharmacology and molecular docking have become standard tools for explaining why multi-component plant extracts so often outperform single isolated compounds: by mapping each constituent onto its predicted protein targets, building the resulting protein–protein interaction network, and ranking targets by topological importance, researchers can generate testable hypotheses about which proteins a given botanical combination is most likely to act through, well before any wet-laboratory or clinical work begins. This article sets out a complete, reproducible computational framework for applying that approach to a specific, previously unexamined combination — leaf-derived flavonoids and phenolics from the Anacardiaceae family (<em>Mangifera indica</em>, mango, and <em>Anacardium occidentale</em>, cashew) paired with bioactives from Poaceae leaf sources (<em>Bambusa</em> spp., bamboo) — built around five recurring bioactive compounds: mangiferin, quercetin, anacardic acid, orientin, and vitexin.
+      </p>
+      <p class="abstract-text" style="margin-top:14px;">
+        <strong>A central methodological note governs everything that follows and is stated here without qualification:</strong> this is a methodology and framework paper, not a results paper. No target-prediction queries, protein–protein interaction network construction, topological hub analysis, enrichment analysis, or molecular docking runs were actually executed for this article. Every quantitative figure presented in the Results section — network node and edge counts, degree/betweenness/closeness/MCC scores, enrichment p-values, and docking binding-affinity values — is an illustrative, hypothetical worked example, constructed to demonstrate what the described pipeline's output would look like and how it would be interpreted, modelled loosely on the typical ranges reported in published network pharmacology and docking studies of structurally related flavonoids and phenolics. These figures are not the product of completed computational experiments on this specific compound set, and they must not be cited, reused, or treated as genuine findings. The contribution of this article is the framework itself — a fully specified, reproducible protocol that any researcher with access to the named (real, publicly available) tools and databases could execute to generate actual results — together with a worked example that shows, transparently and end to end, how the pipeline's output should be read once it has genuinely been run.
+      </p>
+    </div>
+
+    <!-- Keywords -->
+    <div class="section">
+      <div class="section-label">Keywords</div>
+      <div class="keywords">
+        <span class="kw-tag">Network Pharmacology</span>
+        <span class="kw-tag">Molecular Docking</span>
+        <span class="kw-tag">Anacardiaceae</span>
+        <span class="kw-tag">Poaceae</span>
+        <span class="kw-tag">Mangifera indica</span>
+        <span class="kw-tag">Anacardium occidentale</span>
+        <span class="kw-tag">Multi-Target Synergy</span>
+        <span class="kw-tag">Computational Pharmacology</span>
+        <span class="kw-tag">In Silico Methods</span>
+        <span class="kw-tag">Ethnobotany</span>
+      </div>
+    </div>
+
+    <!-- ═══ FULL PAPER BODY ═══ -->
+
+    <div class="pull-quote">
+      Methodological notice: This article is a framework and worked-example paper. All network topology statistics, enrichment p-values, and docking binding-affinity figures shown in the Results section are illustrative and hypothetical — generated for demonstration purposes only, not from completed computational experiments on this compound set. They must not be cited as empirical findings.
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="paper-section" id="sec1">
+      <h2>1. Introduction: A Framework in Search of Its First Real Run</h2>
+      <p>
+        Network pharmacology starts from a simple observation that classical, one-drug-one-target pharmacology is often poorly equipped to handle: most complex diseases, and certainly most chronic metabolic and inflammatory conditions, are not driven by a single defective protein but by a web of interacting genes, proteins, and signalling pathways acting together (Hopkins, 2008). A plant extract that contains dozens of bioactive compounds, each weakly engaging several targets at once, can in principle achieve a therapeutic effect that no single isolated compound engaging one target with high affinity could match — not because any one interaction is especially strong, but because the combination's targets converge on the same disease-relevant network nodes from several directions simultaneously (Wagner &amp; Ulrich-Merzenich, 2009). This is, in computational language, exactly the logic that African and Asian traditional polyherbal medicine has followed for centuries on purely empirical grounds (Sofowora, 1993; Iwu, 1993; Gurib-Fakim, 2006).
+      </p>
+      <p>
+        Turning that intuition into a testable scientific claim requires tools that did not exist a generation ago: public databases that predict, from a compound's structure alone, which human proteins it is likely to bind (Daina et al., 2019); protein–protein interaction databases that describe how those predicted targets relate to one another inside the cell (Szklarczyk et al., 2023); network visualisation and analysis software that can take a list of proteins and compute which of them sit at structurally important "hub" positions within the resulting network (Shannon et al., 2003); functional enrichment tools that translate a list of hub genes into the biological pathways and processes they collectively represent (Kanehisa &amp; Goto, 2000; Ashburner et al., 2000; Yu, Wang, Han, &amp; He, 2012); and molecular docking software that estimates, in silico, how tightly a given compound is likely to bind a given target protein's three-dimensional structure (Trott &amp; Olson, 2010). Used together, in sequence, these tools constitute what is now widely called a network pharmacology and molecular docking pipeline, and it has become one of the most common methodological templates in the contemporary natural-products literature.
+      </p>
+      <p>
+        This article applies that template, conceptually and procedurally, to a combination that — so far as a careful search of the published literature could establish — has not yet been examined as a unit: leaf-derived bioactives from two Anacardiaceae sources, <em>Mangifera indica</em> (mango) and <em>Anacardium occidentale</em> (cashew), considered alongside leaf-derived bioactives from a Poaceae source, <em>Bambusa</em> spp. (bamboo). All three plants are common, inexpensive, and widely available across Nigeria and much of tropical Africa and Asia, and all three have independent histories of traditional use for metabolic, inflammatory, and hepatic complaints. Five compounds recur across the published phytochemical profiles of these three botanical sources and anchor the worked example that follows: mangiferin and quercetin (both well represented in mango leaf), anacardic acid (the principal phenolic lipid of cashew leaf and shell), and orientin and vitexin (C-glycosylflavones common to bamboo leaf and reported elsewhere in the bamboo-and-MASLD literature this journal has previously discussed; Korie, 2026).
+      </p>
+      <p>
+        It is necessary to be unusually explicit, at the very outset, about what kind of paper this is and is not. It is not a report of a completed network pharmacology study with empirically generated results: no target-prediction database was queried for this specific compound set, no protein–protein interaction network was actually constructed and analysed in Cytoscape or an equivalent tool, no enrichment analysis was run, and no docking simulation was performed. It is, instead, a methodology paper — a complete, step-by-step, reproducible protocol, specified at the level of named software, named databases, and named parameters, accompanied throughout by a fully worked illustrative example that shows what each step's output looks like and how it should be read. The illustrative figures exist to teach the method, not to report a discovery. Anyone wishing to know whether this specific combination genuinely engages the targets and pathways sketched out below must run the pipeline described in Section 3 themselves; this article supplies the protocol and the interpretive scaffolding, not the empirical answer.
+      </p>
+      <p>
+        Three tasks organise what follows. First, the conceptual and biological rationale for treating these five compounds as a candidate multi-target combination is laid out, with attention to the protein targets and pathways most often implicated in flavonoid and phenolic pharmacology generally. Second, a complete computational framework — compound and target selection, network construction, topological hub analysis, functional enrichment, and molecular docking — is specified in enough procedural detail that another researcher could execute it without further guidance, using exclusively real, publicly available, named tools. Third, a fully labelled worked example walks through what each stage of that pipeline would output and how a researcher would interpret it, with every illustrative number clearly and repeatedly marked as such, and the article closes with a concrete roadmap for converting this framework into an empirically validated study.
+      </p>
+    </div>
+
+
+    <!-- SECTION 2 -->
+    <div class="paper-section" id="sec2">
+      <h2>2. Conceptual Background: Five Compounds, Three Plants, One Network</h2>
+
+      <h3>2.1 Why Network Pharmacology Fits Multi-Plant Combinations</h3>
+      <p>
+        Classical pharmacology has historically rewarded selectivity: the ideal drug binds one target tightly and leaves everything else alone, because off-target binding is usually where side effects come from. Network pharmacology inverts that intuition for a specific class of problem — complex, multifactorial disease — by treating limited, distributed polypharmacology as a feature rather than a bug (Hopkins, 2008). A compound that binds ten different proteins weakly, each of which sits in a disease-relevant pathway, can in principle move a biological system further than a compound that binds one protein perfectly, provided the ten weak interactions are not simply redundant. Multi-plant combinations, by definition, multiply this effect: each additional botanical source contributes its own compound list, and therefore its own set of predicted targets, increasing both the breadth of pathway coverage and the analytical complexity of working out which targets actually matter.
+      </p>
+
+      <h3>2.2 The Five Anchor Compounds and Their Botanical Sources</h3>
+      <p>
+        Five compounds anchor the worked example developed in this article, chosen because each is well represented in the published phytochemical literature on the three plants under consideration and each belongs to a structural class — xanthones, flavonoids, and phenolic lipids — with an established record of multi-target pharmacological activity. <strong>Mangiferin</strong>, a C-glycosyl xanthone, is the signature compound of <em>Mangifera indica</em> leaf and has been studied extensively for antioxidant, antidiabetic, and anti-inflammatory activity. <strong>Quercetin</strong>, one of the most widely distributed flavonols in the plant kingdom and present in mango leaf alongside mangiferin, is among the most frequently modelled compounds in the network pharmacology literature precisely because of its broad, well-characterised target profile. <strong>Anacardic acid</strong>, a phenolic lipid distinctive to <em>Anacardium occidentale</em> (cashew) leaf, shell, and nut testa, has documented anti-inflammatory and antimicrobial activity attributed in part to its capacity to inhibit certain lipoxygenase and histone acetyltransferase enzymes. <strong>Orientin</strong> and <strong>vitexin</strong>, both C-glycosylflavones, are recurring constituents of <em>Bambusa</em> spp. leaf and were among the compounds implicated in the bamboo-leaf MASLD mechanism this journal has previously discussed (Korie, 2026).
+      </p>
+
+      <h3>2.3 Candidate Hub Targets Suggested by the General Flavonoid and Phenolic Literature</h3>
+      <p>
+        Without having run a target-prediction query for this specific compound set, it is nonetheless possible — and useful, for framing the worked example in Section 4 — to note which protein targets recur most often when structurally similar flavonoids, xanthones, and phenolic lipids are profiled individually in the published literature. AKT1, TNF, IL6, and STAT3 recur across inflammatory and metabolic disease network pharmacology studies of plant flavonoids generally; HIF1A and NFE2L2 (the gene encoding Nrf2) appear frequently in oxidative-stress-related target lists; PRKAA1 (encoding the catalytic subunit of AMPK) and MAPK1 appear in metabolic-pathway-focused studies; and RELA and JUN recur as downstream transcriptional nodes in NF-κB- and AP-1-linked inflammatory signalling. None of this constitutes a target-prediction result for the five compounds discussed here — it is background context, drawn from the wider literature on structurally related compounds, intended only to make the illustrative worked example in Section 4 plausible rather than arbitrary.
+      </p>
+
+      <h3>2.4 What a Genuine Pipeline Run Would Need to Establish</h3>
+      <p>
+        Converting this background plausibility into an actual finding requires four things that this article does not supply: a genuine target-prediction query for each of the five named compounds against a current database such as SwissTargetPrediction (Daina et al., 2019); construction of the resulting protein–protein interaction network in STRING (Szklarczyk et al., 2023) and Cytoscape (Shannon et al., 2003); topological analysis to identify which predicted targets actually occupy hub positions in that specific network, rather than in network pharmacology studies of other compounds; and molecular docking of each compound against the crystal structures of its top-ranked predicted hub targets using a tool such as AutoDock Vina (Trott &amp; Olson, 2010). Section 3 specifies exactly how each of these four steps should be carried out.
+      </p>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="paper-section" id="sec3">
+      <h2>3. Methods: A Reproducible Computational Framework</h2>
+      <p>
+        This section is written as a protocol — detailed enough that a researcher with access to the named tools and databases could follow it step by step to produce a genuine result for this or any comparable compound set. Every tool and database named below is real and publicly accessible at the time of writing. No claim is made anywhere in this section that the steps described were carried out for the five compounds discussed in this article; Section 4 illustrates what carrying them out would look like, using clearly labelled hypothetical figures.
+      </p>
+
+      <h3>3.1 Compound and Target Data Acquisition</h3>
+      <p>
+        The framework begins with formal structural identification of each candidate compound — mangiferin, quercetin, anacardic acid, orientin, and vitexin in the worked example — by retrieving its canonical SMILES string and basic physicochemical descriptors (molecular weight, LogP, hydrogen bond donor and acceptor counts, topological polar surface area) from a public compound database such as PubChem (Kim et al., 2021) or ChEMBL (Mendez et al., 2019). These descriptors serve two purposes: they support a basic drug-likeness screen against established medicinal-chemistry heuristics such as Lipinski's Rule of Five (Lipinski, Lombardo, Dominy, &amp; Feeney, 2001), and they are the required input format for target-prediction tools. Each compound's SMILES string is then submitted to a ligand-based target-prediction service — SwissTargetPrediction is specified here for concreteness (Daina et al., 2019) — restricting predictions to human protein targets and retaining hits above a stated probability or confidence threshold (a 0.1 minimum probability score is a common, defensible cutoff in the published literature, though any threshold used should be stated explicitly and applied uniformly across compounds).
+      </p>
+
+      <h3>3.2 Protein–Protein Interaction Network Construction</h3>
+      <p>
+        The union of all predicted targets across the compound set forms the input gene/protein list for network construction. This list is submitted to the STRING database (Szklarczyk et al., 2023), restricted to <em>Homo sapiens</em>, with a minimum required interaction confidence score specified in advance (a "high confidence" threshold of 0.7 is standard practice and should be reported explicitly rather than left to STRING's default). The resulting interaction network — proteins as nodes, predicted or experimentally validated interactions as edges — is exported and imported into Cytoscape (Shannon et al., 2003) for analysis and visualisation. Any isolated nodes with no edges to the rest of the network are typically excluded from downstream hub analysis, since topological centrality measures are not meaningfully defined for disconnected nodes.
+      </p>
+
+      <h3>3.3 Topological Hub Analysis</h3>
+      <p>
+        Within Cytoscape, the CytoHubba or NetworkAnalyzer plugin (or equivalent) is used to compute, for every node in the network, a standard set of topological centrality measures: <strong>degree centrality</strong> (the number of direct connections a node has), <strong>betweenness centrality</strong> (how often a node lies on the shortest path between other node pairs, a proxy for its role as an information bottleneck), <strong>closeness centrality</strong> (how few steps separate a node from every other node in the network), and the <strong>Maximal Clique Centrality (MCC)</strong> score, which has been reported in the bioinformatics literature to outperform simpler degree-based measures at identifying genuine biological hub proteins in protein–protein interaction networks. Nodes are ranked by MCC score (or by a combination of the four measures, with the specific combination rule stated explicitly), and a pre-specified number of top-ranked nodes — ten is used as the illustrative cutoff in Section 4, though this should be set based on network size and reported transparently — are carried forward as candidate "hub targets" for the next stage.
+      </p>
+
+      <h3>3.4 Functional Enrichment Analysis</h3>
+      <p>
+        The full predicted-target list (not only the top hub nodes) is submitted to Gene Ontology enrichment analysis, covering biological process, molecular function, and cellular component categories (Ashburner et al., 2000), and to Kyoto Encyclopedia of Genes and Genomes (KEGG) pathway enrichment analysis (Kanehisa &amp; Goto, 2000), using a tool such as the R package clusterProfiler (Yu et al., 2012) or an equivalent web-based enrichment service. Enrichment results are filtered to a pre-specified statistical significance threshold (an adjusted p-value, corrected for multiple testing using the Benjamini–Hochberg or equivalent method, below 0.05 is standard) and reported with the number of target genes contributing to each enriched term, since pathway terms enriched on the strength of one or two genes warrant more cautious interpretation than those supported by many.
+      </p>
+
+      <h3>3.5 Molecular Docking Protocol</h3>
+      <p>
+        For each compound–hub-target pair selected from Section 3.3's output, a three-dimensional crystal or cryo-EM structure of the target protein is retrieved from the Protein Data Bank (Berman et al., 2000), prioritising structures with high resolution, a relevant bound ligand or apo conformation, and minimal missing residues near the predicted binding site. Target structures are prepared by removing crystallographic water and co-crystallised ligands, adding polar hydrogens, and assigning partial charges; compound structures are prepared by generating a reasonable low-energy 3D conformer and likewise assigning partial charges. Docking itself is performed with AutoDock Vina (Trott &amp; Olson, 2010), with the search space (grid box) centred on the target's known or predicted binding site and sized generously enough to allow the ligand reasonable conformational freedom. Each docking run should be repeated with several random seeds to assess pose reproducibility, and the lowest (most negative) binding energy across replicate runs, expressed in kcal/mol, is reported as the compound–target binding affinity estimate. A small set of known active and known inactive control ligands for each target, where available, should be docked alongside the compounds of interest as a sanity check on the protocol's discriminative validity.
+      </p>
+
+      <h3>3.6 Validation, Reporting Standards, and the Limits of This Framework</h3>
+      <p>
+        A complete, honest report of any genuine run of this pipeline should disclose, at minimum: the exact database version and access date for every tool used (target-prediction, network, and enrichment databases are updated frequently, and results can shift between versions); the confidence and significance thresholds applied at every filtering step; redocking validation of the docking protocol itself against any co-crystallised reference ligand, with the resulting root-mean-square deviation (RMSD) between the redocked and crystallographic pose reported explicitly, since a protocol that cannot reproduce a known binding pose within a reasonable RMSD tolerance (commonly under 2.0 Å) cannot be trusted to predict novel ones; and a clear statement that in silico docking scores are binding-affinity <em>estimates</em>, not measurements, and that any compound found to dock favourably in this kind of analysis still requires biochemical or cell-based confirmation before its predicted activity can be treated as established. This framework, followed faithfully and reported with this level of transparency, would constitute a genuine network pharmacology and molecular docking study. What follows in Section 4 is not that study; it is a demonstration of what such a study's output would look like.
+      </p>
+    </div>
+
+    <!-- SECTION 4 -->
+    <div class="paper-section" id="sec4">
+      <h2>4. Results: A Fully Labelled Illustrative Worked Example</h2>
+      <p>
+        <strong>Everything in this section is hypothetical.</strong> No target-prediction query, network construction, hub analysis, enrichment analysis, or docking run was executed for this article. The tables and figures below illustrate, with example numbers loosely modelled on typical ranges reported in published studies of structurally related flavonoids and phenolics, what the framework specified in Section 3 would output and how a researcher would read that output — nothing more.
+      </p>
+
+      <h3>4.1 Compound and Botanical Source Overview</h3>
+      <p>
+        Table 1 summarises the five anchor compounds and their reported physicochemical character and source plants. Unlike the tables that follow, the broad physicochemical classes described here (compound family, approximate molecular weight range, general lipophilicity) reflect well-established, publicly documented chemistry for these compounds rather than illustrative pipeline output; precise database identifiers and exact computed values are intentionally omitted here and should be retrieved directly from PubChem or ChEMBL by any researcher executing the framework, rather than taken from this table.
+      </p>
+
+      <div class="table-wrapper">
+        <p class="table-caption"><strong>Table 1.</strong> Five Anchor Compounds: Botanical Source and General Phytochemical Character</p>
+        <table class="academic-table">
+          <thead>
+            <tr>
+              <th>Compound</th>
+              <th>Class</th>
+              <th>Primary Botanical Source</th>
+              <th>General Character</th>
+              <th>Reported Activity Classes (General Literature)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Mangiferin</strong></td>
+              <td>C-glycosyl xanthone</td>
+              <td><em>Mangifera indica</em> leaf</td>
+              <td>Moderate MW, polar, multiple H-bond donors/acceptors</td>
+              <td>Antioxidant, antidiabetic, anti-inflammatory</td>
+            </tr>
+            <tr>
+              <td><strong>Quercetin</strong></td>
+              <td>Flavonol</td>
+              <td><em>Mangifera indica</em> leaf (also widely distributed)</td>
+              <td>Moderate MW, moderate lipophilicity</td>
+              <td>Antioxidant, anti-inflammatory, broad polypharmacology</td>
+            </tr>
+            <tr>
+              <td><strong>Anacardic acid</strong></td>
+              <td>Phenolic lipid</td>
+              <td><em>Anacardium occidentale</em> leaf / shell</td>
+              <td>Higher lipophilicity than the flavonoids in this set</td>
+              <td>Anti-inflammatory, antimicrobial, enzyme-inhibitory</td>
+            </tr>
+            <tr>
+              <td><strong>Orientin</strong></td>
+              <td>C-glycosylflavone</td>
+              <td><em>Bambusa</em> spp. leaf</td>
+              <td>Moderate MW, polar</td>
+              <td>Antioxidant, hepatoprotective, metabolic</td>
+            </tr>
+            <tr>
+              <td><strong>Vitexin</strong></td>
+              <td>C-glycosylflavone</td>
+              <td><em>Bambusa</em> spp. leaf</td>
+              <td>Moderate MW, polar</td>
+              <td>Antioxidant, anti-inflammatory, metabolic</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="table-note">General phytochemical classifications only; exact computed physicochemical descriptors and database identifiers are omitted and should be retrieved directly from PubChem/ChEMBL by any researcher executing the framework.</p>
+      </div>
+
+      <h3>4.2 Illustrative Hub Target Network</h3>
+      <p>
+        Were the framework in Section 3.2–3.3 genuinely executed, it would output a protein–protein interaction network of some specific size and a ranked list of hub nodes. Table 2 illustrates the form that output typically takes, using example network statistics and example topological scores that are not the result of an actual STRING/Cytoscape run on this compound set. The ten illustrative hub candidates shown (AKT1, TNF, IL6, STAT3, HIF1A, NFE2L2, PRKAA1, MAPK1, RELA, JUN) are drawn from the general flavonoid and phenolic literature discussed in Section 2.3, selected here purely to make the worked example biologically plausible.
+      </p>
+
+      <div class="table-wrapper">
+        <p class="table-caption"><strong>Table 2 (Illustrative Example — Not Actual Output).</strong> Hypothetical Network Topology Statistics and Candidate Hub Targets</p>
+        <table class="academic-table">
+          <thead>
+            <tr>
+              <th>Candidate Hub</th>
+              <th>Illustrative Degree</th>
+              <th>Illustrative Betweenness</th>
+              <th>Illustrative Closeness</th>
+              <th>Illustrative MCC Rank</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>AKT1</td><td>example: high</td><td>example: high</td><td>example: high</td><td>1 (illustrative)</td></tr>
+            <tr><td>TNF</td><td>example: high</td><td>example: moderate–high</td><td>example: high</td><td>2 (illustrative)</td></tr>
+            <tr><td>IL6</td><td>example: moderate–high</td><td>example: moderate</td><td>example: moderate–high</td><td>3 (illustrative)</td></tr>
+            <tr><td>STAT3</td><td>example: moderate</td><td>example: moderate</td><td>example: moderate</td><td>4 (illustrative)</td></tr>
+            <tr><td>HIF1A</td><td>example: moderate</td><td>example: moderate</td><td>example: moderate</td><td>5 (illustrative)</td></tr>
+            <tr><td>NFE2L2 (Nrf2)</td><td>example: moderate</td><td>example: low–moderate</td><td>example: moderate</td><td>6 (illustrative)</td></tr>
+            <tr><td>PRKAA1 (AMPK)</td><td>example: low–moderate</td><td>example: low–moderate</td><td>example: moderate</td><td>7 (illustrative)</td></tr>
+            <tr><td>MAPK1</td><td>example: low–moderate</td><td>example: low</td><td>example: moderate</td><td>8 (illustrative)</td></tr>
+            <tr><td>RELA</td><td>example: low</td><td>example: low</td><td>example: low–moderate</td><td>9 (illustrative)</td></tr>
+            <tr><td>JUN</td><td>example: low</td><td>example: low</td><td>example: low–moderate</td><td>10 (illustrative)</td></tr>
+          </tbody>
+        </table>
+        <p class="table-note">All values in this table are illustrative placeholders expressed qualitatively rather than as fabricated precise numbers, since no network of this kind has actually been built for this compound set. Node and edge counts, exact centrality values, and exact MCC scores would only become meaningful once Sections 3.1–3.3 have genuinely been executed.</p>
+      </div>
+
+      <h3>4.3 Illustrative Functional Enrichment Pattern</h3>
+      <p>
+        If the ten illustrative hub candidates in Table 2 were genuinely the output of a real network analysis, KEGG and Gene Ontology enrichment of the full predicted-target list would plausibly highlight pathways consistent with the biology already known for these protein families — the PI3K–Akt and MAPK signalling pathways (via AKT1, MAPK1), the HIF-1 and AMPK signalling pathways (via HIF1A, PRKAA1), TNF and NF-κB signalling (via TNF, RELA), and glutathione metabolism / oxidative stress response pathways (via NFE2L2). This is offered strictly as a plausibility check on the illustrative hub list, consistent with the general literature on these protein families — not as an enrichment result, since no enrichment analysis was actually run.
+      </p>
+
+      <h3>4.4 Illustrative Docking Affinity Pattern</h3>
+      <p>
+        Were the docking protocol in Section 3.5 genuinely carried out, it would return a binding-affinity estimate, in kcal/mol, for each compound–target pair docked. Published docking studies of structurally comparable flavonoids and phenolic compounds against comparable target classes commonly report binding affinities in the broad range of roughly −6 to −10 kcal/mol, with more negative values conventionally read as more favourable predicted binding. Table 3 illustrates the qualitative pattern such a study's output table would take — relative, not absolute, since the specific numbers shown are demonstration values, not docking results for these five compounds against these ten targets.
+      </p>
+
+      <div class="table-wrapper">
+        <p class="table-caption"><strong>Table 3 (Illustrative Example — Not Actual Output).</strong> Qualitative Pattern of Hypothetical Docking Affinity Strength by Compound and Target Class</p>
+        <table class="academic-table">
+          <thead>
+            <tr>
+              <th>Compound</th>
+              <th>vs. AKT1 / MAPK1 (illustrative)</th>
+              <th>vs. TNF / IL6 / STAT3 (illustrative)</th>
+              <th>vs. NFE2L2 / PRKAA1 (illustrative)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Mangiferin</strong></td><td>example: moderate–strong</td><td>example: moderate</td><td>example: moderate–strong</td></tr>
+            <tr><td><strong>Quercetin</strong></td><td>example: strong</td><td>example: moderate–strong</td><td>example: moderate</td></tr>
+            <tr><td><strong>Anacardic acid</strong></td><td>example: moderate</td><td>example: moderate–strong</td><td>example: moderate</td></tr>
+            <tr><td><strong>Orientin</strong></td><td>example: moderate</td><td>example: moderate</td><td>example: moderate–strong</td></tr>
+            <tr><td><strong>Vitexin</strong></td><td>example: moderate</td><td>example: moderate</td><td>example: moderate</td></tr>
+          </tbody>
+        </table>
+        <p class="table-note">Qualitative, illustrative pattern only — not the product of completed docking simulations. Any genuine docking study would report exact binding energies in kcal/mol per compound–target pair, together with redocking RMSD validation as specified in Section 3.6, neither of which is presented here because neither was performed.</p>
+      </div>
+
+      <h3>4.5 What This Illustrative Pattern Would Mean, If It Were Confirmed</h3>
+      <p>
+        Read purely as a demonstration of interpretation, a confirmed version of the pattern sketched above would suggest a multi-target profile in which quercetin and mangiferin contribute the strongest predicted engagement with growth-factor and survival signalling (AKT1/MAPK1) and inflammatory hub nodes (TNF/IL6/STAT3), anacardic acid contributes complementary anti-inflammatory engagement consistent with its documented enzyme-inhibitory activity, and the bamboo-derived C-glycosylflavones orientin and vitexin contribute relatively more toward the oxidative-stress and energy-sensing axis (NFE2L2/PRKAA1) — a division of labour across the three botanical sources that would echo, at the level of network pharmacology, the same complementary-mechanism logic this journal has previously discussed for a different bamboo-leaf combination (Korie, 2026). Whether this pattern reflects anything real about these five compounds and these ten targets is precisely the question that running the framework in Section 3 — and not this article — would answer.
+      </p>
+    </div>
+
+    <!-- SECTION 5 -->
+    <div class="paper-section" id="sec5">
+      <h2>5. Discussion</h2>
+
+      <h3>5.1 Why Publish a Framework Without Results</h3>
+      <p>
+        Network pharmacology and molecular docking studies have become common enough in the natural-products literature that the methodological template itself — which databases to query, in what order, with which thresholds — is now reasonably well established, even though individual papers rarely spell every step out in enough detail for independent replication. Publishing the framework on its own, decoupled from any specific claimed result, serves a narrower but genuine purpose: it gives other researchers, particularly those working with limited computational resources or just beginning to apply these tools to African ethnobotanical material, a complete, named, reproducible protocol to follow, together with a worked example that shows what correctly interpreted output looks like before they have generated any of their own. This is the same logic that justified publishing a literature-synthesis-only paper elsewhere in this journal (Korie, 2026): doing the preparatory, hypothesis-shaping work openly and honestly, clearly labelled as preparatory, before the resource-intensive primary work begins.
+      </p>
+
+      <h3>5.2 The Risk This Framing Is Designed to Avoid</h3>
+      <p>
+        Network pharmacology and docking studies carry a specific, well-documented risk: because the computational pipeline produces numbers — node counts, centrality scores, binding energies — that look identical in format whether or not the underlying analysis was actually run with care, it is comparatively easy for such numbers to be presented with more confidence than the underlying work supports, or, in the worst case, fabricated outright. This article was deliberately restructured during preparation specifically to avoid that risk: every quantitative figure in Section 4 is qualitatively hedged ("example: moderate," "illustrative," explicit rank labels marked "(illustrative)") rather than presented as a precise number with false authority, and the methodological notice in the Abstract and the pull-quote preceding Section 1 repeat the same caveat in case a reader arrives at Section 4 without having read the earlier sections. Readers, reviewers, and anyone citing this work should treat that repetition as intentional rather than redundant.
+      </p>
+
+      <h3>5.3 Limitations</h3>
+      <p>
+        The limitations of this article are, by design, total with respect to empirical findings: there are none, because none were generated. What can be assessed is the quality of the framework itself. The protocol specified in Section 3 follows widely accepted practice in the published network pharmacology literature, but it is not the only defensible version of such a pipeline — reasonable researchers differ on confidence thresholds, on which centrality measure or combination of measures best identifies genuine hubs, and on how many top-ranked targets merit docking follow-up. The illustrative target list in Section 2.3 and Table 2 is drawn from the general literature on structurally related compounds and is not, and cannot be, a substitute for an actual target-prediction query against this specific compound set; a genuine run could easily surface a substantially different hub list. Equally, the qualitative docking pattern in Table 3 should not be treated as even a weak prior on the real outcome of a genuine docking study — it illustrates how to read a results table, not what such a table would actually contain.
+      </p>
+
+      <h3>5.4 Staged Roadmap From Framework to Validated Findings</h3>
+      <p>
+        Table 4 sets out the sequence of work that would convert this framework into a genuine, citable network pharmacology study, following directly from the protocol in Section 3.
+      </p>
+
+      <div class="table-wrapper">
+        <p class="table-caption"><strong>Table 4.</strong> Staged Pathway From Methodological Framework to Empirically Validated Network Pharmacology Findings</p>
+        <table class="academic-table">
+          <thead>
+            <tr>
+              <th>Stage</th>
+              <th>Activity</th>
+              <th>Primary Purpose</th>
+              <th>Key Output</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>0 (this article)</strong></td>
+              <td>Specification of a reproducible computational framework, with a fully labelled illustrative worked example</td>
+              <td>Provide a usable protocol and teach correct interpretation of its output</td>
+              <td>Named-tool methodology; no empirical results</td>
+            </tr>
+            <tr>
+              <td><strong>1</strong></td>
+              <td>Genuine target prediction for all five compounds (Section 3.1)</td>
+              <td>Generate the real predicted-target list</td>
+              <td>Compound–target prediction tables with stated confidence thresholds</td>
+            </tr>
+            <tr>
+              <td><strong>2</strong></td>
+              <td>Real protein–protein interaction network construction and topological hub analysis (Sections 3.2–3.3)</td>
+              <td>Identify genuine candidate hub targets</td>
+              <td>Network file, node/edge statistics, ranked hub list</td>
+            </tr>
+            <tr>
+              <td><strong>3</strong></td>
+              <td>Functional enrichment analysis (Section 3.4)</td>
+              <td>Identify genuinely enriched pathways</td>
+              <td>GO/KEGG enrichment tables with corrected p-values</td>
+            </tr>
+            <tr>
+              <td><strong>4</strong></td>
+              <td>Molecular docking with redocking validation (Sections 3.5–3.6)</td>
+              <td>Estimate genuine binding affinities; validate the docking protocol</td>
+              <td>Binding energy table (kcal/mol) and RMSD validation report</td>
+            </tr>
+            <tr>
+              <td><strong>5</strong></td>
+              <td>In vitro biochemical or cell-based confirmation of top docking hits</td>
+              <td>Confirm predicted binding/activity is real, not an artefact of the model</td>
+              <td>Biochemical assay or cell-based activity data</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="table-note">Stages are sequential. This article corresponds only to Stage 0; nothing in Sections 1–5 should be read as having reached Stage 1 or beyond.</p>
+      </div>
+
+      <h3>5.5 Relevance to Nigerian and African Computational Pharmacology Capacity</h3>
+      <p>
+        Every tool named in Section 3 — PubChem, ChEMBL, SwissTargetPrediction, STRING, Cytoscape, the relevant R or Python enrichment packages, AutoDock Vina, and the Protein Data Bank — is free to access and runs on modest computing hardware, which makes this kind of framework genuinely usable by researchers and graduate students working in Nigerian and other African institutions without specialist wet-laboratory funding or high-performance computing infrastructure. <em>Mangifera indica</em>, <em>Anacardium occidentale</em>, and <em>Bambusa</em> species are all common, inexpensive, and widely cultivated across Nigeria, which lowers the practical barrier to eventually pairing any computational findings with locally sourced extracts for the in vitro and in vivo confirmation work described in Table 4. Making the methodology explicit and freely reusable, rather than treating it as a black box behind a results table, is itself a small contribution toward building that capacity.
+      </p>
+    </div>
+
+    <!-- SECTION 6 -->
+    <div class="paper-section" id="sec6">
+      <h2>6. Conclusion</h2>
+      <p>
+        This article specifies a complete, reproducible network pharmacology and molecular docking framework for examining multi-target synergy between Anacardiaceae leaf compounds (mangiferin and quercetin from <em>Mangifera indica</em>; anacardic acid from <em>Anacardium occidentale</em>) and Poaceae leaf compounds (orientin and vitexin from <em>Bambusa</em> spp.), and illustrates, through a fully labelled worked example, what each stage of that framework's output would look like and how it should be interpreted. It deliberately stops short of claiming any empirical result: no target-prediction query, network construction, enrichment analysis, or docking run was executed for this specific compound set, and every quantitative figure in Section 4 is marked as illustrative for exactly that reason.
+      </p>
+      <p>
+        What this article offers instead is a named, citable, step-by-step protocol — built entirely from real, publicly available tools and databases — together with the interpretive scaffolding needed to read its eventual output correctly, and a staged roadmap (Table 4) showing exactly what primary computational and laboratory work remains before any claim about this combination's actual multi-target mechanism could be responsibly made. Whether mangiferin, quercetin, anacardic acid, orientin, and vitexin genuinely converge on the hub targets sketched illustratively in Section 4 is an open, answerable, and inexpensive question for the next researcher — in Nigeria or elsewhere — willing to run the framework for real.
+      </p>
+
+      <div class="pdf-banner">
+        <div class="pdf-banner-text">
+          <strong>Download the full manuscript</strong>
+          <span>Complete framework paper with all tables, the worked illustrative example, and references — formatted for offline reading and citation.</span>
+        </div>
+        <a class="btn btn-cyan" href="/pdfs/korie-2026-network-pharmacology-anacardiaceae-poaceae.rtf" download>
+          📥 Download Paper
+        </a>
+      </div>
+    </div>
+
+    <!-- ACKNOWLEDGEMENTS -->
+    <div class="paper-section" id="sec-ack">
+      <h2>Acknowledgements</h2>
+      <p>
+        The author acknowledges the broader community of researchers whose published work on network pharmacology methodology, target-prediction databases, and the pharmacology of mangiferin, quercetin, anacardic acid, and bamboo-derived C-glycosylflavones informed the framework set out in this article. Traditional knowledge holders across Nigeria and the wider African and South Asian regions, whose long-standing use of mango, cashew, and bamboo leaf for metabolic and inflammatory complaints predates any molecular characterisation of these plants, are respectfully recognised.
+      </p>
+      <p style="margin-top:16px;">
+        <strong>Declaration of Competing Interest:</strong> The author declares no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+      </p>
+      <p style="margin-top:16px;">
+        <strong>Funding:</strong> This methodological framework paper received no specific external funding. It was conducted as an academic exercise to advance computational pharmacology research capacity and methodological transparency.
+      </p>
+      <p style="margin-top:16px;">
+        <strong>Data Availability:</strong> This article presents a methodological framework illustrated with a worked, hypothetical example. No new primary computational datasets, network files, docking output files, or enrichment results were generated, and none are deposited in any repository. Researchers wishing to execute the framework described in Section 3 should generate their own primary data using the named public tools and databases.
+      </p>
+    </div>
+
+    <!-- REFERENCES -->
+    <div class="paper-section" id="sec-ref">
+      <h2>References</h2>
+      <ol class="references-list">
+        <li>Ashburner, M., Ball, C. A., Blake, J. A., Botstein, D., Butler, H., Cherry, J. M., ... Sherlock, G. (2000). Gene ontology: Tool for the unification of biology. <em>Nature Genetics</em>, <em>25</em>(1), 25–29.</li>
+        <li>Berman, H. M., Westbrook, J., Feng, Z., Gilliland, G., Bhat, T. N., Weissig, H., Shindyalov, I. N., &amp; Bourne, P. E. (2000). The Protein Data Bank. <em>Nucleic Acids Research</em>, <em>28</em>(1), 235–242.</li>
+        <li>Daina, A., Michielin, O., &amp; Zoete, V. (2017). SwissADME: A free web tool to evaluate pharmacokinetics, drug-likeness and medicinal chemistry friendliness of small molecules. <em>Scientific Reports</em>, <em>7</em>, 42717.</li>
+        <li>Daina, A., Michielin, O., &amp; Zoete, V. (2019). SwissTargetPrediction: Updated data and new features for efficient prediction of protein targets of small molecules. <em>Nucleic Acids Research</em>, <em>47</em>(W1), W357–W364.</li>
+        <li>Gurib-Fakim, A. (2006). Medicinal plants: Traditions of yesterday and drugs of tomorrow. <em>Molecular Aspects of Medicine</em>, <em>27</em>(1), 1–93.</li>
+        <li>Hopkins, A. L. (2008). Network pharmacology: The next paradigm in drug discovery. <em>Nature Chemical Biology</em>, <em>4</em>(11), 682–690.</li>
+        <li>Iwu, M. M. (1993). <em>Handbook of African medicinal plants</em>. CRC Press.</li>
+        <li>Kanehisa, M., &amp; Goto, S. (2000). KEGG: Kyoto encyclopedia of genes and genomes. <em>Nucleic Acids Research</em>, <em>28</em>(1), 27–30.</li>
+        <li>Kim, S., Chen, J., Cheng, T., Gindulyte, A., He, J., He, S., ... Bolton, E. E. (2021). PubChem in 2021: New data content and improved web interfaces. <em>Nucleic Acids Research</em>, <em>49</em>(D1), D1388–D1395.</li>
+        <li>Korie, M. (2026). Preliminary investigation and mechanistic synthesis: A novel quadriherbal formulation targeting AMPK activation and PPAR-γ downregulation for metabolic dysfunction-associated steatotic liver disease (MASLD) and diabetes. <em>Mabrig Journal of Interdisciplinary Research</em>, <em>2</em>(1), 136–158.</li>
+        <li>Lipinski, C. A., Lombardo, F., Dominy, B. W., &amp; Feeney, P. J. (2001). Experimental and computational approaches to estimate solubility and permeability in drug discovery and development settings. <em>Advanced Drug Delivery Reviews</em>, <em>46</em>(1–3), 3–26.</li>
+        <li>Mendez, D., Gaulton, A., Bento, A. P., Chambers, J., De Veij, M., Félix, E., ... Leach, A. R. (2019). ChEMBL: Towards direct deposition of bioassay data. <em>Nucleic Acids Research</em>, <em>47</em>(D1), D930–D940.</li>
+        <li>Shannon, P., Markiel, A., Ozier, O., Baliga, N. S., Wang, J. T., Ramage, D., ... Ideker, T. (2003). Cytoscape: A software environment for integrated models of biomolecular interaction networks. <em>Genome Research</em>, <em>13</em>(11), 2498–2504.</li>
+        <li>Sofowora, A. (1993). <em>Medicinal plants and traditional medicine in Africa</em>. Spectrum Books.</li>
+        <li>Szklarczyk, D., Kirsch, R., Koutrouli, M., Nastou, K., Mehryary, F., Hachilif, R., ... von Mering, C. (2023). The STRING database in 2023: Protein–protein association networks and functional enrichment analyses for any sequenced genome of interest. <em>Nucleic Acids Research</em>, <em>51</em>(D1), D638–D646.</li>
+        <li>Trott, O., &amp; Olson, A. J. (2010). AutoDock Vina: Improving the speed and accuracy of docking with a new scoring function, efficient optimization, and multithreading. <em>Journal of Computational Chemistry</em>, <em>31</em>(2), 455–461.</li>
+        <li>Wagner, H., &amp; Ulrich-Merzenich, G. (2009). Synergy research: Approaching a new generation of phytopharmaceuticals. <em>Phytomedicine</em>, <em>16</em>(2–3), 97–110.</li>
+        <li>Yu, G., Wang, L. G., Han, Y., &amp; He, Q. Y. (2012). clusterProfiler: An R package for comparing biological themes among gene clusters. <em>OMICS: A Journal of Integrative Biology</em>, <em>16</em>(5), 284–287.</li>
+      </ol>
+    </div>
+
+    <!-- Citation section -->
+    <div class="section" id="sec-cite">
+      <div class="section-label">How to Cite</div>
+
+      <div class="cite-box">
+        <div class="cite-box-header">
+          <h4>APA 7th Edition</h4>
+          <button class="copy-btn" onclick="copyCitation('apa')" style="position:static;margin:0;">Copy</button>
+        </div>
+        <p class="cite-text" id="apa-text">Korie, M. (2026). A network pharmacology and molecular docking framework for decoding multi-target synergistic mechanisms of Anacardiaceae and Poaceae leaf combinations: Methodology and a worked illustrative example. <em>Mabrig Journal of Interdisciplinary Research</em>, <em>2</em>(1), 159–184. https://doi.org/10.5678/mjir.v2i1.008</p>
+      </div>
+
+      <div class="cite-box">
+        <div class="cite-box-header">
+          <h4>BibTeX</h4>
+          <button class="copy-btn" onclick="copyBibtex()" style="position:static;margin:0;">Copy</button>
+        </div>
+        <div class="code-block" id="bibtex-text">@article{korie2026networkpharmacology,
+  author    = {Korie, Mabrig},
+  title     = {A Network Pharmacology and Molecular Docking Framework
+               for Decoding Multi-Target Synergistic Mechanisms of
+               {Anacardiaceae} and {Poaceae} Leaf Combinations:
+               Methodology and a Worked Illustrative Example},
+  journal   = {Mabrig Journal of Interdisciplinary Research},
+  year      = {2026},
+  volume    = {2},
+  number    = {1},
+  pages     = {159--184},
+  doi       = {10.5678/mjir.v2i1.008},
+  url       = {https://mabrigresearch.online/journal/network-pharmacology-anacardiaceae-poaceae-synergy-korie-2026/},
+  publisher = {Mabrig Research Institute}
+}</div>
+      </div>
+
+      <div class="cite-box">
+        <div class="cite-box-header">
+          <h4>RIS / EndNote</h4>
+          <button class="copy-btn" onclick="copyRIS()" style="position:static;margin:0;">Copy</button>
+        </div>
+        <div class="code-block" id="ris-text">TY  - JOUR
+AU  - Korie, Mabrig
+TI  - A Network Pharmacology and Molecular Docking Framework for
+      Decoding Multi-Target Synergistic Mechanisms of Anacardiaceae
+      and Poaceae Leaf Combinations: Methodology and a Worked
+      Illustrative Example
+JO  - Mabrig Journal of Interdisciplinary Research
+PY  - 2026
+VL  - 2
+IS  - 1
+SP  - 159
+EP  - 184
+DO  - 10.5678/mjir.v2i1.008
+UR  - https://mabrigresearch.online/journal/network-pharmacology-anacardiaceae-poaceae-synergy-korie-2026/
+PB  - Mabrig Research Institute
+ER  -</div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar">
+
+    <!-- TOC -->
+    <div class="toc">
+      <h4>Contents</h4>
+      <ol>
+        <li><a href="#sec1">Introduction</a></li>
+        <li><a href="#sec2">Conceptual Background</a></li>
+        <li><a href="#sec3">Methods: The Framework</a></li>
+        <li><a href="#sec4">Results: Worked Example</a></li>
+        <li><a href="#sec5">Discussion</a></li>
+        <li><a href="#sec6">Conclusion</a></li>
+        <li><a href="#sec-ref">References</a></li>
+      </ol>
+    </div>
+
+    <!-- Article Details -->
+    <div class="sidebar-box">
+      <div class="open-access-badge">🔓 Open Access Article</div>
+      <h4>Article Details</h4>
+      <div class="sidebar-row"><span class="label">Type</span><span class="value">Methodological Framework / Worked Illustrative Example</span></div>
+      <div class="sidebar-row"><span class="label">Volume</span><span class="value">2 (1)</span></div>
+      <div class="sidebar-row"><span class="label">Pages</span><span class="value">159–184</span></div>
+      <div class="sidebar-row"><span class="label">License</span><span class="value">CC BY 4.0</span></div>
+    </div>
+
+    <!-- Identifiers -->
+    <div class="sidebar-box">
+      <h4>Identifiers</h4>
+      <div class="sidebar-row"><span class="label">DOI</span><span class="value" style="font-family:monospace;font-size:12px;"><a href="https://doi.org/10.5678/mjir.v2i1.008" target="_blank">10.5678/mjir.v2i1.008</a></span></div>
+      <div class="sidebar-row"><span class="label">ISSN</span><span class="value">Pending</span></div>
+    </div>
+
+    <!-- Metrics -->
+    <div class="sidebar-box">
+      <h4>Article Metrics</h4>
+      <div class="metrics-grid">
+        <div class="metrics-row"><span class="metric-num">—</span><span class="metric-label">Downloads</span></div>
+        <div class="metrics-row"><span class="metric-num">—</span><span class="metric-label">Citations</span></div>
+        <div class="metrics-row"><span class="metric-num">—</span><span class="metric-label">Views</span></div>
+        <div class="metrics-row"><span class="metric-num">18</span><span class="metric-label">References</span></div>
+      </div>
+    </div>
+
+    <!-- Subject Areas -->
+    <div class="sidebar-box">
+      <h4>Subject Areas</h4>
+      <div class="keywords">
+        <span class="jel-tag">Network Pharmacology</span>
+        <span class="jel-tag">Computational Biology</span>
+        <span class="jel-tag">Molecular Docking</span>
+        <span class="jel-tag">Bioinformatics</span>
+        <span class="jel-tag">Pharmacology</span>
+        <span class="jel-tag">Drug Discovery</span>
+      </div>
+    </div>
+
+    <!-- Share -->
+    <div class="sidebar-box">
+      <h4>Share This Article</h4>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
+        <a class="btn btn-outline" style="justify-content:center;" href="https://twitter.com/intent/tweet?text=A+Network+Pharmacology+%26+Docking+Framework+for+Anacardiaceae-Poaceae+Synergy+%7C+MJIR+2026&url=https://mabrigresearch.online/journal/network-pharmacology-anacardiaceae-poaceae-synergy-korie-2026/" target="_blank">Share on X / Twitter</a>
+        <a class="btn btn-outline" style="justify-content:center;" href="https://www.linkedin.com/sharing/share-offsite/?url=https://mabrigresearch.online/journal/network-pharmacology-anacardiaceae-poaceae-synergy-korie-2026/" target="_blank">Share on LinkedIn</a>
+        <a class="btn btn-outline" style="justify-content:center;" href="https://wa.me/?text=A+network+pharmacology+and+docking+framework+for+Anacardiaceae+and+Poaceae+leaf+combinations%3A+https://mabrigresearch.online/journal/network-pharmacology-anacardiaceae-poaceae-synergy-korie-2026/" target="_blank">Share on WhatsApp</a>
+      </div>
+    </div>
+
+  </aside>
+
+</div>
+
+<!-- ═══════════ AUTHOR BIO ═══════════ -->
+<div style="max-width:1100px;margin:0 auto;padding:0 40px 40px;">
+  <div class="author-card">
+    <div class="author-avatar">MK</div>
+    <div class="author-info">
+      <h3>Mabrig Korie</h3>
+      <p class="affil">Independent Researcher, Computational Pharmacology &amp; Network Biology — Mabrig Korie Ministries Research Division | MABRIG Digital Media, Port Harcourt, Rivers State, Nigeria &nbsp;|&nbsp; contact@mabrigkorie.org</p>
+      <p>Mabrig Korie is an interdisciplinary researcher whose work spans political economy, governance, public health, and social transformation. Through the Mabrig Research Institute (MRI), he publishes applied research addressing the institutional and developmental challenges confronting African states, including computational and natural product research aimed at building reproducible, low-cost research capacity grounded in African ethnobotanical traditions.</p>
+    </div>
+  </div>
+
+  <!-- Related Articles -->
+  <div class="section">
+    <div class="section-label">Related Articles in MJIR</div>
+    <div class="related-grid">
+      <div class="related-card" onclick="window.location.href='/journal/quadriherbal-formulation-masld-ampk-pparg-nigeria-korie-2026/'">
+        <div class="tag">Pharmacology &mdash; Vol. 2, Issue 1</div>
+        <h4>Preliminary Investigation and Mechanistic Synthesis: A Novel Quadriherbal Formulation Targeting AMPK Activation and PPAR-γ Downregulation for MASLD and Diabetes</h4>
+        <div class="meta">Korie, M. &bull; 2026 &bull; pp. 136–158</div>
+      </div>
+      <div class="related-card" onclick="window.location.href='/journal/cassia-senna-anti-ulcer-drug-discovery-nigeria-korie-2026/'">
+        <div class="tag">Pharmacology &mdash; Vol. 2, Issue 1</div>
+        <h4>Cassia senna (Senna alexandrina) Leaves as a Prospective Source of Anti-Ulcer Therapeutics in Nigeria</h4>
+        <div class="meta">Korie, M. &bull; 2026 &bull; pp. 61–80</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <strong style="color:#e2e8f0;font-size:15px;">Mabrig Research Institute</strong>
+      <p style="font-size:13px;margin-top:6px;max-width:280px;">Africa's academic publishing ecosystem — empowering African scholars to publish, access, and apply world-class research.</p>
+    </div>
+    <div>
+      <strong style="color:#e2e8f0;font-size:13px;display:block;margin-bottom:10px;">MJIR Journal</strong>
+      <a href="/journal/">Browse Issues</a><br/>
+      <a href="/#publish" style="display:block;margin-top:6px;">Submit a Paper</a><br/>
+      <a href="/#pricing" style="display:block;margin-top:6px;">Publication Fees</a>
+    </div>
+    <div>
+      <strong style="color:#e2e8f0;font-size:13px;display:block;margin-bottom:10px;">Resources</strong>
+      <a href="https://www.afrigrantpipeline.com/" target="_blank">AfriGrantPipeline ↗</a><br/>
+      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" style="display:block;margin-top:6px;">CC BY 4.0 License</a>
+    </div>
+  </div>
+  <div class="footer-copy">
+    &copy; 2026 Mabrig Research Institute (MRI). All rights reserved. &nbsp;|&nbsp; ISSN Pending &nbsp;|&nbsp; DOI prefix: 10.5678
+  </div>
+</footer>
+
+<script>
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg || 'Copied to clipboard!';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+function copyCitation(fmt) {
+  const txt = document.getElementById('apa-text').innerText;
+  navigator.clipboard.writeText(txt).then(() => showToast('APA citation copied!'));
+}
+function copyBibtex() {
+  const txt = document.getElementById('bibtex-text').innerText;
+  navigator.clipboard.writeText(txt).then(() => showToast('BibTeX copied!'));
+}
+function copyRIS() {
+  const txt = document.getElementById('ris-text').innerText;
+  navigator.clipboard.writeText(txt).then(() => showToast('RIS citation copied!'));
+}
+function shareArticle() {
+  const url = 'https://mabrigresearch.online/journal/network-pharmacology-anacardiaceae-poaceae-synergy-korie-2026/';
+  if (navigator.share) {
+    navigator.share({ title: 'A Network Pharmacology and Molecular Docking Framework for Anacardiaceae-Poaceae Synergy — MJIR 2026', url });
+  } else {
+    navigator.clipboard.writeText(url).then(() => showToast('Article URL copied!'));
+  }
+}
+</script>
+
+</body>
+</html>
